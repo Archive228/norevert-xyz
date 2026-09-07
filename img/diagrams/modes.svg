@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-label="NV-01 combat policy modes">
+  <rect width="720" height="220" fill="#111214"/>
+  <text x="28" y="36" fill="#f2f2f2" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Policy modes we train</text>
+  <text x="28" y="58" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">23 actions. A 29-DOF G1 ONNX will not load.</text>
+  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#f2f2f2">
+    <rect x="28" y="84" width="124" height="100" fill="#1b1d22" stroke="#2c3038"/>
+    <text x="44" y="140">guard</text>
+    <rect x="164" y="84" width="124" height="100" fill="#1b1d22" stroke="#2c3038"/>
+    <text x="180" y="140">jab</text>
+    <rect x="300" y="84" width="124" height="100" fill="#1b1d22" stroke="#2c3038"/>
+    <text x="316" y="140">hook</text>
+    <rect x="436" y="84" width="124" height="100" fill="#1b1d22" stroke="#2c3038"/>
+    <text x="448" y="140">front kick</text>
+    <rect x="572" y="84" width="120" height="100" fill="#1b1d22" stroke="#2c3038"/>
+    <text x="588" y="140">get-up</text>
+  </g>
+</svg>

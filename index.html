@@ -9,289 +9,273 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
   <style>
     :root {
-      --bg: #070708;
-      --ink: #f3f3f4;
-      --mute: #8b8d93;
-      --line: #232428;
-      --panel: #101114;
+      --bg: #07080b;
+      --ink: #f2f3f5;
+      --mute: #8b9098;
+      --line: #242830;
+      --panel: #111317;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { background: var(--bg); color: var(--ink); }
+    html { scroll-behavior: auto; }
     body {
       font-family: Inter, system-ui, sans-serif;
       font-size: 16px;
       line-height: 1.55;
+      overflow-x: hidden;
     }
     a { color: inherit; }
-    img { max-width: 100%; display: block; }
+    img, svg { max-width: 100%; display: block; }
+
+    #stage {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .grain {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
 
     nav {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 20;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed; inset: 0 0 auto; z-index: 20;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 18px 28px;
-      background: linear-gradient(#070708ee, #07070800);
+      background: linear-gradient(#07080be8, #07080b00);
     }
     nav .mark {
       font-family: IBM Plex Mono, monospace;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
     }
     nav .links { display: flex; gap: 22px; }
     nav a {
       font-family: IBM Plex Mono, monospace;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--mute);
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+      text-decoration: none; color: var(--mute);
     }
     nav a:hover { color: var(--ink); }
 
     .hero {
+      position: relative; z-index: 2;
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: end;
-      padding: 100px 28px 48px;
-      gap: 24px;
-      background:
-        radial-gradient(ellipse at 70% 40%, #1a1c22 0%, #070708 62%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 100px 28px 56px;
+      max-width: 780px;
     }
-    .hero h1 {
+    .kicker {
+      font-family: IBM Plex Mono, monospace;
+      font-size: 12px; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--mute); margin-bottom: 16px;
+    }
+    h1 {
       font-family: Anton, Impact, sans-serif;
       font-weight: 400;
-      font-size: clamp(56px, 10vw, 128px);
-      line-height: 0.86;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
+      font-size: clamp(58px, 11vw, 132px);
+      line-height: .86; letter-spacing: -.01em; text-transform: uppercase;
     }
-    .hero .kicker {
-      font-family: IBM Plex Mono, monospace;
-      font-size: 12px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--mute);
-      margin-bottom: 18px;
-    }
-    .hero p.lede {
-      max-width: 420px;
-      margin: 22px 0 28px;
-      color: #c8c9ce;
-    }
-    .hero img {
-      width: 100%;
-      max-height: 86vh;
-      object-fit: contain;
-    }
+    .lede { max-width: 440px; margin: 22px 0 28px; color: #c8cdd4; }
     .btns { display: flex; flex-wrap: wrap; gap: 10px; }
     .btn {
-      display: inline-block;
-      padding: 11px 16px;
-      border: 1px solid #3a3b40;
-      text-decoration: none;
+      display: inline-block; padding: 11px 16px;
+      border: 1px solid #3a3f48; text-decoration: none;
       font-family: IBM Plex Mono, monospace;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+      background: #07080bcc; backdrop-filter: blur(8px);
     }
-    .btn.solid { background: #f3f3f4; color: #070708; border-color: #f3f3f4; }
+    .btn.solid { background: #f2f3f5; color: #07080b; border-color: #f2f3f5; }
     .btn:hover { border-color: #fff; }
 
-    section { padding: 80px 28px; max-width: 1180px; margin: 0 auto; }
+    .sheet {
+      position: relative; z-index: 2;
+      background: linear-gradient(#07080b00, #07080b 56px, #07080b);
+    }
+    section { padding: 88px 28px; max-width: 1180px; margin: 0 auto; }
     .label {
       font-family: IBM Plex Mono, monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--mute);
-      margin-bottom: 14px;
+      font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--mute); margin-bottom: 14px;
     }
     h2 {
       font-family: Anton, Impact, sans-serif;
       font-weight: 400;
       font-size: clamp(36px, 6vw, 72px);
-      line-height: 0.9;
-      text-transform: uppercase;
-      margin-bottom: 18px;
+      line-height: .9; text-transform: uppercase; margin-bottom: 18px;
     }
-    .copy { max-width: 640px; color: #c8c9ce; }
+    .copy { max-width: 640px; color: #c8cdd4; }
     .copy p + p { margin-top: 1em; }
 
     .specs {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line); border-left: 1px solid var(--line);
       margin-top: 36px;
     }
     .spec {
       padding: 22px 18px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      background: #0c0e12cc;
     }
     .spec b {
-      display: block;
-      font-family: Anton, Impact, sans-serif;
-      font-size: 32px;
-      font-weight: 400;
-      line-height: 1;
-      margin-bottom: 8px;
+      display: block; font-family: Anton, Impact, sans-serif;
+      font-size: 32px; font-weight: 400; line-height: 1; margin-bottom: 8px;
     }
     .spec span { color: var(--mute); font-size: 13px; }
 
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 28px;
+    .diag {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px;
     }
-    figure { background: var(--panel); border: 1px solid var(--line); }
-    figure img { width: 100%; height: 420px; object-fit: cover; background: #000; }
-    figcaption {
-      padding: 14px 16px 16px;
-      font-size: 13px;
-      color: var(--mute);
+    .diag img {
+      width: 100%; border: 1px solid var(--line); background: #111214;
     }
 
     .gallery {
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 12px;
-      margin-top: 28px;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 12px; margin-top: 28px;
     }
-    .gallery img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      min-height: 220px;
-      background: #000;
-    }
+    .gallery.g3 { grid-template-columns: 1fr 1fr 1fr; }
+    .gallery .tall { min-height: 520px; }
     .stack { display: grid; gap: 12px; }
+    figure { margin: 0; }
+    figure img {
+      width: 100%; height: 100%; object-fit: cover;
+      min-height: 220px; background: #000; border: 1px solid var(--line);
+    }
+    figcaption { padding: 10px 2px 0; font-size: 13px; color: var(--mute); }
 
     footer {
+      position: relative; z-index: 2;
       border-top: 1px solid var(--line);
-      padding: 40px 28px 60px;
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
-      max-width: 1180px;
-      margin: 0 auto;
+      padding: 40px 28px 64px;
+      display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+      max-width: 1180px; margin: 0 auto;
     }
-    footer .mark {
-      font-family: Anton, Impact, sans-serif;
-      font-size: 28px;
-      text-transform: uppercase;
-    }
+    footer .mark { font-family: Anton, Impact, sans-serif; font-size: 28px; text-transform: uppercase; }
     footer a { color: var(--mute); text-decoration: none; }
     footer a:hover { color: var(--ink); }
 
     @media (max-width: 860px) {
-      .hero, .split, .gallery, .specs { grid-template-columns: 1fr; }
-      .hero { min-height: auto; padding-top: 88px; }
-      .hero img { max-height: 62vh; }
-      figure img { height: 280px; }
+      .specs, .diag, .gallery, .gallery.g3 { grid-template-columns: 1fr; }
+      .gallery .tall { min-height: 320px; }
       nav { padding: 14px 16px; }
       section { padding: 56px 16px; }
+      .hero { padding: 88px 16px 40px; }
     }
   </style>
 </head>
 <body>
+  <canvas id="stage"></canvas>
+  <div class="grain"></div>
+
   <nav>
     <div class="mark">Norevert Labs</div>
     <div class="links">
       <a href="#nv-01">NV-01</a>
-      <a href="#work">Work</a>
+      <a href="#lab">Lab</a>
       <a href="https://github.com/Norevert-robot/norevert">GitHub</a>
       <a href="mailto:Geeklin36@gmail.com">Mail</a>
     </div>
   </nav>
 
   <header class="hero">
-    <div>
-      <p class="kicker">Norevert · NV-01 · 23 DOF · 40 kg</p>
-      <h1>Built for<br>the cage</h1>
-      <p class="lede">Every open-source humanoid we opened was built to walk. This one is being built to fight. Team Norevert. Robot NV-01.</p>
-      <div class="btns">
-        <a class="btn solid" href="https://github.com/Norevert-robot/norevert">Open the repo</a>
-        <a class="btn" href="mailto:Geeklin36@gmail.com">Geeklin36@gmail.com</a>
-      </div>
+    <p class="kicker">Norevert · NV-01 · 23 DOF · 40 kg</p>
+    <h1>Built for<br>the cage</h1>
+    <p class="lede">Every open-source humanoid we opened was built to walk. This one is being built to fight. Team Norevert. Robot NV-01.</p>
+    <div class="btns">
+      <a class="btn solid" href="https://github.com/Norevert-robot/norevert">Open the repo</a>
+      <a class="btn" href="mailto:Geeklin36@gmail.com">Geeklin36@gmail.com</a>
     </div>
-    <img src="img/hero.png" alt="NV-01, white polymer armor, monitor head, pill eyes" />
   </header>
 
-  <section id="nv-01">
-    <p class="label">The body</p>
-    <h2>NV-01</h2>
-    <div class="copy">
-      <p>A 1.25-meter biped. About 34 kilograms. 23 driven joints. No hands. No neck. A CRT-monitor head with two vertical pill eyes — or no head at all, depending on which photo you are looking at.</p>
-      <p>Shanghai RoboParty published the CAD. On this bench it is NV-01. Same baseline. We are pointing this serial at humanoid combat.</p>
-    </div>
-    <div class="specs">
-      <div class="spec"><b>1.25 m</b><span>Height. ATOM 01 manual.</span></div>
-      <div class="spec"><b>33.76 kg</b><span>URDF V2 inertials. Press says 34.</span></div>
-      <div class="spec"><b>23 DOF</b><span>12 legs, 1 waist, 10 arms. Not 20.</span></div>
-      <div class="spec"><b>~40 kg</b><span>Fight class. Not an 80 kg T800.</span></div>
-      <div class="spec"><b>120 N·m</b><span>Leg / waist class. DM 10010L.</span></div>
-      <div class="spec"><b>27 N·m</b><span>Arm / ankle class. DM 4340P.</span></div>
-      <div class="spec"><b>48 V</b><span>15 Ah pack on the lower back.</span></div>
-      <div class="spec"><b>55 STL</b><span>Shell panels. Static display until we revalidate impact.</span></div>
-    </div>
-  </section>
-
-  <section>
-    <p class="label">Two looks. One machine.</p>
-    <h2>Appearance / naked</h2>
-    <div class="split">
-      <figure>
-        <img src="img/front.png" alt="Appearance mode: white armor, pill eyes, sphere hands" />
-        <figcaption>Appearance. White polymer armor, monitor head, pill eyes, black spheres. On ours the chest says Norevert / NV-01.</figcaption>
-      </figure>
-      <figure>
-        <img src="img/street.png" alt="Naked lab machine on a hoist outdoors" />
-        <figcaption>Naked. CNC frame, X-truss chest, blue battery, yellow tape, no head. Almost every real walk we have looks like this.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section id="work">
-    <p class="label">The job</p>
-    <h2>Not on a card yet</h2>
-    <div class="copy">
-      <p>Norevert is not on a published URKL, CyberHero, REK, or UFB card. The work is the body and the policies. House rules until a league writes us in: three rounds, two minutes, thirty seconds rest. Tether until get-up holds on hardware.</p>
-      <p>The walking GIFs still have a person on the back handle. Both facts stay true. We do not write 3 m/s. We have not timed it.</p>
-    </div>
-    <div class="gallery">
-      <img src="img/run.png" alt="NV-01 in a running pose" />
-      <div class="stack">
-        <img src="img/lab.png" alt="Lab assembly of the robot" />
-        <img src="img/campus.jpg" alt="Campus demonstration" />
+  <div class="sheet">
+    <section id="nv-01">
+      <p class="label">The body</p>
+      <h2>NV-01</h2>
+      <div class="copy">
+        <p>A 1.25-meter biped. About 34 kilograms. 23 driven joints. No hands. No neck. The walking GIFs still have a person on the back handle. Both facts stay true.</p>
+        <p>Shanghai RoboParty published the CAD. Notices stay. On this bench the serial is NV-01. The chest mark is Norevert — not their wordmark.</p>
       </div>
-    </div>
-  </section>
+      <div class="specs">
+        <div class="spec"><b>1.25 m</b><span>Height. ATOM 01 manual.</span></div>
+        <div class="spec"><b>33.76 kg</b><span>URDF V2 inertials.</span></div>
+        <div class="spec"><b>23 DOF</b><span>12 legs, 1 waist, 10 arms.</span></div>
+        <div class="spec"><b>~40 kg</b><span>Fight class. Not a T800.</span></div>
+        <div class="spec"><b>120 N·m</b><span>Leg / waist. DM 10010L.</span></div>
+        <div class="spec"><b>27 N·m</b><span>Arm / ankle. DM 4340P.</span></div>
+        <div class="spec"><b>48 V</b><span>15 Ah pack, lower back.</span></div>
+        <div class="spec"><b>4 CAN</b><span>Left leg / right+waist / L arm / R arm.</span></div>
+      </div>
+      <div class="diag">
+        <img src="img/diagrams/dof.svg" alt="23 actuated DOF breakdown" />
+        <img src="img/diagrams/class.svg" alt="40 kg class versus T800" />
+        <img src="img/diagrams/can.svg" alt="Four CAN buses" />
+        <img src="img/diagrams/modes.svg" alt="Policy modes" />
+      </div>
+    </section>
 
-  <section>
-    <p class="label">Open</p>
-    <h2>Files, not a press render</h2>
-    <div class="copy">
-      <p>Most open humanoids give you a URDF and a render. The baseline gives you a full SolidWorks assembly, production Gerbers, and a versioned parts list. That is why this body is worth turning into a fighter.</p>
-    </div>
-    <div class="btns" style="margin-top:24px">
-      <a class="btn solid" href="https://github.com/Norevert-robot/norevert">github.com/Norevert-robot</a>
-      <a class="btn" href="https://x.com/norevert_">@norevert_</a>
-    </div>
-    <figure style="margin-top:28px">
-      <img src="img/cutaway.png" alt="Cutaway: shell on the left, skeleton on the right" style="height:auto;object-fit:contain;background:#fff" />
-      <figcaption>Source machine cutaway. Arm 5 DOF / 27 N·m. Leg 6 DOF / 120 N·m. Waist 1 DOF. Notices stay.</figcaption>
-    </figure>
-  </section>
+    <section id="lab">
+      <p class="label">What actually walks</p>
+      <h2>Lab, not a mascot</h2>
+      <div class="copy">
+        <p>CNC frame. X-truss chest. Blue pack in the cutout. Yellow tape on the looms. No head. Hoist ropes from the upper corners. This is the honest fight look.</p>
+      </div>
+      <div class="gallery">
+        <figure class="tall">
+          <img src="img/street.png" alt="NV-01 on a hoist outdoors" />
+          <figcaption>Outdoor hoist. Hand on the bar is part of the control system.</figcaption>
+        </figure>
+        <div class="stack">
+          <figure>
+            <img src="img/hoist.png" alt="Side profile of the naked machine" />
+            <figcaption>Profile. Battery hump, pancake hips, silver ankle rods.</figcaption>
+          </figure>
+          <figure>
+            <img src="img/walk.png" alt="Teleop walk test with a gamepad in frame" />
+            <figcaption>Teleop. Legs are a balance policy. Arms are a pad.</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="gallery g3" style="margin-top:12px">
+        <figure>
+          <img src="img/lab.png" alt="Frame laid out during assembly" />
+          <figcaption>Assembly. The body you can actually order parts for.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/pose.png" alt="Headless pose test in the workshop" />
+          <figcaption>Pose test. 0 neck DOF. Do not animate a glance.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/room.png" alt="Indoor hoist test in a meeting room" />
+          <figcaption>Indoor hoist. Tether until get-up holds.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="work">
+      <p class="label">The job</p>
+      <h2>Not on a card yet</h2>
+      <div class="copy">
+        <p>Norevert is not on a published URKL, CyberHero, REK, or UFB card. The work is the body and the policies. House rules until a league writes us in: three rounds, two minutes, thirty seconds rest. Tether until get-up holds on hardware.</p>
+        <p>We do not write 3 m/s. We have not timed it. A glove is a foam cup on the flange.</p>
+      </div>
+      <div class="btns" style="margin-top:24px">
+        <a class="btn solid" href="https://github.com/Norevert-robot/norevert">github.com/Norevert-robot</a>
+        <a class="btn" href="https://x.com/norevert_">@norevert_</a>
+      </div>
+    </section>
+  </div>
 
   <footer>
     <div>
@@ -304,5 +288,15 @@
       <a href="https://x.com/norevert_">X</a>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+  <script>
+    if (window.Lenis) {
+      const lenis = new Lenis({ lerp: 0.08 });
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    }
+  </script>
+  <script type="module" src="js/scene.js"></script>
 </body>
 </html>

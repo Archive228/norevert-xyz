@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-label="NV-01 four CAN buses">
+  <rect width="720" height="280" fill="#111214"/>
+  <text x="28" y="36" fill="#f2f2f2" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Four CAN buses</text>
+  <text x="28" y="58" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">V2 integrated board. Do not invent a fifth bus.</text>
+  <g font-family="ui-monospace, Menlo, monospace" font-size="14">
+    <rect x="28" y="84" width="156" height="160" fill="#1b1d22" stroke="#2c3038"/>
+    <text x="44" y="120" fill="#f2f2f2">can0</text>
+    <text x="44" y="148" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">left leg</text>
+    <rect x="200" y="84" width="156" height="160" fill="#1b1d22" stroke="#2c3038"/>
+    <text x="216" y="120" fill="#f2f2f2">can1</text>
+    <text x="216" y="148" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">right leg</text>
+    <text x="216" y="168" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">+ waist</text>
+    <rect x="372" y="84" width="156" height="160" fill="#1b1d22" stroke="#2c3038"/>
+    <text x="388" y="120" fill="#f2f2f2">can2</text>
+    <text x="388" y="148" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">left arm</text>
+    <rect x="544" y="84" width="148" height="160" fill="#1b1d22" stroke="#2c3038"/>
+    <text x="560" y="120" fill="#f2f2f2">can3</text>
+    <text x="560" y="148" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">right arm</text>
+  </g>
+</svg>
