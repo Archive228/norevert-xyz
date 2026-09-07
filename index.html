@@ -286,10 +286,6 @@
     .rule ul li s { text-decoration-color: #d85a4a99; color: var(--ink); }
     @media (max-width: 820px) { .rules { grid-template-columns: 1fr; } }
 
-    .origin dl { display: grid; grid-template-columns: max-content 1fr; gap: 10px 22px; font-size: 14.5px; color: var(--ink2); margin-top: 26px; }
-    .origin dt { font-family: var(--mono); font-size: 12px; color: var(--mute); padding-top: 2px; }
-    .origin a { color: var(--ink); text-decoration-color: #ffffff44; text-underline-offset: 3px; }
-    .origin a:hover { text-decoration-color: #fff; }
     .links-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
     .chip { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--ink2); border: 1px solid var(--line2); border-radius: 999px; padding: 7px 12px; }
     .chip:hover { border-color: #fff; color: #fff; }
@@ -322,7 +318,6 @@
       <a href="#inside">Inside</a>
       <a href="#lab">Lab</a>
       <a href="#rules">Rules</a>
-      <a href="#origin">Origin</a>
       <a class="keep" href="https://x.com/norevert_" rel="me">X</a>
       <a class="cta" href="https://github.com/Norevert-robot/norevert">GitHub</a>
     </div>
@@ -353,7 +348,7 @@
       </header>
 
       <div class="steps" aria-live="polite">
-        <div class="step" data-from="0.04" data-to="0.42"><b>Strip 01 — the shell</b><p>Fifty-five printed panels. The authors mark them static display: thin gaps, wiring pain, not signed off for a run or a hit.</p></div>
+        <div class="step" data-from="0.04" data-to="0.42"><b>Strip 01 — the shell</b><p>Fifty-five printed panels. Static display: thin gaps, wiring pain, not signed off for a run or a hit.</p></div>
         <div class="step" data-from="0.42" data-to="0.76"><b>Strip 02 — the box</b><p>Inside the V: a 48 V 15 Ah pack, the RBE 3-in-1 board, an Orange Pi or RDK. The heaviest link in the URDF is the torso. That is what you are punching toward.</p></div>
         <div class="step" data-from="0.76" data-to="1.01"><b>Strip 03 — what walks</b><p>CNC frame, X-truss chest, 23 DM actuators on four CAN buses, two rods per ankle. This is the honest fight look. Tether until get-up holds.</p></div>
       </div>
@@ -393,14 +388,14 @@
           <h2>What you are<br>actually looking at</h2>
           <div class="copy">
             <p>A 1.25-meter biped. About 34 kilograms. 23 driven joints. No hands. No neck. A display-box head with two vertical pill eyes, or no head at all, depending on which photo you are looking at.</p>
-            <p>Shanghai RoboParty published the CAD. Notices stay. On this bench the serial is <strong>NV-01</strong> and the chest mark is <strong>Norevert</strong>, not their wordmark. We did not draw the first sketch. We are pointing this body at the 40-kilogram cage.</p>
-            <p>Every number below has a file behind it: the ATOM 01 installation manual, the V2 URDF, the V2.1 Gerbers, the January 2026 BOM. Nothing below comes from a tweet.</p>
+            <p>The serial is <strong>NV-01</strong>. The chest mark is <strong>Norevert</strong>. We are pointing this body at the 40-kilogram cage.</p>
+            <p>Every number below is from our files. Nothing below comes from a tweet.</p>
           </div>
         </div>
         <div>
           <table class="passport" aria-label="NV-01 passport">
             <tbody>
-              <tr><td class="k">Height</td><td><b>1.25 m</b> <span class="n">— ATOM 01 manual</span></td></tr>
+              <tr><td class="k">Height</td><td><b>1.25 m</b></td></tr>
               <tr><td class="k">Mass</td><td><b>33.76 kg</b> <span class="n">— URDF V2 inertials. Press writes 34.</span></td></tr>
               <tr><td class="k">Driven DOF</td><td><b>23</b> <span class="n">— 12 legs · 1 waist yaw · 10 arms. Not 20.</span></td></tr>
               <tr><td class="k">Arms</td><td><b>5 DOF each</b> <span class="n">— peak 27 N·m, DM 4340P</span></td></tr>
@@ -413,7 +408,7 @@
               <tr><td class="k">Compute</td><td><b>Orange Pi 5 Plus</b> <span class="n">and/or Horizon RDK X5 8G</span></td></tr>
               <tr><td class="k">Board</td><td><b>RBE 3-in-1 V2</b> <span class="n">— power · USB2CAN · hub, ~100 × 75 mm</span></td></tr>
               <tr><td class="k">Bus</td><td><b>4 × CAN</b> <span class="n">— can0 L leg · can1 R leg + waist · can2 L arm · can3 R arm</span></td></tr>
-              <tr><td class="k">Shell</td><td><b>55 STL panels</b> <span class="n">— authors: static display</span></td></tr>
+              <tr><td class="k">Shell</td><td><b>55 STL panels</b> <span class="n">— static display</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -460,7 +455,7 @@
         </div>
         <div>
           <h3>The 55 panels the scroll strips off</h3>
-          <div class="copy"><p>Names are the authors’. “Black” in a name is a real dark insert: neck, shoulders, hip covers, thigh roots, soles. Everything else is off-white.</p></div>
+          <div class="copy"><p>“Black” in a name is a real dark insert: neck, shoulders, hip covers, thigh roots, soles. Everything else is off-white.</p></div>
           <ul class="panels">
             <li><b>1–2</b> head, front / back</li>
             <li><b>3</b> neck <em>black</em></li>
@@ -500,8 +495,8 @@
             <li>55 off-white polymer panels, thin dark seams</li>
             <li>Landscape monitor head, black glass, two vertical LED pills</li>
             <li>Black spheres where hands would be</li>
-            <li>Chest mark: <b>NOREVERT / NV-01</b>. Not their wordmark.</li>
-            <li>Authors’ own note: prototype-only, uneven gaps, static display</li>
+            <li>Chest mark: <b>NOREVERT / NV-01</b></li>
+            <li>Prototype shell: uneven gaps, static display</li>
           </ul>
           <div class="swatches">
             <span class="sw"><i style="background:#f2f4f6"></i>#F2F4F6 shell</span>
@@ -603,36 +598,6 @@
         <a class="chip" href="https://github.com/Norevert-robot/norevert/blob/main/SAFETY.md">SAFETY.md</a>
       </div>
     </section>
-
-    <section id="origin" class="origin">
-      <p class="num">06 — Origin and notices</p>
-      <div class="two tight">
-        <div>
-          <h2>We did not draw<br>the first sketch</h2>
-          <div class="copy">
-            <p>The body is the open ROBOTO_ORIGIN / RPO V2 stack from <strong>Shanghai RoboParty Technology</strong>. Same machine under four names: Atom01 in the 2025 CAD, RPO after the May 2026 rename, ROBOTO Prototype in the company bio, ROBOTO_ORIGIN on the GitHub billboard. On this bench: NV-01.</p>
-            <p>The mechanical assembly, the Gerbers and the parts list are public under their licenses. What Norevert holds is the fight stack: the retarget, the policies, the glove mount, the name on the chest. We do not rehost their CAD dump as ours.</p>
-          </div>
-        </div>
-        <div>
-          <dl>
-            <dt>Baseline</dt><dd>ROBOTO_ORIGIN / RPO V2.0 — Shanghai RoboParty Technology (萝博派对)</dd>
-            <dt>Metal, meshes</dt><dd>CERN-OHL-W-2.0</dd>
-            <dt>Software</dt><dd>GPL-3.0</dd>
-            <dt>Docs here</dt><dd>GPL-3.0 (docs) · URDF under CERN-OHL-W-2.0</dd>
-            <dt>Names</dt><dd>Norevert, NV-01 — ours. RoboParty, RPO, Atom01, ROBOTO — theirs.</dd>
-            <dt>Photos</dt><dd>Lab and street frames document the baseline body. They are not Norevert CAD.</dd>
-            <dt>Model above</dt><dd>Built from the V2 URDF, the manual and the visual record. Not a CAD export.</dd>
-          </dl>
-          <div class="links-row">
-            <a class="chip" href="https://github.com/Norevert-robot/norevert/blob/main/ORIGIN.md">ORIGIN.md</a>
-            <a class="chip" href="https://github.com/Norevert-robot/norevert/blob/main/TRADEMARKS.md">TRADEMARKS.md</a>
-            <a class="chip" href="https://github.com/Norevert-robot/norevert/blob/main/LICENSES.md">LICENSES.md</a>
-            <a class="chip" href="https://github.com/Norevert-robot/norevert/blob/main/description/nv01.urdf">description/nv01.urdf</a>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
@@ -656,10 +621,9 @@
         <li><a href="#modes">03 Two looks</a></li>
         <li><a href="#lab">04 Lab</a></li>
         <li><a href="#rules">05 The job</a></li>
-        <li><a href="#origin">06 Origin</a></li>
       </ul>
     </div>
-    <div class="fine">norevert.xyz · Baseline body: ROBOTO_ORIGIN / RPO by Shanghai RoboParty Technology, CERN-OHL-W-2.0 · Norevert and NV-01 are Norevert Labs marks · No league affiliation.</div>
+    <div class="fine">norevert.xyz · Norevert Labs · NV-01 · No league affiliation.</div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>

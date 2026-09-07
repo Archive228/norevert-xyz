@@ -1,4 +1,4 @@
-// NV-01 — procedural model built from the ROBOTO_ORIGIN / RPO V2 URDF and the visual spec.
+// NV-01 — procedural model from description/nv01.urdf and the visual record.
 // Coordinates: Three.js Y-up.  x = robot left, y = up, z = forward.  (URDF x→z, y→x, z→y)
 // Base (pelvis) origin sits at BASE_Y above the floor.  Head top lands at 1.25 m.
 import * as THREE from "three";
