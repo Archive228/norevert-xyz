@@ -72,9 +72,10 @@
       position: relative; z-index: 2;
       min-height: 100vh;
       display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 100px 28px 56px;
-      max-width: 780px;
+      padding: 100px 28px 40px;
+      max-width: none;
     }
+    .explode-space { height: 85vh; pointer-events: none; }
     .kicker {
       font-family: IBM Plex Mono, monospace;
       font-size: 12px; letter-spacing: .28em; text-transform: uppercase;
@@ -83,7 +84,7 @@
     h1 {
       font-family: Anton, Impact, sans-serif;
       font-weight: 400;
-      font-size: clamp(58px, 11vw, 132px);
+      font-size: clamp(42px, 7vw, 88px);
       line-height: .86; letter-spacing: -.01em; text-transform: uppercase;
     }
     .lede { max-width: 440px; margin: 22px 0 28px; color: #c8cdd4; }
@@ -198,6 +199,7 @@
       <a class="btn" href="mailto:Geeklin36@gmail.com">Geeklin36@gmail.com</a>
     </div>
   </header>
+  <div class="explode-space" aria-hidden="true"></div>
 
   <div class="sheet">
     <section id="nv-01">
