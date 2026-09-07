@@ -1,17 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-label="NV-01 combat policy modes">
-  <rect width="720" height="220" fill="#111214"/>
-  <text x="28" y="36" fill="#f2f2f2" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Policy modes we train</text>
-  <text x="28" y="58" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">23 actions. A 29-DOF G1 ONNX will not load.</text>
-  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#f2f2f2">
-    <rect x="28" y="84" width="124" height="100" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="44" y="140">guard</text>
-    <rect x="164" y="84" width="124" height="100" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="180" y="140">jab</text>
-    <rect x="300" y="84" width="124" height="100" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="316" y="140">hook</text>
-    <rect x="436" y="84" width="124" height="100" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="448" y="140">front kick</text>
-    <rect x="572" y="84" width="120" height="100" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="588" y="140">get-up</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" role="img" aria-label="Policy modes">
+  <rect width="720" height="240" fill="#0d0f13"/>
+  <text x="28" y="38" fill="#f2f3f5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="600">Fight modes on the roadmap</text>
+  <text x="28" y="60" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12.5">23 actions on this skeleton. A 29-DOF G1 boxing ONNX will not load here.</text>
+  <rect x="28" y="92" width="122" height="110" rx="6" fill="#14171c" stroke="#e9c227"/>
+  <text x="42" y="136" fill="#f2f3f5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="600">get-up</text>
+  <text x="42" y="176" fill="#e9c227" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">first</text>
+  <rect x="162" y="92" width="122" height="110" rx="6" fill="#14171c" stroke="#e9c227"/>
+  <text x="176" y="136" fill="#f2f3f5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="600">guard</text>
+  <text x="176" y="176" fill="#e9c227" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">second</text>
+  <rect x="296" y="92" width="122" height="110" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="310" y="136" fill="#f2f3f5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="600">jab</text>
+  <text x="310" y="176" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">after the body stands</text>
+  <rect x="430" y="92" width="122" height="110" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="444" y="136" fill="#f2f3f5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="600">hook</text>
+  <text x="444" y="176" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">after the body stands</text>
+  <rect x="564" y="92" width="122" height="110" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="578" y="136" fill="#f2f3f5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="600">front kick</text>
+  <text x="578" y="176" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">after the body stands</text>
+  <text x="28" y="228" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">Legs are a balance policy. Arms are a pad or a headset. A jab that dumps the robot is not a jab.</text>
 </svg>

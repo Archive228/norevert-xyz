@@ -1,20 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-label="NV-01 four CAN buses">
-  <rect width="720" height="280" fill="#111214"/>
-  <text x="28" y="36" fill="#f2f2f2" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">Four CAN buses</text>
-  <text x="28" y="58" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">V2 integrated board. Do not invent a fifth bus.</text>
-  <g font-family="ui-monospace, Menlo, monospace" font-size="14">
-    <rect x="28" y="84" width="156" height="160" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="44" y="120" fill="#f2f2f2">can0</text>
-    <text x="44" y="148" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">left leg</text>
-    <rect x="200" y="84" width="156" height="160" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="216" y="120" fill="#f2f2f2">can1</text>
-    <text x="216" y="148" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">right leg</text>
-    <text x="216" y="168" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">+ waist</text>
-    <rect x="372" y="84" width="156" height="160" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="388" y="120" fill="#f2f2f2">can2</text>
-    <text x="388" y="148" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">left arm</text>
-    <rect x="544" y="84" width="148" height="160" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="560" y="120" fill="#f2f2f2">can3</text>
-    <text x="560" y="148" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">right arm</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="Four CAN buses">
+  <rect width="720" height="300" fill="#0d0f13"/>
+  <text x="28" y="38" fill="#f2f3f5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="600">Four CAN buses</text>
+  <text x="28" y="60" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12.5">One RBE 3-in-1 V2 board. Do not invent a fifth bus.</text>
+  <rect x="28" y="92" width="152" height="150" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="44" y="134" fill="#f2f3f5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="700">can0</text>
+  <text x="44" y="164" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">left leg</text>
+  <line x1="44" y1="196" x2="164" y2="196" stroke="#262b33"/>
+  <text x="44" y="222" fill="#8b9098" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">4× 10010L · 2× 4340P</text>
+  <rect x="196" y="92" width="152" height="150" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="212" y="134" fill="#f2f3f5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="700">can1</text>
+  <text x="212" y="164" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">right leg + waist</text>
+  <line x1="212" y1="196" x2="332" y2="196" stroke="#262b33"/>
+  <text x="212" y="222" fill="#8b9098" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">5× 10010L · 2× 4340P</text>
+  <rect x="364" y="92" width="152" height="150" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="380" y="134" fill="#f2f3f5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="700">can2</text>
+  <text x="380" y="164" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">left arm</text>
+  <line x1="380" y1="196" x2="500" y2="196" stroke="#262b33"/>
+  <text x="380" y="222" fill="#8b9098" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">5× 4340P</text>
+  <rect x="532" y="92" width="152" height="150" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="548" y="134" fill="#f2f3f5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="700">can3</text>
+  <text x="548" y="164" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">right arm</text>
+  <line x1="548" y1="196" x2="668" y2="196" stroke="#262b33"/>
+  <text x="548" y="222" fill="#8b9098" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">5× 4340P</text>
+  <text x="28" y="278" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">Ankles ride the leg buses. Waist shares can1 with the right leg.</text>
 </svg>

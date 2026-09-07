@@ -1,25 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-label="NV-01 23 actuated degrees of freedom">
-  <rect width="720" height="420" fill="#111214"/>
-  <text x="28" y="36" fill="#f2f2f2" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600">NV-01 · 23 actuated DOF</text>
-  <text x="28" y="58" fill="#8b9098" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">No hands. No neck. Head is a box on the torso.</text>
-  <g font-family="ui-sans-serif, system-ui, sans-serif">
-    <rect x="28" y="88" width="210" height="88" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="44" y="122" fill="#f2f2f2" font-size="28" font-weight="700">12</text>
-    <text x="44" y="148" fill="#8b9098" font-size="13">legs · 6 per side</text>
-    <rect x="254" y="88" width="210" height="88" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="270" y="122" fill="#f2f2f2" font-size="28" font-weight="700">1</text>
-    <text x="270" y="148" fill="#8b9098" font-size="13">waist yaw</text>
-    <rect x="480" y="88" width="212" height="88" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="496" y="122" fill="#f2f2f2" font-size="28" font-weight="700">10</text>
-    <text x="496" y="148" fill="#8b9098" font-size="13">arms · 5 per side</text>
-    <rect x="28" y="196" width="664" height="88" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="44" y="230" fill="#f2f2f2" font-size="16">Out of spec</text>
-    <text x="44" y="256" fill="#8b9098" font-size="13">fingers 0 · neck 0 · a boxing glove is a foam cup on the flange</text>
-    <rect x="28" y="304" width="328" height="88" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="44" y="338" fill="#f2f2f2" font-size="16">Legs / waist</text>
-    <text x="44" y="364" fill="#8b9098" font-size="13">DM 10010L · ~120 N·m · 13 joints</text>
-    <rect x="372" y="304" width="320" height="88" fill="#1b1d22" stroke="#2c3038"/>
-    <text x="388" y="338" fill="#f2f2f2" font-size="16">Arms / ankles</text>
-    <text x="388" y="364" fill="#8b9098" font-size="13">DM 4340P · ~27 N·m · 10 joints</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-label="NV-01, 23 actuated degrees of freedom">
+  <rect width="720" height="420" fill="#0d0f13"/>
+  <text x="28" y="38" fill="#f2f3f5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="600">NV-01 Â· 23 actuated DOF</text>
+  <text x="28" y="60" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12.5">No hands. No neck. The head is a box on the torso. Waist is yaw only.</text>
+  <rect x="28" y="88" width="210" height="88" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="44" y="126" fill="#f2f3f5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="30" font-weight="700">12</text>
+  <text x="44" y="152" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">legs Â· 6 per side</text>
+  <rect x="254" y="88" width="210" height="88" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="270" y="126" fill="#f2f3f5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="30" font-weight="700">1</text>
+  <text x="270" y="152" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">waist Â· yaw</text>
+  <rect x="480" y="88" width="212" height="88" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="496" y="126" fill="#f2f3f5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="30" font-weight="700">10</text>
+  <text x="496" y="152" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">arms Â· 5 per side</text>
+  <rect x="28" y="196" width="664" height="88" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="44" y="230" fill="#f2f3f5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="600">Out of spec</text>
+  <text x="44" y="254" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">fingers 0 Â· neck 0 Â· a boxing glove is a foam cup on the flange</text>
+  
+  <rect x="28" y="304" width="328" height="88" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="44" y="338" fill="#f2f3f5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="600">Legs / waist</text>
+  <text x="44" y="362" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">DM 10010L Â· ~120 NÂ·m Â· 9 actuators</text>
+  <circle cx="334" cy="348" r="6" fill="#f2f3f5"/>
+  <rect x="372" y="304" width="320" height="88" rx="6" fill="#14171c" stroke="#262b33"/>
+  <text x="388" y="338" fill="#f2f3f5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="600">Arms / ankles</text>
+  <text x="388" y="362" fill="#8b9098" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">DM 4340P Â· ~27 NÂ·m Â· 14 actuators</text>
+  <circle cx="670" cy="348" r="6" fill="#e9c227"/>
 </svg>
