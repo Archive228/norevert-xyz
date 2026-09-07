@@ -43,7 +43,6 @@
       width: 100%;
       height: 100%;
       display: block;
-      z-index: 0;
     }
     .grain {
       position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .05;
@@ -68,19 +67,19 @@
     }
     nav a:hover { color: var(--ink); }
 
-    .hero {
+    .intro {
       position: relative;
-      z-index: 2;
-      height: 100vh;
-      min-height: 860px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 100px 28px 36px;
-      max-width: none;
-      overflow: hidden;
+      z-index: 3;
+      padding: 92px 28px 12px;
     }
-    .hero .kicker, .hero h1, .hero .lede, .hero .btns { position: relative; z-index: 3; }
+    .rig { position: relative; z-index: 1; }
+    .stage-wrap {
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 72px);
+      min-height: 560px;
+    }
+    .explode-track { height: 160vh; }
     .kicker {
       font-family: IBM Plex Mono, monospace;
       font-size: 12px; letter-spacing: .28em; text-transform: uppercase;
@@ -106,7 +105,7 @@
 
     .sheet {
       position: relative; z-index: 2;
-      background: linear-gradient(#07080b00, #07080b 56px, #07080b);
+      background: #07080b;
     }
     section { padding: 88px 28px; max-width: 1180px; margin: 0 auto; }
     .label {
@@ -177,7 +176,8 @@
       .gallery .tall { min-height: 320px; }
       nav { padding: 14px 16px; }
       section { padding: 56px 16px; }
-      .hero { padding: 88px 16px 40px; }
+      .intro { padding: 80px 16px 8px; }
+      .stage-wrap { top: 56px; height: calc(100vh - 64px); }
     }
   </style>
 </head>
@@ -192,9 +192,7 @@
     </div>
   </nav>
 
-  <header class="hero">
-    <canvas id="stage"></canvas>
-    <div class="grain"></div>
+  <header class="intro">
     <p class="kicker">Norevert · NV-01 · 23 DOF · 40 kg</p>
     <h1>Built for<br>the cage</h1>
     <p class="lede">Every open-source humanoid we opened was built to walk. This one is being built to fight. Team Norevert. Robot NV-01.</p>
@@ -203,6 +201,13 @@
       <a class="btn" href="mailto:Geeklin36@gmail.com">Geeklin36@gmail.com</a>
     </div>
   </header>
+  <section class="rig">
+    <div class="stage-wrap">
+      <canvas id="stage"></canvas>
+      <div class="grain"></div>
+    </div>
+    <div class="explode-track" aria-hidden="true"></div>
+  </section>
 
   <div class="sheet">
     <section id="nv-01">

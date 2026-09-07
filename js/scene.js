@@ -7,8 +7,9 @@ import { Reflector } from "three/addons/objects/Reflector.js";
 import { createNV01 } from "./nv01.js";
 
 const canvas = document.getElementById("stage");
-const host = document.querySelector(".hero");
-if (!canvas || !host) throw new Error("missing stage");
+const host = document.querySelector(".stage-wrap");
+const track = document.querySelector(".explode-track");
+if (!canvas || !host || !track) throw new Error("missing stage");
 
 const renderer = new THREE.WebGLRenderer({
   canvas,
@@ -63,12 +64,13 @@ function fit() {
   camera.updateProjectionMatrix();
   renderer.setSize(w, h, false);
   composer.setSize(w, h);
-  const need = 1.42;
+  const need = 1.55;
   const half = THREE.MathUtils.degToRad(camera.fov * 0.5);
   let z = need / 2 / Math.tan(half);
-  if (w / h < 0.85) z *= 1.18;
-  camera.position.set(0, 0.63, z + 0.15);
-  camera.lookAt(0, 0.63, 0);
+  if (w / h < 0.85) z *= 1.15;
+  host.dataset.baseZ = String(z + 0.2);
+  camera.position.set(0, 0.52, z + 0.2);
+  camera.lookAt(0, 0.52, 0);
 }
 fit();
 new ResizeObserver(fit).observe(host);
@@ -82,8 +84,10 @@ window.addEventListener("pointermove", (e) => {
 
 let explodeAmt = 0;
 function scrollProgress() {
-  const r = host.getBoundingClientRect();
-  return Math.min(1, Math.max(0, -r.top / Math.max(host.offsetHeight * 0.92, 1)));
+  const r = track.getBoundingClientRect();
+  const start = window.innerHeight * 0.15;
+  const span = Math.max(track.offsetHeight - window.innerHeight * 0.25, 1);
+  return Math.min(1, Math.max(0, (start - r.top) / span));
 }
 function ease(t) {
   return t * t * (3 - 2 * t);
@@ -96,8 +100,11 @@ function frame() {
   const p = ease(explodeAmt);
   for (const o of parts) {
     const local = Math.min(1, Math.max(0, (p - o.userData.delay) / (1 - o.userData.delay || 1)));
-    o.position.copy(o.userData.rest).addScaledVector(o.userData.dir, local * o.userData.dist);
+    o.position.copy(o.userData.rest).addScaledVector(o.userData.dir, local * o.userData.dist * 1.45);
   }
+  const baseZ = Number(host.dataset.baseZ || 3.2);
+  camera.position.z = baseZ + p * 1.15;
+  camera.lookAt(0, 0.5 + p * 0.06, 0);
   look.x += (mouse.x * 0.7 - look.x) * 0.12;
   look.y += (-mouse.y * 0.38 - look.y) * 0.12;
   head.rotation.order = "YXZ";
