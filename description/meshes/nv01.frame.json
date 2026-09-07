@@ -1,0 +1,492 @@
+{
+"units": "m",
+"frame": "three-y-up",
+"materials": [
+"aluminium",
+"actuator",
+"rubber"
+],
+"source": "Roboparty/rpo_description (CERN-OHL-W-2.0), decimated",
+"links": [
+{
+"name": "base_link",
+"vcount": 10926,
+"icount": 47997,
+"min": [
+-0.135155,
+-0.089675,
+-0.132599
+],
+"max": [
+0.135155,
+0.0687,
+0.053488
+],
+"idx": "u16",
+"tris_src": 49840,
+"offset": 0,
+"moffset": 65556,
+"ioffset": 76484
+},
+{
+"name": "left_ankle_pitch_link",
+"vcount": 670,
+"icount": 4008,
+"min": [
+-0.02,
+-0.008,
+-0.02
+],
+"max": [
+0.02,
+0.008,
+0.02
+],
+"idx": "u16",
+"tris_src": 1336,
+"offset": 172480,
+"moffset": 176500,
+"ioffset": 177172
+},
+{
+"name": "left_ankle_roll_link",
+"vcount": 2834,
+"icount": 17997,
+"min": [
+-0.029,
+-0.045,
+-0.054
+],
+"max": [
+0.04785,
+0.010368,
+0.104
+],
+"idx": "u16",
+"tris_src": 23021,
+"offset": 185188,
+"moffset": 202192,
+"ioffset": 205028
+},
+{
+"name": "left_arm_pitch_link",
+"vcount": 1474,
+"icount": 9000,
+"min": [
+-0.006,
+-0.0285,
+-0.0365
+],
+"max": [
+0.0845,
+0.0285,
+0.02645
+],
+"idx": "u16",
+"tris_src": 7432,
+"offset": 241024,
+"moffset": 249868,
+"ioffset": 251344
+},
+{
+"name": "left_arm_roll_link",
+"vcount": 2166,
+"icount": 12000,
+"min": [
+-0.01875,
+-0.056,
+-0.040169
+],
+"max": [
+0.01875,
+0.01875,
+0.014
+],
+"idx": "u16",
+"tris_src": 4020,
+"offset": 269344,
+"moffset": 282340,
+"ioffset": 284508
+},
+{
+"name": "left_arm_yaw_link",
+"vcount": 2852,
+"icount": 17997,
+"min": [
+-0.0365,
+-0.21725,
+-0.031495
+],
+"max": [
+0.031495,
+0.00575,
+0.0315
+],
+"idx": "u16",
+"tris_src": 20252,
+"offset": 308508,
+"moffset": 325620,
+"ioffset": 328472
+},
+{
+"name": "left_elbow_pitch_link",
+"vcount": 2166,
+"icount": 12000,
+"min": [
+-0.040169,
+-0.01875,
+-0.01875
+],
+"max": [
+0.014,
+0.01875,
+0.056
+],
+"idx": "u16",
+"tris_src": 4020,
+"offset": 364468,
+"moffset": 377464,
+"ioffset": 379632
+},
+{
+"name": "left_elbow_yaw_link",
+"vcount": 1883,
+"icount": 12000,
+"min": [
+-0.0315,
+-0.0315,
+-0.00575
+],
+"max": [
+0.031499,
+0.031494,
+0.13825
+],
+"idx": "u16",
+"tris_src": 12820,
+"offset": 403632,
+"moffset": 414932,
+"ioffset": 416816
+},
+{
+"name": "left_knee_link",
+"vcount": 5832,
+"icount": 36000,
+"min": [
+-0.05675,
+-0.3125,
+-0.0425
+],
+"max": [
+0.0283,
+0.0425,
+0.042371
+],
+"idx": "u16",
+"tris_src": 46974,
+"offset": 440816,
+"moffset": 475808,
+"ioffset": 481640
+},
+{
+"name": "left_thigh_pitch_link",
+"vcount": 6838,
+"icount": 35997,
+"min": [
+-0.0542,
+-0.314577,
+-0.06475
+],
+"max": [
+0.018,
+0.042067,
+0.06475
+],
+"idx": "u16",
+"tris_src": 49945,
+"offset": 553640,
+"moffset": 594668,
+"ioffset": 601508
+},
+{
+"name": "left_thigh_roll_link",
+"vcount": 4142,
+"icount": 23997,
+"min": [
+-0.0425,
+-0.09696,
+-0.022099
+],
+"max": [
+0.0425,
+0.037276,
+0.122594
+],
+"idx": "u16",
+"tris_src": 49669,
+"offset": 673504,
+"moffset": 698356,
+"ioffset": 702500
+},
+{
+"name": "left_thigh_yaw_link",
+"vcount": 4586,
+"icount": 23997,
+"min": [
+-0.061995,
+-0.127449,
+-0.087595
+],
+"max": [
+0.061995,
+0.011925,
+0.022869
+],
+"idx": "u16",
+"tris_src": 49949,
+"offset": 750496,
+"moffset": 778012,
+"ioffset": 782600
+},
+{
+"name": "right_ankle_pitch_link",
+"vcount": 670,
+"icount": 4008,
+"min": [
+-0.02,
+-0.008,
+-0.02
+],
+"max": [
+0.02,
+0.008,
+0.02
+],
+"idx": "u16",
+"tris_src": 1336,
+"offset": 830596,
+"moffset": 834616,
+"ioffset": 835288
+},
+{
+"name": "right_ankle_roll_link",
+"vcount": 2860,
+"icount": 18000,
+"min": [
+-0.04785,
+-0.045,
+-0.054
+],
+"max": [
+0.029,
+0.010368,
+0.104
+],
+"idx": "u16",
+"tris_src": 20894,
+"offset": 843304,
+"moffset": 860464,
+"ioffset": 863324
+},
+{
+"name": "right_arm_pitch_link",
+"vcount": 1474,
+"icount": 9000,
+"min": [
+-0.0845,
+-0.0285,
+-0.0365
+],
+"max": [
+0.006,
+0.0285,
+0.02645
+],
+"idx": "u16",
+"tris_src": 7432,
+"offset": 899324,
+"moffset": 908168,
+"ioffset": 909644
+},
+{
+"name": "right_arm_roll_link",
+"vcount": 2166,
+"icount": 12000,
+"min": [
+-0.01875,
+-0.056,
+-0.040169
+],
+"max": [
+0.01875,
+0.01875,
+0.014
+],
+"idx": "u16",
+"tris_src": 4020,
+"offset": 927644,
+"moffset": 940640,
+"ioffset": 942808
+},
+{
+"name": "right_arm_yaw_link",
+"vcount": 2852,
+"icount": 17997,
+"min": [
+-0.031499,
+-0.21725,
+-0.031499
+],
+"max": [
+0.0365,
+0.00575,
+0.031499
+],
+"idx": "u16",
+"tris_src": 20252,
+"offset": 966808,
+"moffset": 983920,
+"ioffset": 986772
+},
+{
+"name": "right_elbow_pitch_link",
+"vcount": 2166,
+"icount": 12000,
+"min": [
+-0.014,
+-0.01875,
+-0.01875
+],
+"max": [
+0.040169,
+0.01875,
+0.056
+],
+"idx": "u16",
+"tris_src": 4020,
+"offset": 1022768,
+"moffset": 1035764,
+"ioffset": 1037932
+},
+{
+"name": "right_elbow_yaw_link",
+"vcount": 1883,
+"icount": 12000,
+"min": [
+-0.031499,
+-0.031494,
+-0.00575
+],
+"max": [
+0.0315,
+0.0315,
+0.13825
+],
+"idx": "u16",
+"tris_src": 12820,
+"offset": 1061932,
+"moffset": 1073232,
+"ioffset": 1075116
+},
+{
+"name": "right_knee_link",
+"vcount": 5341,
+"icount": 36000,
+"min": [
+-0.027,
+-0.31228,
+-0.042483
+],
+"max": [
+0.05675,
+0.0425,
+0.0425
+],
+"idx": "u16",
+"tris_src": 43692,
+"offset": 1099116,
+"moffset": 1131164,
+"ioffset": 1136508
+},
+{
+"name": "right_thigh_pitch_link",
+"vcount": 6414,
+"icount": 36000,
+"min": [
+-0.018,
+-0.314577,
+-0.06475
+],
+"max": [
+0.0542,
+0.0425,
+0.06475
+],
+"idx": "u16",
+"tris_src": 49664,
+"offset": 1208508,
+"moffset": 1246992,
+"ioffset": 1253408
+},
+{
+"name": "right_thigh_roll_link",
+"vcount": 4153,
+"icount": 24000,
+"min": [
+-0.0425,
+-0.097709,
+-0.0208
+],
+"max": [
+0.0425,
+0.036526,
+0.123893
+],
+"idx": "u16",
+"tris_src": 49671,
+"offset": 1325408,
+"moffset": 1350328,
+"ioffset": 1354484
+},
+{
+"name": "right_thigh_yaw_link",
+"vcount": 4583,
+"icount": 24000,
+"min": [
+-0.061995,
+-0.127449,
+-0.087595
+],
+"max": [
+0.061995,
+0.011925,
+0.022869
+],
+"idx": "u16",
+"tris_src": 49949,
+"offset": 1402484,
+"moffset": 1429984,
+"ioffset": 1434568
+},
+{
+"name": "torso_link",
+"vcount": 10594,
+"icount": 48000,
+"min": [
+-0.125,
+-0.016,
+-0.1087
+],
+"max": [
+0.125,
+0.241676,
+0.082433
+],
+"idx": "u16",
+"tris_src": 50000,
+"offset": 1482568,
+"moffset": 1546132,
+"ioffset": 1556728
+}
+]
+}

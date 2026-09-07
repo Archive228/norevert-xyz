@@ -9,29 +9,36 @@ python3 -m http.server 4173
 
 Open http://127.0.0.1:4173 — hard refresh after edits (Cmd+Shift+R).
 
-Deploy: `git push origin main` → GitHub Pages (branch `main`, root `/`, `CNAME` = norevert.xyz).
+Deploy: `git push origin main` → GitHub Pages (branch `main`, root `/`, `CNAME` = norevert.xyz, HTTPS enforced).
 
 ## Files
 
 | Path | What |
 | --- | --- |
 | `index.html` | page: copy, CSS, markup, Lenis smooth scroll, anchor nav |
-| `js/scene.js` | stage: renderer, studio lights, mirror floor, orbit, scroll → shell strip, callouts, HUD, URL params |
-| `js/nv01.js` | NV-01 model: 23-joint kinematic tree from `nv01.urdf`, 55 shell panels, CNC frame, DM actuators, battery, boards, looms, ankle rods, poses |
-| `img/` | lab photos (no ROBOPARTY mark), `nv01-shell.jpg` + `og.jpg` rendered from the site model, `diagrams/*.svg` |
+| `js/scene.js` | stage: renderer, studio lights, mirror floor, orbit, two-stage scroll strip, callouts, HUD, URL params |
+| `js/nv01.js` | NV-01 model: kinematic tree from `js/kin.js`, real link meshes, 55 shell panels, head, electronics, looms, poses |
+| `js/kin.js` | joint table (offsets + axes) from `description/nv01.urdf`, in Three.js coordinates |
+| `js/frame.js` | loader for the packed link meshes |
+| `description/meshes/` | `nv01.frame.json` + `nv01.frame.bin`: the 24 URDF link meshes, decimated (~150k tris, 1.6 MB), per-vertex material ids (aluminium / actuator / rubber). `LICENSE` + `NOTICE` inside |
+| `dev/frame.html` | dev viewer for the raw link meshes (`?view=side&only=knee&wire=1`) |
+| `img/` | lab photos, `nv01-shell.jpg` / `nv01-lab.jpg` / `og.jpg` rendered from the site model, `diagrams/*.svg` |
 
 ## Model
 
-- Coordinates: Three.js Y-up, `x` = robot left, `z` = forward. Joint origins come straight from the V2 URDF (`J` in `nv01.js`). Pelvis sits at `BASE_Y = 0.755`; head top lands at 1.25 m.
-- `createNV01()` returns `{ root, joints, shells, anchors, setPose, setMode, setExplode, update }`.
-- `setMode("shell" | "lab")` — 55 panels + spheres, or the naked frame with ropes and the wire stub.
-- `setExplode(p)` — 0..1, panels peel head-first along per-panel directions; `detached` counts panels off.
-- `setPose("stand" | "guard")` — joint targets; `update(dt, extra)` eases joints and keeps the feet on the floor when the knees bend.
-- The neck never moves (0 DOF in the canon). Pointer follow uses waist yaw and the LED pills only.
+- Coordinates: Three.js Y-up, `x` = robot left, `z` = forward. Pelvis at `BASE_Y = 0.755`; head top at 1.25 m.
+- Frame = the real link meshes placed on the URDF joint tree. Motors are painted black by geometry at conversion time (cylinders at each joint: Ø120 × 53 for DM 10010L, Ø57 × 56.5 for DM 4340P; plus the two inboard ankle cans on each shin), soles rubber.
+- Shell = 55 procedural panels (authors' numbering) on top; head is a torso-mounted box; electronics, looms, handle, E-stop are procedural.
+- `setExplode(p)` stage 1: panels peel head-first. `setShellFade(f)`: panels fade between stages. `setKnolling(p)` stage 2: the 24 links and the electronics fly apart along per-part directions, feet stay above the floor.
+- `setPose("stand" | "guard")`, `setMode("shell" | "lab")`. The neck never moves (0 DOF); pointer follow uses waist yaw and the LED pills only.
+
+## Mesh pipeline
+
+Source: the public `rpo_description` meshes (CERN-OHL-W-2.0). Converter (not in the repo): open3d quadric decimation → axis swap to Three coords → int16 quantised positions + uint8 material id + u16 indices. Re-run it whenever the meshes change; keep `LICENSE`/`NOTICE` next to the output.
 
 ## URL params (debug / stills)
 
-`?p=0.7` force strip progress · `?mode=lab` · `?pose=guard` · `?view=front|side|back` · `?lite=1` no mirror, smaller shadows · `?clean=1&margin=1.4&shift=0` render-only stage for screenshots.
+`?p=0.7` shell strip · `?pb=0.5` fade / slide · `?p2=0.8` frame knolling · `?mode=lab` · `?pose=guard` · `?view=front|side|back` · `?lite=1` no mirror, smaller shadows · `?clean=1&margin=1.4&shift=0` render-only stage.
 
 ## Rules
 

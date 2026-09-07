@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>NV-01 frame meshes — dev</title>
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }
+  </script>
+  <style> html,body{margin:0;background:#101216;color:#ddd;font:12px monospace} canvas{display:block} #tag{position:fixed;left:10px;top:10px;white-space:pre} </style>
+</head>
+<body>
+<div id="tag"></div>
+<script type="module">
+import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { loadFrame } from "../js/frame.js";
+import { LINKS, BASE_Y } from "../js/kin.js";
+
+const p = new URLSearchParams(location.search);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight); renderer.setPixelRatio(1);
+renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene(); scene.background = new THREE.Color(0x101216);
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+const key = new THREE.DirectionalLight(0xffffff, 2); key.position.set(2, 4, 3); scene.add(key);
+scene.add(new THREE.HemisphereLight(0x8899aa, 0x222222, 0.8));
+const cam = new THREE.PerspectiveCamera(28, innerWidth / innerHeight, 0.05, 30);
+const view = p.get("view") || "front";
+const dist = parseFloat(p.get("dist") || "3.0");
+const ty = parseFloat(p.get("ty") || "0.62");
+const ang = { front: 0.35, side: Math.PI / 2, back: Math.PI, left: -Math.PI / 2, top: 0.35 }[view] ?? parseFloat(view);
+const phi = view === "top" ? 0.5 : 1.45;
+cam.position.set(dist * Math.sin(phi) * Math.sin(ang), ty + dist * Math.cos(phi), dist * Math.sin(phi) * Math.cos(ang));
+cam.lookAt(0, ty, 0);
+const mat = new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: 0.55, metalness: 0.45, side: THREE.DoubleSide });
+const wire = p.get("wire") === "1";
+const only = p.get("only");
+const { geometries } = await loadFrame("../description/meshes/nv01.frame");
+const groups = {};
+const root = new THREE.Group(); root.position.y = BASE_Y; scene.add(root);
+let tag = "";
+for (const l of LINKS) {
+  const g = new THREE.Group(); g.position.set(...l.offset);
+  (l.parent ? groups[l.parent] : root).add(g); groups[l.name] = g;
+  if (l.joint === "elPitchL" || l.joint === "elPitchR") g.rotation.x = Math.PI / 2; // hang the forearms
+  const geo = geometries.get(l.name);
+  if (!geo) continue;
+  if (only && !l.name.includes(only)) continue;
+  const m = new THREE.Mesh(geo, wire ? new THREE.MeshBasicMaterial({ wireframe: true, color: 0x88aaff }) : mat);
+  g.add(m);
+  tag += `${l.name} ${geo.attributes.position.count / 3}\n`;
+}
+if (p.get("axes") === "1") for (const k in groups) groups[k].add(new THREE.AxesHelper(0.06));
+const grid = new THREE.GridHelper(2, 20, 0x334455, 0x223344); scene.add(grid);
+document.getElementById("tag").textContent = tag;
+renderer.render(scene, cam);
+window.__ready = true;
+</script>
+</body>
+</html>
