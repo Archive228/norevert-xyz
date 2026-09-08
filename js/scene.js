@@ -106,6 +106,49 @@ if (usePost) {
   composer.addPass(gtao);
   composer.addPass(new OutputPass());
 }
+// ---------- atmosphere: light cone, dust, a dark cage far behind, fog ----------
+scene.fog = new THREE.Fog(0x0a0b0e, 4.5, 10);
+const atmo = new THREE.Group(); scene.add(atmo);
+{
+  // soft light beam behind the robot: a billboard glow, no hard edges
+  const beamTex = (() => {
+    const c = document.createElement("canvas"); c.width = 256; c.height = 512; const g = c.getContext("2d");
+    // ellipse that reaches zero well inside the canvas, so the sprite has no visible edge
+    g.translate(128, 256); g.scale(1, 2);
+    const r = g.createRadialGradient(0, -10, 4, 0, 0, 120);
+    r.addColorStop(0, "rgba(255,244,228,0.30)"); r.addColorStop(0.4, "rgba(255,244,228,0.09)"); r.addColorStop(0.8, "rgba(255,244,228,0.015)"); r.addColorStop(1, "rgba(255,244,228,0)");
+    g.fillStyle = r; g.fillRect(-128, -128, 256, 256);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  })();
+  const beam = new THREE.Sprite(new THREE.SpriteMaterial({ map: beamTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.55, fog: false }));
+  beam.scale.set(3.2, 4.6, 1); beam.position.set(0.1, 1.05, -0.9); beam.renderOrder = -1; atmo.add(beam);
+  // dust motes drifting in the light
+  const N = lite ? 120 : 260;
+  const pos = new Float32Array(N * 3); const vel = new Float32Array(N);
+  for (let i = 0; i < N; i++) { const a = Math.random() * Math.PI * 2, rr = 0.25 + Math.random() * 0.85; pos[i * 3] = Math.cos(a) * rr; pos[i * 3 + 1] = Math.random() * 2.0; pos[i * 3 + 2] = Math.sin(a) * rr * 0.8; vel[i] = 0.4 + Math.random(); }
+  const dustGeo = new THREE.BufferGeometry(); dustGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  const dustTex = (() => { const c = document.createElement("canvas"); c.width = c.height = 32; const g = c.getContext("2d"); const r = g.createRadialGradient(16, 16, 0, 16, 16, 16); r.addColorStop(0, "rgba(255,248,235,1)"); r.addColorStop(0.4, "rgba(255,248,235,0.35)"); r.addColorStop(1, "rgba(255,248,235,0)"); g.fillStyle = r; g.fillRect(0, 0, 32, 32); return new THREE.CanvasTexture(c); })();
+  const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ size: 0.011, map: dustTex, transparent: true, opacity: 0.38, depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true }));
+  atmo.add(dust); atmo.userData.dust = dust; atmo.userData.vel = vel;
+  // the cage: eight dark posts with a diamond mesh, far behind, mostly swallowed by the fog
+  const lm = new THREE.LineBasicMaterial({ color: 0x4a505c, transparent: true, opacity: 0.38 });
+  const pts = [];
+  const R = 3.9, H = 2.4, sides = 8;
+  for (let k = 0; k < sides; k++) {
+    const a0 = (k / sides) * Math.PI * 2 + Math.PI / 8, a1 = ((k + 1) / sides) * Math.PI * 2 + Math.PI / 8;
+    const p0 = new THREE.Vector3(Math.cos(a0) * R, 0, Math.sin(a0) * R), p1 = new THREE.Vector3(Math.cos(a1) * R, 0, Math.sin(a1) * R);
+    pts.push(p0.clone(), p0.clone().setY(H));                                            // post
+    for (const y of [0.9, 1.75, H]) pts.push(p0.clone().setY(y), p1.clone().setY(y));  // rails
+    const n = 7;                                                                       // diamond mesh
+    for (let i = 0; i <= n; i++) {
+      const t = i / n; const a = p0.clone().lerp(p1, t);
+      const b1 = p0.clone().lerp(p1, Math.min(1, t + 0.28)), b2 = p0.clone().lerp(p1, Math.max(0, t - 0.28));
+      pts.push(a.clone().setY(0.9), b1.setY(1.75), a.clone().setY(0.9), b2.setY(1.75));
+    }
+  }
+  const cage = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), lm);
+  atmo.add(cage);
+}
 // contact shadow: soft dark blob under the feet
 {
   const c = document.createElement("canvas"); c.width = c.height = 256; const g = c.getContext("2d");
@@ -146,7 +189,7 @@ function fit() {
   const w = stage.clientWidth, h = stage.clientHeight;
   if (ortho) { const hh = 1.6, ww = hh * (w / h); camera.left = -ww / 2; camera.right = ww / 2; camera.top = hh / 2; camera.bottom = -hh / 2; camera.updateProjectionMatrix(); renderer.setSize(w, h, false); if (composer) { const pr = renderer.getPixelRatio(); composer.setSize(w * pr, h * pr); if (gtao) gtao.setSize(w * pr, h * pr); } return; }
   camera.aspect = w / h;
-  const margin = clean ? parseFloat(params.get("margin") || "1.5") : isMobile ? 3.3 : 1.62;
+  const margin = clean ? parseFloat(params.get("margin") || "1.5") : isMobile ? 3.4 : 1.62;
   baseDist = (margin / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
   const minForWidth = (0.9 / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / camera.aspect;
   baseDist = Math.max(baseDist, minForWidth);
@@ -154,7 +197,7 @@ function fit() {
   renderer.setSize(w, h, false);
   if (composer) { const pr = renderer.getPixelRatio(); composer.setSize(w * pr, h * pr); if (gtao) gtao.setSize(w * pr, h * pr); }
   viewShiftGoal = clean ? w * parseFloat(params.get("shift") || "0") : isMobile ? 0 : w * 0.21;
-  viewShiftYGoal = clean ? 0 : isMobile ? h * 0.27 : 0;
+  viewShiftYGoal = clean ? 0 : isMobile ? h * 0.3 : 0;
 }
 fit();
 new ResizeObserver(fit).observe(stage);
@@ -367,6 +410,15 @@ function frame() {
   if (blinkT > blinkAt) { const kk = (blinkT - blinkAt) / 0.16; sy = kk < 1 ? 1 - Math.sin(kk * Math.PI) * 0.85 : 1; if (kk >= 1) { blinkT = 0; blinkAt = 2.5 + Math.random() * 5; } }
   eL.scale.y = eR.scale.y = sy;
   for (const l of nv.leds) l.material.emissiveIntensity = 1.2 + 0.8 * Math.max(0, Math.sin(t * 3));
+  {
+    const d = atmo.userData.dust, v = atmo.userData.vel, a = d.geometry.attributes.position;
+    for (let i = 0; i < a.count; i++) {
+      let y = a.getY(i) - dt * 0.03 * v[i]; if (y < 0) y = 2.0;
+      a.setY(i, y); a.setX(i, a.getX(i) + Math.sin(t * 0.3 + i) * dt * 0.01); a.setZ(i, a.getZ(i) + Math.cos(t * 0.25 + i * 0.7) * dt * 0.01);
+    }
+    a.needsUpdate = true;
+    atmo.visible = pB < 0.9 || p2 > 0;
+  }
 
   // orbit: auto-rotate when idle; the strip turns the model a little, the knolling turns it back to a 3/4 front
   const idleFor = (performance.now() - Math.max(lastInteract, lastScrollAt)) / 1000;

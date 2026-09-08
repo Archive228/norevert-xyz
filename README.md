@@ -16,7 +16,7 @@ Deploy: `git push origin main` → GitHub Pages (branch `main`, root `/`, `CNAME
 | Path | What |
 | --- | --- |
 | `index.html` | page: copy, CSS, markup, Lenis smooth scroll, anchor nav |
-| `js/scene.js` | stage: renderer, studio lights, mirror floor, GTAO post (MSAA composer, desktop), contact shadow, orbit, two-stage scroll strip, callouts, HUD, URL params |
+| `js/scene.js` | stage: renderer, studio lights, mirror floor, GTAO post (MSAA composer, desktop), contact shadow, atmosphere (light beam, dust, foggy cage), orbit, two-stage scroll strip, callouts, console HUD, URL params |
 | `js/nv01.js` | NV-01 model: kinematic tree from `js/kin.js`, real link meshes, 55 shell panels, head, electronics, looms, poses |
 | `js/kin.js` | joint table (offsets + axes) from `description/nv01.urdf`, in Three.js coordinates |
 | `js/frame.js` | loader for the packed link meshes |
