@@ -2,6 +2,10 @@
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { Reflector } from "three/addons/objects/Reflector.js";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { GTAOPass } from "three/addons/postprocessing/GTAOPass.js";
+import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { createNV01 } from "./nv01.js";
 import { loadFrame } from "./frame.js";
 
@@ -25,6 +29,7 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const lite = isMobile || params.get("lite") === "1";
 const clean = params.get("clean") === "1"; // render-only: no overlays, centered (used for stills)
 if (clean) document.documentElement.classList.add("clean");
+if (params.get("og") === "1") document.documentElement.classList.add("og");
 
 // ---------- renderer ----------
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
@@ -85,11 +90,39 @@ catcher.rotation.x = -Math.PI / 2; catcher.position.y = 0.001; catcher.receiveSh
   }
 }
 
+// ---------- post: MSAA target → GTAO → output ----------
+const usePost = !lite && params.get("post") !== "0";
+let composer = null, gtao = null;
+if (usePost) {
+  const rt = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 4 });
+  composer = new EffectComposer(renderer, rt);
+  composer.addPass(new RenderPass(scene, camera));
+  gtao = new GTAOPass(scene, camera, 1, 1);
+  gtao.output = GTAOPass.OUTPUT.Default;
+  gtao.blendIntensity = 0.85;
+  gtao.updateGtaoMaterial({ radius: 0.09, distanceExponent: 1.5, thickness: 0.6, scale: 1.0, samples: 12, distanceFallOff: 1.0, screenSpaceRadius: false });
+  gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 4, radiusExponent: 1, rings: 2, samples: 12 });
+  composer.addPass(gtao);
+  composer.addPass(new OutputPass());
+}
+// contact shadow: soft dark blob under the feet
+{
+  const c = document.createElement("canvas"); c.width = c.height = 256; const g = c.getContext("2d");
+  const r = g.createRadialGradient(128, 128, 10, 128, 128, 128);
+  r.addColorStop(0, "rgba(0,0,0,0.55)"); r.addColorStop(0.5, "rgba(0,0,0,0.22)"); r.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = r; g.fillRect(0, 0, 256, 256);
+  const t = new THREE.CanvasTexture(c);
+  const blob = new THREE.Mesh(new THREE.PlaneGeometry(1.1, 0.7), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false }));
+  blob.rotation.x = -Math.PI / 2; blob.position.y = 0.0015; blob.renderOrder = 1; floor.add(blob);
+  window.__contact = blob;
+}
+
 // ---------- model ----------
 let nv = null;
 async function buildModel() {
   let frame = null;
-  try { frame = (await loadFrame("description/meshes/nv01.frame")).geometries; }
+  const loadEl = document.querySelector(".loading b");
+  try { frame = (await loadFrame("description/meshes/nv01.frame", (f) => { if (loadEl) loadEl.style.transform = `scaleX(${f.toFixed(3)})`; })).geometries; }
   catch (e) { console.warn("frame meshes unavailable", e); }
   if (document.fonts && document.fonts.ready) await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1200))]);
   nv = createNV01({ frame });
@@ -98,6 +131,7 @@ async function buildModel() {
   if (counterTotal) counterTotal.textContent = String(nv.shellCount);
   applyStateFromUI();
   stage.classList.add("is-ready");
+  if (params.get("export") === "shells") window.__shells = nv.exportShells();
 }
 buildModel();
 
@@ -110,14 +144,15 @@ let viewShift = 0, viewShiftGoal = 0, viewShiftY = 0, viewShiftYGoal = 0;
 function fit() {
   const w = stage.clientWidth, h = stage.clientHeight;
   camera.aspect = w / h;
-  const margin = clean ? parseFloat(params.get("margin") || "1.5") : isMobile ? 2.9 : 1.62;
+  const margin = clean ? parseFloat(params.get("margin") || "1.5") : isMobile ? 3.3 : 1.62;
   baseDist = (margin / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
   const minForWidth = (0.9 / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / camera.aspect;
   baseDist = Math.max(baseDist, minForWidth);
   camera.updateProjectionMatrix();
   renderer.setSize(w, h, false);
+  if (composer) { const pr = renderer.getPixelRatio(); composer.setSize(w * pr, h * pr); if (gtao) gtao.setSize(w * pr, h * pr); }
   viewShiftGoal = clean ? w * parseFloat(params.get("shift") || "0") : isMobile ? 0 : w * 0.21;
-  viewShiftYGoal = clean ? 0 : isMobile ? h * 0.22 : 0;
+  viewShiftYGoal = clean ? 0 : isMobile ? h * 0.27 : 0;
 }
 fit();
 new ResizeObserver(fit).observe(stage);
@@ -293,7 +328,11 @@ function frame() {
   // hero / hud / steps
   const heroFade = THREE.MathUtils.clamp(1 - p1 * 6, 0, 1);
   if (hero) { hero.style.opacity = String(heroFade); hero.style.pointerEvents = heroFade > 0.3 ? "auto" : "none"; }
-  if (hud) hud.classList.toggle("is-exploded", p1 > 0.03);
+  if (hud) {
+    hud.classList.toggle("is-exploded", p1 > 0.03);
+    const rb = rig.getBoundingClientRect().bottom;                     // fade the HUD out as the stage scrolls away
+    hud.style.opacity = String(THREE.MathUtils.clamp((rb - innerHeight + 140) / 140, 0, 1));
+  }
   stepsEl.forEach((s) => {
     const st = s.dataset.stage === "2" ? 2 : 1;
     const p = st === 2 ? p2 : p1;
@@ -350,7 +389,7 @@ function frame() {
   viewShiftY += (shiftYGoal - viewShiftY) * 0.08;
   if (Math.abs(viewShift) > 0.5 || Math.abs(viewShiftY) > 0.5) camera.setViewOffset(w, h, -viewShift, viewShiftY, w, h); else camera.clearViewOffset();
 
-  renderer.render(scene, camera);
+  if (composer) composer.render(); else renderer.render(scene, camera);
   layoutCallouts(p1, p2);
 }
 frame();

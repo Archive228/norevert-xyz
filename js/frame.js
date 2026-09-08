@@ -9,10 +9,22 @@ export const FRAME_COLORS = [
   new THREE.Color(0x141414), // 2 rubber sole
 ];
 
-export async function loadFrame(base = "description/meshes/nv01.frame") {
+async function fetchWithProgress(url, onProgress) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(url);
+  const total = Number(r.headers.get("content-length")) || 0;
+  if (!r.body || !total) return r.arrayBuffer();
+  const reader = r.body.getReader();
+  const chunks = []; let got = 0;
+  for (;;) { const { done, value } = await reader.read(); if (done) break; chunks.push(value); got += value.length; onProgress?.(got / total); }
+  const out = new Uint8Array(got); let o = 0; for (const c of chunks) { out.set(c, o); o += c.length; }
+  return out.buffer;
+}
+
+export async function loadFrame(base = "description/meshes/nv01.frame", onProgress) {
   const [manifest, buf] = await Promise.all([
     fetch(`${base}.json`).then((r) => { if (!r.ok) throw new Error("frame manifest"); return r.json(); }),
-    fetch(`${base}.bin`).then((r) => { if (!r.ok) throw new Error("frame bin"); return r.arrayBuffer(); }),
+    fetchWithProgress(`${base}.bin`, onProgress),
   ]);
   const out = new Map();
   for (const l of manifest.links) {

@@ -280,7 +280,7 @@ export function createNV01({ frame = null } = {}) {
     const head = group(T, 0, 0.372, 0.004);
     joints.head = head;
     const headF = group(head, 0, 0, 0.026);
-    mesh(rbox(0.192, 0.116, 0.054, 0.024, 4), M.shell, 0, 0, 0, headF);
+    mesh(rbox(0.192, 0.116, 0.06, 0.024, 4), M.shell, 0, 0, -0.003, headF);
     mesh(rbox(0.18, 0.104, 0.006, 0.014, 3), M.dark, 0, 0, 0.026, headF);
     mesh(rbox(0.174, 0.098, 0.005, 0.013, 3), M.glass, 0, 0, 0.0285, headF);
     const eyeL = mesh(new THREE.CapsuleGeometry(0.0092, 0.028, 4, 16), M.eye, 0.03, 0.0, 0.0255, headF);
@@ -289,7 +289,7 @@ export function createNV01({ frame = null } = {}) {
     mesh(rbox(0.03, 0.0025, 0.007, 0.001, 1), M.dark, 0, 0.0585, -0.005, headF);
     mesh(rbox(0.012, 0.002, 0.002, 0.0005, 1), M.dark, 0, 0.038, 0.0315, headF);
     shell(headF, [0, 0.45, 1], 0.36, { spin: 0.25 });
-    const headB = mesh(rbox(0.186, 0.112, 0.05, 0.024, 4), M.shell, 0, 0, -0.026, head);
+    const headB = mesh(rbox(0.19, 0.115, 0.05, 0.024, 4), M.shell, 0, 0, -0.03, head);
     shell(headB, [0, 0.5, -1], 0.36, { spin: 0.25 });
     joints.eyes = [eyeL, eyeR];
     anchors.head = new THREE.Vector3(0.1, 0.4, 0.03);
@@ -374,9 +374,9 @@ export function createNV01({ frame = null } = {}) {
       if (name === "front") { const d = []; for (let r = 0; r < 3; r++) for (const c of [-1, 1]) d.push([c * 0.014, 0.05 - r * 0.045, 0.049, c * 0.25, 0, 1]); screwDimples(p, d, 0.0022); }
     }
     // knee cap #46/47 over the outer face of the knee can
-    const kneeCap = group(kn, s * 0.068, 0, 0.0);
-    mesh(cyl(0.064, 0.064, 0.012, 48), M.shell, 0, 0, 0, kneeCap).rotation.z = Math.PI / 2;
-    mesh(cyl(0.022, 0.022, 0.014, 24), M.dark, 0, 0, 0, kneeCap).rotation.z = Math.PI / 2;
+    const kneeCap = group(kn, s * 0.066, 0.004, 0.0);
+    mesh(rbox(0.014, 0.138, 0.118, 0.05, 5), M.shell, 0, 0, 0, kneeCap);
+    mesh(cyl(0.02, 0.02, 0.014, 24), M.dark, 0, 0, 0, kneeCap).rotation.z = Math.PI / 2;
     shell(kneeCap, [s, 0.1, 0.3], 0.28);
     // shin panels #48–51 (inner half is wider: it hides the two inboard ankle cans)
     const sh = { rOut: 0.05, t: 0.0045, len: 0.215, taper: 0.86, sx: 1.26, sz: 0.95 };
@@ -403,8 +403,15 @@ export function createNV01({ frame = null } = {}) {
   leg(1); leg(-1);
 
   // ---------- bookkeeping ----------
+  // authors' STL numbering, in the order the panels were registered above
+  const SHELL_IDS = [29, 28, 30, 31, 4, 6, 5, 7, 3, 1, 2,
+    11, 10, 14, 15, 18, 19, 23, 22, 27, 26,
+    8, 9, 12, 13, 16, 17, 21, 20, 25, 24,
+    35, 34, 37, 42, 45, 43, 44, 47, 50, 51, 54, 55,
+    33, 32, 36, 38, 41, 39, 40, 46, 48, 49, 52, 53];
   root.updateMatrixWorld(true);
   const _v = new THREE.Vector3();
+  shells.forEach((o, i) => { o.userData.stl = SHELL_IDS[i]; });
   for (const o of shells) {
     const d = o.userData.shell;
     if (d.delay == null) { o.getWorldPosition(_v); d.delay = THREE.MathUtils.clamp((1.28 - _v.y) / 1.28, 0, 1) * 0.55; }
@@ -506,6 +513,25 @@ export function createNV01({ frame = null } = {}) {
     shellCount: shells.length,
     partCount: parts.length,
     partByKey: Object.fromEntries(parts.map((o) => [o.userData.part.key, o])),
+    // dev: every shell's vertices in its link-local frame (for registering the authors' STL panels)
+    exportShells() {
+      root.updateMatrixWorld(true);
+      const linkOf = (o) => { let p = o; while (p) { for (const [n, g] of Object.entries(groups)) if (g === p) return n; p = p.parent; } return null; };
+      const inv = new THREE.Matrix4(), m = new THREE.Matrix4(), v = new THREE.Vector3();
+      return shells.map((o) => {
+        const link = linkOf(o);
+        inv.copy(groups[link].matrixWorld).invert();
+        const verts = [];
+        o.traverse((c) => {
+          if (!c.isMesh || c.material === M.dark || c.isSprite || c.geometry.type === "PlaneGeometry") return;
+          m.multiplyMatrices(inv, c.matrixWorld);
+          const p = c.geometry.attributes.position;
+          const step = Math.max(1, Math.floor(p.count / 1500));
+          for (let i = 0; i < p.count; i += step) { v.fromBufferAttribute(p, i).applyMatrix4(m); verts.push(+v.x.toFixed(5), +v.y.toFixed(5), +v.z.toFixed(5)); }
+        });
+        return { stl: o.userData.stl, link, verts };
+      });
+    },
   };
   api.setMode("shell");
   api.setExplode(0);
