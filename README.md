@@ -22,7 +22,7 @@ Deploy: `git push origin main` → GitHub Pages (branch `main`, root `/`, `CNAME
 | `js/frame.js` | loader for the packed link meshes |
 | `description/meshes/` | `nv01.frame.json` + `nv01.frame.bin`: the 24 URDF link meshes, decimated (~150k tris, 1.6 MB), per-vertex material ids (aluminium / actuator / rubber). `LICENSE` + `NOTICE` inside |
 | `dev/frame.html` | dev viewer for the raw link meshes (`?view=side&only=knee&wire=1`) |
-| `img/` | lab photos, `nv01-shell.jpg` / `nv01-lab.jpg` / `og.jpg` rendered from the site model, `diagrams/*.svg` |
+| `img/` | lab photos, `nv01-shell.jpg` / `nv01-lab.jpg` / `og.jpg` / `ortho-*.jpg` rendered from the site model, `diagrams/*.svg` |
 
 ## Model
 
@@ -38,7 +38,7 @@ Source: the public `rpo_description` meshes (CERN-OHL-W-2.0). Converter (not in 
 
 ## URL params (debug / stills)
 
-`?p=0.7` shell strip · `?pb=0.5` fade / slide · `?p2=0.8` frame knolling · `?mode=lab` · `?pose=guard` · `?view=front|side|back` · `?lite=1` no mirror, smaller shadows · `?post=0` no GTAO · `?clean=1&margin=1.4&shift=0` render-only stage · `?og=1` hero-only layout for the social image.
+`?p=0.7` shell strip · `?pb=0.5` fade / slide · `?p2=0.8` frame knolling · `?mode=lab` · `?pose=guard` · `?view=front|side|back` · `?lite=1` no mirror, smaller shadows · `?post=0` no GTAO · `?clean=1&margin=1.4&shift=0` render-only stage · `?og=1` hero-only layout for the social image · `?ortho=1&clean=1&view=front|side|back` orthographic drawing views (1.6 m frame from y = −0.16, used for `img/ortho-*.jpg`).
 
 ## Rules
 

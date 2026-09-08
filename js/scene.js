@@ -30,20 +30,21 @@ const lite = isMobile || params.get("lite") === "1";
 const clean = params.get("clean") === "1"; // render-only: no overlays, centered (used for stills)
 if (clean) document.documentElement.classList.add("clean");
 if (params.get("og") === "1") document.documentElement.classList.add("og");
+const ortho = params.get("ortho") === "1"; // orthographic drawing views (front/side/back), frustum exactly 1.6 m tall from y = -0.16
 
 // ---------- renderer ----------
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
 renderer.setPixelRatio(Math.min(devicePixelRatio || 1, lite ? 1.5 : params.get("post") === "0" ? 2 : 1.5)); // GTAO runs at ≤1.5× to stay smooth
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.05;
+renderer.toneMappingExposure = ortho ? 1.15 : 1.12;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setClearColor(0x000000, 0);
 window.NVR = renderer;
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(26, 1, 0.05, 40);
+const camera = ortho ? new THREE.OrthographicCamera(-0.6, 0.6, 0.8, -0.8, 0.05, 40) : new THREE.PerspectiveCamera(26, 1, 0.05, 40);
 const pmrem = new THREE.PMREMGenerator(renderer);
 scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 scene.environmentIntensity = 0.55;
@@ -143,6 +144,7 @@ let baseDist = 3.4;
 let viewShift = 0, viewShiftGoal = 0, viewShiftY = 0, viewShiftYGoal = 0;
 function fit() {
   const w = stage.clientWidth, h = stage.clientHeight;
+  if (ortho) { const hh = 1.6, ww = hh * (w / h); camera.left = -ww / 2; camera.right = ww / 2; camera.top = hh / 2; camera.bottom = -hh / 2; camera.updateProjectionMatrix(); renderer.setSize(w, h, false); if (composer) { const pr = renderer.getPixelRatio(); composer.setSize(w * pr, h * pr); if (gtao) gtao.setSize(w * pr, h * pr); } return; }
   camera.aspect = w / h;
   const margin = clean ? parseFloat(params.get("margin") || "1.5") : isMobile ? 3.3 : 1.62;
   baseDist = (margin / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
@@ -345,8 +347,8 @@ function frame() {
   }
 
   // idle motion + honest pointer follow: waist yaw (a real DOF), never the neck
-  const idle = reduce ? 0 : 1 - p2;
-  extra.torsoYaw = (coarse ? 0 : mouse.x * 0.16) * (1 - pB) + idle * 0.02 * Math.sin(t * 0.7);
+  const idle = reduce || ortho ? 0 : 1 - p2;
+  extra.torsoYaw = (coarse || ortho ? 0 : mouse.x * 0.16) * (1 - pB) + idle * 0.02 * Math.sin(t * 0.7);
   extra.baseLift = idle * 0.0025 * Math.sin(t * 1.4) + 0.22 * p2;
   extra.shRollL = idle * 0.015 * Math.sin(t * 1.4 + 0.4);
   extra.shRollR = idle * 0.015 * Math.sin(t * 1.4 + 0.9);
@@ -375,12 +377,18 @@ function frame() {
   const distGoal = baseDist * (1 + p1 * 0.42 + p2 * 0.5) * (state.pose === "guard" ? 1.02 : 1);
   orbit.dist += (distGoal - orbit.dist) * 0.06;
   orbit.target.y += ((0.64 + p1 * 0.03 + p2 * 0.16) - orbit.target.y) * 0.06;
-  camera.position.set(
-    orbit.target.x + orbit.dist * Math.sin(orbit.phi) * Math.sin(orbit.theta),
-    orbit.target.y + orbit.dist * Math.cos(orbit.phi),
-    orbit.target.z + orbit.dist * Math.sin(orbit.phi) * Math.cos(orbit.theta),
-  );
-  camera.lookAt(orbit.target);
+  if (ortho) {
+    const th = { front: 0, side: Math.PI / 2, back: Math.PI, left: -Math.PI / 2 }[state.view] ?? 0;
+    camera.position.set(6 * Math.sin(th), 0.64, 6 * Math.cos(th));
+    camera.lookAt(0, 0.64, 0);
+  } else {
+    camera.position.set(
+      orbit.target.x + orbit.dist * Math.sin(orbit.phi) * Math.sin(orbit.theta),
+      orbit.target.y + orbit.dist * Math.cos(orbit.phi),
+      orbit.target.z + orbit.dist * Math.sin(orbit.phi) * Math.cos(orbit.theta),
+    );
+    camera.lookAt(orbit.target);
+  }
   const w = stage.clientWidth, h = stage.clientHeight;
   const leftShift = isMobile || clean ? 0 : -w * 0.2;
   const shiftGoal = viewShiftGoal * (1 - Math.min(1, p1 * 2.2)) + leftShift * pB;

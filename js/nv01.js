@@ -27,10 +27,18 @@ const FRAME_EXPLODE = {
 
 export function createNV01({ frame = null } = {}) {
   // ---------- materials ----------
+  // roughness noise so the polymer shell and the sandblasted frame do not read as CG-flat
+  const noiseTex = (() => {
+    const c = document.createElement("canvas"); c.width = c.height = 256; const g = c.getContext("2d");
+    const img = g.createImageData(256, 256);
+    for (let i = 0; i < img.data.length; i += 4) { const v = 200 + Math.random() * 55; img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255; }
+    g.putImageData(img, 0, 0);
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(6, 6); return t;
+  })();
   const M = {
-    shell: new THREE.MeshPhysicalMaterial({ color: 0xf2f4f6, roughness: 0.42, metalness: 0.0, clearcoat: 0.35, clearcoatRoughness: 0.4 }),
-    shellDark: new THREE.MeshPhysicalMaterial({ color: 0x1b1c1f, roughness: 0.5, metalness: 0.05, clearcoat: 0.25, clearcoatRoughness: 0.5 }),
-    frame: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: 0.58, metalness: 0.42 }),
+    shell: new THREE.MeshPhysicalMaterial({ color: 0xe9eae7, roughness: 0.62, metalness: 0.0, clearcoat: 0.2, clearcoatRoughness: 0.6, roughnessMap: noiseTex, envMapIntensity: 1.0 }),
+    shellDark: new THREE.MeshPhysicalMaterial({ color: 0x1b1c1f, roughness: 0.55, metalness: 0.05, clearcoat: 0.2, clearcoatRoughness: 0.6, roughnessMap: noiseTex }),
+    frame: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: 0.56, metalness: 0.9, roughnessMap: noiseTex, envMapIntensity: 0.9 }),
     alu: new THREE.MeshStandardMaterial({ color: 0xc6cacf, roughness: 0.62, metalness: 0.55 }),
     aluLight: new THREE.MeshStandardMaterial({ color: 0xdadde1, roughness: 0.68, metalness: 0.4 }),
     steel: new THREE.MeshStandardMaterial({ color: 0xc9ccd0, roughness: 0.22, metalness: 0.95 }),
