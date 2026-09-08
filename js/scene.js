@@ -33,7 +33,7 @@ if (params.get("og") === "1") document.documentElement.classList.add("og");
 
 // ---------- renderer ----------
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
-renderer.setPixelRatio(Math.min(devicePixelRatio || 1, lite ? 1.5 : 2));
+renderer.setPixelRatio(Math.min(devicePixelRatio || 1, lite ? 1.5 : params.get("post") === "0" ? 2 : 1.5)); // GTAO runs at ≤1.5× to stay smooth
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.05;
@@ -100,7 +100,7 @@ if (usePost) {
   gtao = new GTAOPass(scene, camera, 1, 1);
   gtao.output = GTAOPass.OUTPUT.Default;
   gtao.blendIntensity = 0.85;
-  gtao.updateGtaoMaterial({ radius: 0.09, distanceExponent: 1.5, thickness: 0.6, scale: 1.0, samples: 12, distanceFallOff: 1.0, screenSpaceRadius: false });
+  gtao.updateGtaoMaterial({ radius: 0.09, distanceExponent: 1.5, thickness: 0.6, scale: 1.0, samples: 10, distanceFallOff: 1.0, screenSpaceRadius: false });
   gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 4, radiusExponent: 1, rings: 2, samples: 12 });
   composer.addPass(gtao);
   composer.addPass(new OutputPass());
