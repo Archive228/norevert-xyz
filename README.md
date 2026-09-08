@@ -16,7 +16,7 @@ Deploy: `git push origin main` → GitHub Pages (branch `main`, root `/`, `CNAME
 | Path | What |
 | --- | --- |
 | `index.html` | page: copy, CSS, markup, Lenis smooth scroll, anchor nav |
-| `js/scene.js` | stage: renderer, studio lights, mirror floor, orbit, two-stage scroll strip, callouts, HUD, URL params |
+| `js/scene.js` | stage: renderer, studio lights, mirror floor, GTAO post (MSAA composer, desktop), contact shadow, orbit, two-stage scroll strip, callouts, HUD, URL params |
 | `js/nv01.js` | NV-01 model: kinematic tree from `js/kin.js`, real link meshes, 55 shell panels, head, electronics, looms, poses |
 | `js/kin.js` | joint table (offsets + axes) from `description/nv01.urdf`, in Three.js coordinates |
 | `js/frame.js` | loader for the packed link meshes |
@@ -38,7 +38,7 @@ Source: the public `rpo_description` meshes (CERN-OHL-W-2.0). Converter (not in 
 
 ## URL params (debug / stills)
 
-`?p=0.7` shell strip · `?pb=0.5` fade / slide · `?p2=0.8` frame knolling · `?mode=lab` · `?pose=guard` · `?view=front|side|back` · `?lite=1` no mirror, smaller shadows · `?clean=1&margin=1.4&shift=0` render-only stage.
+`?p=0.7` shell strip · `?pb=0.5` fade / slide · `?p2=0.8` frame knolling · `?mode=lab` · `?pose=guard` · `?view=front|side|back` · `?lite=1` no mirror, smaller shadows · `?post=0` no GTAO · `?clean=1&margin=1.4&shift=0` render-only stage · `?og=1` hero-only layout for the social image.
 
 ## Rules
 
