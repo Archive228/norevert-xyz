@@ -1,0 +1,882 @@
+[
+  {
+    "id": "SH01",
+    "file": "shell-01.mesh.gz",
+    "vertices": 26585,
+    "triangles": 55144,
+    "sourceTriangles": 233634,
+    "bboxMM": [
+      53.96,
+      161.08,
+      97.5
+    ],
+    "volumeCM3": 100.194,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/1-%E5%A4%B4%E5%89%8D.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH02",
+    "file": "shell-02.mesh.gz",
+    "vertices": 23027,
+    "triangles": 48108,
+    "sourceTriangles": 271800,
+    "bboxMM": [
+      85.97,
+      161.07,
+      97.5
+    ],
+    "volumeCM3": 120.036,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/2-%E5%A4%B4%E5%90%8E.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH03",
+    "file": "shell-03.mesh.gz",
+    "vertices": 30147,
+    "triangles": 64312,
+    "sourceTriangles": 191978,
+    "bboxMM": [
+      137.54,
+      97.12,
+      101.54
+    ],
+    "volumeCM3": 121.647,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/3-%E8%84%96%E5%AD%90%20%E9%BB%91.stl",
+    "voxelMM": 0.883
+  },
+  {
+    "id": "SH04",
+    "file": "shell-04.mesh.gz",
+    "vertices": 29560,
+    "triangles": 59618,
+    "sourceTriangles": 222812,
+    "bboxMM": [
+      104.49,
+      275.26,
+      144.68
+    ],
+    "volumeCM3": 179.003,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/4-%E8%83%B8%E5%89%8D%E4%B8%8A.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH05",
+    "file": "shell-05.mesh.gz",
+    "vertices": 31480,
+    "triangles": 63222,
+    "sourceTriangles": 156286,
+    "bboxMM": [
+      92.64,
+      275.72,
+      101.8
+    ],
+    "volumeCM3": 155.48,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/5-%E8%83%B8%E5%90%8E%E4%B8%8A.stl",
+    "voxelMM": 0.883
+  },
+  {
+    "id": "SH06",
+    "file": "shell-06.mesh.gz",
+    "vertices": 6610,
+    "triangles": 13232,
+    "sourceTriangles": 13660,
+    "bboxMM": [
+      260.42,
+      109.48,
+      187.97
+    ],
+    "volumeCM3": 217.96,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/6-%E8%83%B8%E5%89%8D%E4%B8%8B.STL",
+    "voxelMM": 0.08
+  },
+  {
+    "id": "SH07",
+    "file": "shell-07.mesh.gz",
+    "vertices": 7188,
+    "triangles": 14388,
+    "sourceTriangles": 14906,
+    "bboxMM": [
+      260.74,
+      93.39,
+      187.87
+    ],
+    "volumeCM3": 227.691,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/7-%E8%83%B8%E5%90%8E%E4%B8%8B.STL",
+    "voxelMM": 0.08
+  },
+  {
+    "id": "SH08",
+    "file": "shell-08.mesh.gz",
+    "vertices": 29412,
+    "triangles": 60112,
+    "sourceTriangles": 90960,
+    "bboxMM": [
+      80.21,
+      81.87,
+      40.11
+    ],
+    "volumeCM3": 19.725,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/8-%E8%82%A9%E4%B8%8A%E5%8F%B3%20%E9%BB%91.stl",
+    "voxelMM": 0.359
+  },
+  {
+    "id": "SH09",
+    "file": "shell-09.mesh.gz",
+    "vertices": 30769,
+    "triangles": 62566,
+    "sourceTriangles": 83884,
+    "bboxMM": [
+      80.21,
+      81.87,
+      40.11
+    ],
+    "volumeCM3": 19.94,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/9-%E8%82%A9%E4%B8%8B%E5%8F%B3%20%E9%BB%91.stl",
+    "voxelMM": 0.266
+  },
+  {
+    "id": "SH10",
+    "file": "shell-10.mesh.gz",
+    "vertices": 29258,
+    "triangles": 59752,
+    "sourceTriangles": 90524,
+    "bboxMM": [
+      80.21,
+      81.87,
+      40.11
+    ],
+    "volumeCM3": 19.724,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/10-%E8%82%A9%E4%B8%8A%E5%B7%A6%20%E9%BB%91.stl",
+    "voxelMM": 0.359
+  },
+  {
+    "id": "SH11",
+    "file": "shell-11.mesh.gz",
+    "vertices": 30709,
+    "triangles": 62428,
+    "sourceTriangles": 83984,
+    "bboxMM": [
+      80.21,
+      81.87,
+      40.11
+    ],
+    "volumeCM3": 19.938,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/11-%E8%82%A9%E4%B8%8B%E5%B7%A6%20%E9%BB%91.stl",
+    "voxelMM": 0.266
+  },
+  {
+    "id": "SH12",
+    "file": "shell-12.mesh.gz",
+    "vertices": 30146,
+    "triangles": 61976,
+    "sourceTriangles": 88364,
+    "bboxMM": [
+      45.58,
+      86.47,
+      86.26
+    ],
+    "volumeCM3": 15.002,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/12-%E5%A4%A7%E8%87%82%E4%B8%8A%E5%8F%B3%E5%89%8D.stl",
+    "voxelMM": 0.484
+  },
+  {
+    "id": "SH13",
+    "file": "shell-13.mesh.gz",
+    "vertices": 30370,
+    "triangles": 62462,
+    "sourceTriangles": 96798,
+    "bboxMM": [
+      44.12,
+      86.47,
+      84.77
+    ],
+    "volumeCM3": 15.188,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/13-%E5%A4%A7%E8%87%82%E4%B8%8A%E5%8F%B3%E5%90%8E.stl",
+    "voxelMM": 0.484
+  },
+  {
+    "id": "SH14",
+    "file": "shell-14.mesh.gz",
+    "vertices": 30299,
+    "triangles": 62198,
+    "sourceTriangles": 88676,
+    "bboxMM": [
+      45.58,
+      86.47,
+      86.26
+    ],
+    "volumeCM3": 15.001,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/14-%E5%A4%A7%E8%87%82%E4%B8%8A%E5%B7%A6%E5%89%8D.stl",
+    "voxelMM": 0.484
+  },
+  {
+    "id": "SH15",
+    "file": "shell-15.mesh.gz",
+    "vertices": 29994,
+    "triangles": 61760,
+    "sourceTriangles": 96384,
+    "bboxMM": [
+      44.12,
+      86.47,
+      84.77
+    ],
+    "volumeCM3": 15.188,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/15-%E5%A4%A7%E8%87%82%E4%B8%8A%E5%B7%A6%E5%90%8E.stl",
+    "voxelMM": 0.484
+  },
+  {
+    "id": "SH16",
+    "file": "shell-16.mesh.gz",
+    "vertices": 21052,
+    "triangles": 46150,
+    "sourceTriangles": 262488,
+    "bboxMM": [
+      46.17,
+      86.47,
+      215.07
+    ],
+    "volumeCM3": 57.313,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/16-%E5%A4%A7%E8%87%82%E4%B8%8B%E5%8F%B3%E5%89%8D.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH17",
+    "file": "shell-17.mesh.gz",
+    "vertices": 21310,
+    "triangles": 46604,
+    "sourceTriangles": 253074,
+    "bboxMM": [
+      43.3,
+      86.47,
+      215.07
+    ],
+    "volumeCM3": 68.389,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/17-%E5%A4%A7%E8%87%82%E4%B8%8B%E5%8F%B3%E5%90%8E.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH18",
+    "file": "shell-18.mesh.gz",
+    "vertices": 20993,
+    "triangles": 46140,
+    "sourceTriangles": 261560,
+    "bboxMM": [
+      46.17,
+      86.47,
+      215.07
+    ],
+    "volumeCM3": 57.314,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/18-%E5%A4%A7%E8%87%82%E4%B8%8B%E5%B7%A6%E5%89%8D.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH19",
+    "file": "shell-19.mesh.gz",
+    "vertices": 21414,
+    "triangles": 46730,
+    "sourceTriangles": 253074,
+    "bboxMM": [
+      43.3,
+      86.47,
+      215.07
+    ],
+    "volumeCM3": 68.389,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/19-%E5%A4%A7%E8%87%82%E4%B8%8B%E5%B7%A6%E5%90%8E.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH20",
+    "file": "shell-20.mesh.gz",
+    "vertices": 31327,
+    "triangles": 64422,
+    "sourceTriangles": 77334,
+    "bboxMM": [
+      74.6,
+      46.26,
+      95.2
+    ],
+    "volumeCM3": 17.009,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/20-%E5%B0%8F%E8%87%82%E4%B8%8A%E5%8F%B3%E5%86%85.stl",
+    "voxelMM": 0.266
+  },
+  {
+    "id": "SH21",
+    "file": "shell-21.mesh.gz",
+    "vertices": 31369,
+    "triangles": 64186,
+    "sourceTriangles": 71372,
+    "bboxMM": [
+      74.6,
+      40.02,
+      95.75
+    ],
+    "volumeCM3": 15.322,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/21-%E5%B0%8F%E8%87%82%E4%B8%8A%E5%8F%B3%E5%A4%96.stl",
+    "voxelMM": 0.146
+  },
+  {
+    "id": "SH22",
+    "file": "shell-22.mesh.gz",
+    "vertices": 31389,
+    "triangles": 64532,
+    "sourceTriangles": 77496,
+    "bboxMM": [
+      74.6,
+      46.26,
+      95.2
+    ],
+    "volumeCM3": 17.009,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/22-%E5%B0%8F%E8%87%82%E4%B8%8A%E5%B7%A6%E5%86%85.stl",
+    "voxelMM": 0.266
+  },
+  {
+    "id": "SH23",
+    "file": "shell-23.mesh.gz",
+    "vertices": 31250,
+    "triangles": 63908,
+    "sourceTriangles": 71334,
+    "bboxMM": [
+      74.6,
+      40.02,
+      95.75
+    ],
+    "volumeCM3": 15.322,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/23-%E5%B0%8F%E8%87%82%E4%B8%8A%E5%B7%A6%E5%A4%96.stl",
+    "voxelMM": 0.146
+  },
+  {
+    "id": "SH24",
+    "file": "shell-24.mesh.gz",
+    "vertices": 28671,
+    "triangles": 60158,
+    "sourceTriangles": 80524,
+    "bboxMM": [
+      74.51,
+      34.09,
+      123.53
+    ],
+    "volumeCM3": 28.493,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/24-%E5%B0%8F%E8%87%82%E4%B8%8B%E5%8F%B3%E5%86%85.stl",
+    "voxelMM": 0.266
+  },
+  {
+    "id": "SH25",
+    "file": "shell-25.mesh.gz",
+    "vertices": 30667,
+    "triangles": 64594,
+    "sourceTriangles": 86976,
+    "bboxMM": [
+      74.5,
+      37.11,
+      123.53
+    ],
+    "volumeCM3": 30.699,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/25-%E5%B0%8F%E8%87%82%E4%B8%8B%E5%8F%B3%E5%A4%96.stl",
+    "voxelMM": 0.266
+  },
+  {
+    "id": "SH26",
+    "file": "shell-26.mesh.gz",
+    "vertices": 30835,
+    "triangles": 64844,
+    "sourceTriangles": 80096,
+    "bboxMM": [
+      74.51,
+      34.09,
+      123.53
+    ],
+    "volumeCM3": 28.495,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/26-%E5%B0%8F%E8%87%82%E4%B8%8B%E5%B7%A6%E5%86%85.stl",
+    "voxelMM": 0.197
+  },
+  {
+    "id": "SH27",
+    "file": "shell-27.mesh.gz",
+    "vertices": 30069,
+    "triangles": 63002,
+    "sourceTriangles": 84550,
+    "bboxMM": [
+      74.5,
+      37.11,
+      123.53
+    ],
+    "volumeCM3": 30.698,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/27-%E5%B0%8F%E8%87%82%E4%B8%8B%E5%B7%A6%E5%A4%96.stl",
+    "voxelMM": 0.266
+  },
+  {
+    "id": "SH28",
+    "file": "shell-28.mesh.gz",
+    "vertices": 24994,
+    "triangles": 56074,
+    "sourceTriangles": 274240,
+    "bboxMM": [
+      182.47,
+      143.65,
+      109.26
+    ],
+    "volumeCM3": 75.489,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/28-%E9%AB%8B%E4%B8%8A%E5%8F%B3.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH29",
+    "file": "shell-29.mesh.gz",
+    "vertices": 24671,
+    "triangles": 55286,
+    "sourceTriangles": 263546,
+    "bboxMM": [
+      182.47,
+      140.65,
+      109.26
+    ],
+    "volumeCM3": 73.699,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/29-%E9%AB%8B%E4%B8%8A%E5%B7%A6.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH30",
+    "file": "shell-30.mesh.gz",
+    "vertices": 30311,
+    "triangles": 64570,
+    "sourceTriangles": 162732,
+    "bboxMM": [
+      81.88,
+      281.31,
+      64.68
+    ],
+    "volumeCM3": 44.89,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/30-%E9%AB%8B%E4%B8%8B%E5%89%8D.stl",
+    "voxelMM": 0.883
+  },
+  {
+    "id": "SH31",
+    "file": "shell-31.mesh.gz",
+    "vertices": 30040,
+    "triangles": 61848,
+    "sourceTriangles": 132896,
+    "bboxMM": [
+      81.77,
+      281.31,
+      67.71
+    ],
+    "volumeCM3": 47.97,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/31-%E9%AB%8B%E4%B8%8B%E5%90%8E.stl",
+    "voxelMM": 0.883
+  },
+  {
+    "id": "SH32",
+    "file": "shell-32.mesh.gz",
+    "vertices": 31426,
+    "triangles": 64462,
+    "sourceTriangles": 108802,
+    "bboxMM": [
+      133.83,
+      70.57,
+      154.19
+    ],
+    "volumeCM3": 55.682,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/32-%E8%87%80%E5%86%85%E5%8F%B3%20%E9%BB%91.stl",
+    "voxelMM": 0.883
+  },
+  {
+    "id": "SH33",
+    "file": "shell-33.mesh.gz",
+    "vertices": 27701,
+    "triangles": 57318,
+    "sourceTriangles": 126424,
+    "bboxMM": [
+      134.1,
+      76.22,
+      154.67
+    ],
+    "volumeCM3": 58.338,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/33-%E8%87%80%E5%A4%96%E5%8F%B3%20%E9%BB%91.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH34",
+    "file": "shell-34.mesh.gz",
+    "vertices": 31340,
+    "triangles": 64234,
+    "sourceTriangles": 108950,
+    "bboxMM": [
+      133.83,
+      70.57,
+      154.19
+    ],
+    "volumeCM3": 55.681,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/34-%E8%87%80%E5%86%85%E5%B7%A6%20%E9%BB%91.stl",
+    "voxelMM": 0.883
+  },
+  {
+    "id": "SH35",
+    "file": "shell-35.mesh.gz",
+    "vertices": 27644,
+    "triangles": 57088,
+    "sourceTriangles": 121404,
+    "bboxMM": [
+      134.1,
+      76.22,
+      154.67
+    ],
+    "volumeCM3": 58.339,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/35-%E8%87%80%E5%A4%96%E5%B7%A6%20%E9%BB%91.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH36",
+    "file": "shell-36.mesh.gz",
+    "vertices": 29831,
+    "triangles": 60888,
+    "sourceTriangles": 143050,
+    "bboxMM": [
+      131.46,
+      62.08,
+      131.9
+    ],
+    "volumeCM3": 90.761,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/36-%E5%A4%A7%E8%85%BF%E6%A0%B9%E5%8F%B3%20%E9%BB%91.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH37",
+    "file": "shell-37.mesh.gz",
+    "vertices": 29707,
+    "triangles": 60842,
+    "sourceTriangles": 146978,
+    "bboxMM": [
+      131.46,
+      62.08,
+      131.9
+    ],
+    "volumeCM3": 90.758,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/37-%E5%A4%A7%E8%85%BF%E6%A0%B9%E5%B7%A6%20%E9%BB%91.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH38",
+    "file": "shell-38.mesh.gz",
+    "vertices": 24520,
+    "triangles": 55572,
+    "sourceTriangles": 215998,
+    "bboxMM": [
+      72.17,
+      66.41,
+      289.97
+    ],
+    "volumeCM3": 82.13,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/38-%E5%A4%A7%E8%85%BF%E5%89%8D%E5%8F%B3.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH39",
+    "file": "shell-39.mesh.gz",
+    "vertices": 24280,
+    "triangles": 53930,
+    "sourceTriangles": 163072,
+    "bboxMM": [
+      70.06,
+      66.07,
+      249.77
+    ],
+    "volumeCM3": 52.857,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/39-%E5%A4%A7%E8%85%BF%E5%90%8E%E5%8F%B3.stl",
+    "voxelMM": 0.883
+  },
+  {
+    "id": "SH40",
+    "file": "shell-40.mesh.gz",
+    "vertices": 26425,
+    "triangles": 60538,
+    "sourceTriangles": 212138,
+    "bboxMM": [
+      138.96,
+      22.8,
+      284.92
+    ],
+    "volumeCM3": 139.23,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/40-%E5%A4%A7%E8%85%BF%E5%86%85%E5%8F%B3.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH41",
+    "file": "shell-41.mesh.gz",
+    "vertices": 20905,
+    "triangles": 46294,
+    "sourceTriangles": 204078,
+    "bboxMM": [
+      133.06,
+      24.54,
+      295.45
+    ],
+    "volumeCM3": 106.666,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/41-%E5%A4%A7%E8%85%BF%E5%A4%96%E5%8F%B3.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH42",
+    "file": "shell-42.mesh.gz",
+    "vertices": 24368,
+    "triangles": 55944,
+    "sourceTriangles": 216674,
+    "bboxMM": [
+      72.17,
+      66.41,
+      289.97
+    ],
+    "volumeCM3": 82.124,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/42-%E5%A4%A7%E8%85%BF%E5%89%8D%E5%B7%A6.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH43",
+    "file": "shell-43.mesh.gz",
+    "vertices": 24462,
+    "triangles": 54100,
+    "sourceTriangles": 163170,
+    "bboxMM": [
+      70.06,
+      66.07,
+      249.77
+    ],
+    "volumeCM3": 52.857,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/43-%E5%A4%A7%E8%85%BF%E5%90%8E%E5%B7%A6.stl",
+    "voxelMM": 0.883
+  },
+  {
+    "id": "SH44",
+    "file": "shell-44.mesh.gz",
+    "vertices": 26480,
+    "triangles": 60572,
+    "sourceTriangles": 212426,
+    "bboxMM": [
+      138.96,
+      22.8,
+      284.92
+    ],
+    "volumeCM3": 139.229,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/44-%E5%A4%A7%E8%85%BF%E5%86%85%E5%B7%A6.stl",
+    "voxelMM": 1.609
+  },
+  {
+    "id": "SH45",
+    "file": "shell-45.mesh.gz",
+    "vertices": 29607,
+    "triangles": 64204,
+    "sourceTriangles": 204414,
+    "bboxMM": [
+      133.06,
+      24.54,
+      295.45
+    ],
+    "volumeCM3": 106.67,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/45-%E5%A4%A7%E8%85%BF%E5%A4%96%E5%B7%A6.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH46",
+    "file": "shell-46.mesh.gz",
+    "vertices": 29689,
+    "triangles": 59956,
+    "sourceTriangles": 93896,
+    "bboxMM": [
+      108.72,
+      11.01,
+      148.12
+    ],
+    "volumeCM3": 56.556,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/46-%E8%86%9D%E5%8F%B3.stl",
+    "voxelMM": 0.484
+  },
+  {
+    "id": "SH47",
+    "file": "shell-47.mesh.gz",
+    "vertices": 32128,
+    "triangles": 64830,
+    "sourceTriangles": 91760,
+    "bboxMM": [
+      108.72,
+      11.01,
+      148.12
+    ],
+    "volumeCM3": 56.575,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/47-%E8%86%9D%E5%B7%A6.stl",
+    "voxelMM": 0.359
+  },
+  {
+    "id": "SH48",
+    "file": "shell-48.mesh.gz",
+    "vertices": 25251,
+    "triangles": 56178,
+    "sourceTriangles": 179990,
+    "bboxMM": [
+      94.4,
+      89.94,
+      216.41
+    ],
+    "volumeCM3": 94.911,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/48-%E5%B0%8F%E8%85%BF%E5%89%8D%E5%A4%96%E5%8F%B3.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH49",
+    "file": "shell-49.mesh.gz",
+    "vertices": 25250,
+    "triangles": 55188,
+    "sourceTriangles": 187150,
+    "bboxMM": [
+      94.11,
+      80.57,
+      216.37
+    ],
+    "volumeCM3": 104.936,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/49-%E5%B0%8F%E8%85%BF%E5%90%8E%E5%86%85%E5%8F%B3.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH50",
+    "file": "shell-50.mesh.gz",
+    "vertices": 25262,
+    "triangles": 55800,
+    "sourceTriangles": 179990,
+    "bboxMM": [
+      94.4,
+      89.94,
+      216.41
+    ],
+    "volumeCM3": 94.912,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/50-%E5%B0%8F%E8%85%BF%E5%89%8D%E5%A4%96%E5%B7%A6.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH51",
+    "file": "shell-51.mesh.gz",
+    "vertices": 25044,
+    "triangles": 54858,
+    "sourceTriangles": 187150,
+    "bboxMM": [
+      94.11,
+      80.57,
+      216.37
+    ],
+    "volumeCM3": 104.936,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/51-%E5%B0%8F%E8%85%BF%E5%90%8E%E5%86%85%E5%B7%A6.stl",
+    "voxelMM": 1.191
+  },
+  {
+    "id": "SH52",
+    "file": "shell-52.mesh.gz",
+    "vertices": 27475,
+    "triangles": 58192,
+    "sourceTriangles": 136742,
+    "bboxMM": [
+      232.61,
+      89.56,
+      26.68
+    ],
+    "volumeCM3": 181.558,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/52-%E8%84%9A%E4%B8%8A%E5%8F%B3.stl",
+    "voxelMM": 0.883
+  },
+  {
+    "id": "SH53",
+    "file": "shell-53.mesh.gz",
+    "vertices": 28242,
+    "triangles": 57082,
+    "sourceTriangles": 103862,
+    "bboxMM": [
+      232.61,
+      89.56,
+      15.96
+    ],
+    "volumeCM3": 199.667,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/53-%E8%84%9A%E4%B8%8B%E5%8F%B3%20%E9%BB%91.stl",
+    "voxelMM": 0.654
+  },
+  {
+    "id": "SH54",
+    "file": "shell-54.mesh.gz",
+    "vertices": 27532,
+    "triangles": 58592,
+    "sourceTriangles": 138356,
+    "bboxMM": [
+      232.61,
+      89.56,
+      26.68
+    ],
+    "volumeCM3": 181.559,
+    "black": false,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/54-%E8%84%9A%E4%B8%8A%E5%B7%A6.stl",
+    "voxelMM": 0.883
+  },
+  {
+    "id": "SH55",
+    "file": "shell-55.mesh.gz",
+    "vertices": 28190,
+    "triangles": 56984,
+    "sourceTriangles": 103824,
+    "bboxMM": [
+      232.61,
+      89.56,
+      15.96
+    ],
+    "volumeCM3": 199.667,
+    "black": true,
+    "source": "https://github.com/Roboparty/rpo_appearance/blob/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0/55-%E8%84%9A%E4%B8%8B%E5%B7%A6%20%E9%BB%91.stl",
+    "voxelMM": 0.654
+  }
+]

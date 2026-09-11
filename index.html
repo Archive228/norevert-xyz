@@ -474,30 +474,45 @@
       <p class="num">01 — The next parts</p>
       <div class="parts-heading">
         <h2 id="parts-title">A shopping list.<br>For its own body.</h2>
-        <p class="parts-intro">The frame is here. This is everything still on the build list — from a face and white panels to the boards, wiring and mounts inside.</p>
+        <p class="parts-intro">145 budget lines. Every panel, board, cable and fastener has its own inspection view. Start inside the head, then explore the rest of the body.</p>
       </div>
       <div class="parts-budget" aria-label="Hardware budget in US dollars">
         <div><span>Already on hand</span><strong>$7,340</strong><small>Frame, actuators, battery and both hands</small></div>
         <div class="remaining"><span>All remaining parts</span><strong data-remaining-total>$6,771.90</strong><small>Planning budget · 2× reserve already included</small></div>
         <div><span>Complete build estimate</span><strong data-build-total>$14,111.90</strong><small>Current hardware + remaining budget</small></div>
       </div>
-      <div class="parts-tabs" role="tablist" aria-label="Explore remaining parts">
-        <button id="parts-tab-body" type="button" role="tab" aria-selected="true" aria-controls="parts-panel" data-parts-tab="body"><span>01</span>Body &amp; head</button>
-        <button id="parts-tab-electronics" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="parts-panel" data-parts-tab="electronics"><span>02</span>Electronics</button>
-        <button id="parts-tab-assembly" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="parts-panel" data-parts-tab="assembly"><span>03</span>Connection &amp; assembly</button>
+      <div class="parts-picker" aria-label="Find a single component">
+        <label>System<select id="parts-category"><option value="head">Head · teardown</option><option value="shell">Outer shell · 52 panels + finishing</option><option value="electronics">Electronics &amp; vision</option><option value="power">Power</option><option value="mechanics">Mechanics &amp; mounts</option><option value="wiring">Wiring</option><option value="hands">Hand integration</option><option value="fasteners">Fasteners</option><option value="tools">Tools</option><option value="all">All 145 budget lines</option></select></label>
+        <label class="part-picker-item">Component<select id="parts-component" aria-label="Component to inspect"><option value="HEAD_ASSEMBLY">Head assembly · 12-layer teardown</option></select></label>
+        <label>Search<input id="parts-search" type="search" placeholder="LCD, M4, shell 24…" /></label>
       </div>
-      <div class="parts-exhibit">
+      <div class="parts-inspector">
         <div class="parts-viewport">
           <div class="parts-stage">
-            <canvas class="parts-canvas" aria-label="3D previews of planned robot parts. Use the category tabs and part buttons to explore; drag to rotate."></canvas>
-            <div class="parts-stage-label"><span>NV-01 / Parts in progress</span><span data-part-number>01 / 03</span></div>
-            <div class="parts-loading" role="status">Loading the parts…</div>
-            <div class="parts-selected"><b data-part-caption>Body &amp; head</b><span data-part-price>$2,284.90</span></div>
+            <canvas class="parts-canvas" aria-label="Large 3D inspection model. Drag to orbit; use the zoom slider and view buttons."></canvas>
+            <div class="parts-stage-label"><span data-part-id>HEAD / CONCEPT ASSEMBLY</span><span data-part-number>12 LAYERS</span></div>
+            <div class="parts-loading" role="status">Loading the detailed model…</div>
+            <div class="parts-selected"><b data-part-caption>Inside the head</b><span data-part-price>$470.52</span></div>
           </div>
-          <div class="parts-controls"><p>Drag to rotate. Select a part to inspect it.</p><button type="button" data-parts-rotate aria-pressed="true">Pause rotation</button><button type="button" data-parts-reset>Full group</button></div>
-          <p class="parts-note">Shell geometry from the NV-01 model. Electronics and assembly parts are schematic previews.</p>
+          <div class="parts-toolbar" role="group" aria-label="3D view controls">
+            <div class="parts-view-buttons"><button type="button" data-view-angle="three">¾ view</button><button type="button" data-view-angle="front">Front</button><button type="button" data-view-angle="back">Back</button><button type="button" data-inspector-rotate aria-pressed="false">Rotate</button></div>
+            <label class="parts-slider">Zoom<input id="parts-zoom" type="range" min="70" max="180" value="100" aria-label="Model zoom" /><output id="parts-zoom-value">100%</output></label>
+            <label class="parts-slider" id="parts-explode-control">Disassemble<input id="parts-explode" type="range" min="0" max="100" value="75" aria-label="Explode component layers" /><output id="parts-explode-value">75%</output></label>
+          </div>
+          <div class="parts-stepper"><button type="button" data-part-prev>Previous part</button><span data-parts-match aria-live="polite">145 budget lines · 55 source CAD panels</span><button type="button" data-part-next>Next part</button></div>
+          <p class="parts-note">Drag in any direction. One part at a time; the model is enlarged for inspection.</p>
         </div>
-        <div id="parts-panel" class="parts-panel" role="tabpanel" aria-labelledby="parts-tab-body" tabindex="0"></div>
+        <aside class="parts-detail" id="parts-detail" aria-live="polite"></aside>
+      </div>
+      <div id="head-connections" class="head-connections">
+        <div><p class="num">Head / connections</p><h3>One screen. Two microphones.<br>The computer stays in the torso.</h3><p>Proposed signal and power paths. This is a system diagram, not a pin-level wiring schematic.</p></div>
+        <div class="signal-diagram">
+          <div class="signal-row"><span class="signal-tag">VIDEO</span><b>Torso computer<small>DisplayPort</small></b><i>→</i><b>DP → HDMI<small>Video adapter</small></b><i>→</i><b>Display controller<small>Inside the screen module</small></b><i>→</i><b>LCD matrix<small>800 × 480 pixels</small></b></div>
+          <div class="signal-row"><span class="signal-tag">TOUCH</span><b>Torso computer<small>USB input</small></b><i>↔</i><b>USB touch lead<small>Separate from HDMI</small></b><i>↔</i><b>Touch controller<small>Inside the display module</small></b><i>↔</i><b>Capacitive glass<small>Touch sensing layer</small></b></div>
+          <div class="signal-row"><span class="signal-tag">AUDIO</span><b>Torso computer<small>USB audio</small></b><i>↔</i><b>reSpeaker Lite<small>XMOS XU316 + 2 MEMS mics</small></b><i>→</i><b>Speaker output<small>Audio board connector</small></b><i>→</i><b>Speaker<small>4 Ω / 5 W</small></b></div>
+          <div class="signal-row"><span class="signal-tag">POWER</span><b>Battery<small>48 V nominal</small></b><i>→</i><b>DC converter<small>5 V auxiliary branch</small></b><i>→</i><b>Protection &amp; leads<small>Final routing to validate</small></b><i>→</i><b>Head modules<small>Display + audio</small></b></div>
+        </div>
+        <p class="parts-note">The LCD matrix, backlight and display controller are layers of one purchased display. The two microphones and XMOS processor belong to one audio board. They are not charged again in the budget.</p>
       </div>
       <details class="parts-owned">
         <summary>Already here — $7,340 <span>View the current hardware</span></summary>
@@ -513,7 +528,7 @@
         <p>Both hands have arrived and are awaiting installation. Their wrist adapters, wiring and bus connections are in the remaining budget.</p>
       </details>
       <p class="parts-method">USD estimates from the build specification and fabrication planning, September 2026. Remaining prices already include a 2× reserve. The 55 panels include the head shell; it is counted once. This is a hardware budget, not a trading profit figure.</p>
-      <noscript><p>The remaining budget is $6,771.90: body and head $2,284.90; electronics $2,755.44; connection and assembly $1,731.56. Enable JavaScript to inspect the 13 groups in 3D.</p></noscript>
+      <noscript><p>The remaining budget is $6,771.90: body and head $2,284.90; electronics $2,755.44; connection and assembly $1,731.56. Enable JavaScript to inspect all 145 budget lines and the head teardown in 3D.</p></noscript>
     </section>
 
     <section id="body" data-n="02">

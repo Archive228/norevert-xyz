@@ -46,12 +46,18 @@ No ROBOPARTY / ROBO PARTY marks on the site. Chest reads NOREVERT / NV-01. Numbe
 
 ## Remaining parts explorer
 
-The `#parts` section follows the main scroll animation. It contains three 3D galleries, click-to-inspect component groups, drag and automatic rotation, and the owned inventory. It loads on approach and pauses rendering offscreen.
+The `#parts` section follows the main scroll animation. It provides 145 individually selectable budget lines with category/search controls, one large model at a time, orbit, zoom, front/back views, and the owned inventory. Rendering pauses offscreen.
 
-- `js/parts-data.js`: all 13 remaining USD allowances, in integer cents; the 2× reserve is already included.
-- `js/parts.js`: category controls, single-part inspection and the lazy 3D renderer.
-- `js/parts-models.js`: shell/head geometry reused from NV-01 and schematic component previews.
-- `css/parts.css`: desktop and mobile layout.
-- `index.html`: the section markup and owned inventory.
+- `description/parts/catalog.json`: the full 145-line remaining BOM. Prices are integer USD cents with the 2× reserve already included; quantities are the complete priced batch.
+- `description/parts/shell-*.mesh.gz`: 55 individual viewing meshes derived from the original appearance STLs. Source commit, bounds, simplification details and CERN-OHL-W-2.0 licence are alongside the files.
+- `js/parts.js`: individual inspector, catalog controls, layer isolation, markers and renderer.
+- `js/parts-detailed-models.js`: detailed schematic modules, fasteners, cables, internal layers and the source mesh loader.
+- `js/parts-data.js`: the original 13 category allowances and budget totals.
+- `css/parts.css`: responsive inspector layout.
+- `index.html`: section markup, head connection diagram and owned inventory.
+
+The head opens as a 12-layer concept assembly. Display glass, LCD, backlight and control PCB are included in one Waveshare 5-inch HDMI LCD (H) module. The audio board uses reSpeaker Lite with two MEMS microphones and XMOS XU316. Subcomponent layers are not extra purchases. The head subset ($470.52) is already included in the remaining total.
+
+The head assembly, internal PCB component positions and signal diagram are explanatory concepts, not fit-validated CAD or pin-level manufacturing schematics. Each source shell is separately available in the menu. One representative object may represent a priced batch of fasteners or a kit.
 
 Budget: $7,340 on hand + $6,771.90 remaining = $14,111.90. These are specification and planning values, not a P&L statement. Both hands are delivered but not installed.

@@ -1,0 +1,3713 @@
+[
+  {
+    "id": "RDK",
+    "name": "RDK X5 · 8 GB",
+    "category": "electronics",
+    "model": "rdk",
+    "qty": 1,
+    "cents": 17864,
+    "specs": [
+      [
+        "Module",
+        "Horizon RDK X5"
+      ],
+      [
+        "Memory",
+        "8 GB"
+      ]
+    ],
+    "detail": "Onboard electronics from the build budget. The model shows the module and visible interfaces; component placement is illustrative.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "IMU",
+    "name": "HI14M0-USB orientation sensor",
+    "category": "electronics",
+    "model": "imu",
+    "qty": 1,
+    "cents": 12000,
+    "specs": [
+      [
+        "BOM reference",
+        "IMU"
+      ]
+    ],
+    "detail": "Onboard electronics from the build budget. The model shows the module and visible interfaces; component placement is illustrative.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "RBE",
+    "name": "RBE V2.1 control and power PCB",
+    "category": "electronics",
+    "model": "rbe",
+    "qty": 1,
+    "cents": 44000,
+    "specs": [
+      [
+        "BOM types",
+        "70"
+      ],
+      [
+        "Placements",
+        "195"
+      ],
+      [
+        "Functions",
+        "Power / USB–CAN / hub"
+      ]
+    ],
+    "detail": "An assembled RBE V2.1 board. The source BOM contains 70 line types and 195 component placements. The 3D placement is illustrative, not a PCB manufacturing layout; its components are included in the board cost.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_pcb/02_Assembly/BOM_%E4%B8%89%E5%90%88%E4%B8%80V2.1_RBE_PWR_HUB_V2.1_2026-04-09.xlsx",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "RTC",
+    "name": "RTC backup battery",
+    "category": "electronics",
+    "model": "coin",
+    "qty": 1,
+    "cents": 800,
+    "specs": [
+      [
+        "BOM reference",
+        "RTC"
+      ]
+    ],
+    "detail": "Onboard electronics from the build budget. The model shows the module and visible interfaces; component placement is illustrative.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "SD",
+    "name": "32 GB microSD card",
+    "category": "electronics",
+    "model": "sd",
+    "qty": 1,
+    "cents": 2400,
+    "specs": [
+      [
+        "BOM reference",
+        "SD"
+      ]
+    ],
+    "detail": "Onboard electronics from the build budget. The model shows the module and visible interfaces; component placement is illustrative.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "ANT",
+    "name": "IPEX antenna · 15 cm lead",
+    "category": "electronics",
+    "model": "antenna",
+    "qty": 1,
+    "cents": 1200,
+    "specs": [
+      [
+        "BOM reference",
+        "ANT"
+      ]
+    ],
+    "detail": "Onboard electronics from the build budget. The model shows the module and visible interfaces; component placement is illustrative.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "COOL",
+    "name": "SBC heatsink and fan",
+    "category": "electronics",
+    "model": "cooling",
+    "qty": 1,
+    "cents": 3000,
+    "specs": [
+      [
+        "BOM reference",
+        "COOL"
+      ]
+    ],
+    "detail": "Onboard electronics from the build budget. The model shows the module and visible interfaces; component placement is illustrative.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "USB_BODY",
+    "name": "RDK, RBE and IMU USB leads",
+    "category": "wiring",
+    "model": "cable",
+    "qty": 1,
+    "cents": 2400,
+    "specs": [
+      [
+        "BOM reference",
+        "USB_BODY"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "PCB_MOUNTS",
+    "name": "Internal PCB mounting plates",
+    "category": "mechanics",
+    "model": "mount",
+    "qty": 2,
+    "cents": 4000,
+    "specs": [
+      [
+        "BOM reference",
+        "PCB_MOUNTS"
+      ]
+    ],
+    "detail": "Internal mechanical part or mounting component. Where custom fabrication is required, the model illustrates the planned design.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "RDK_MOUNT",
+    "name": "RDK mounting adapter",
+    "category": "mechanics",
+    "model": "mount",
+    "qty": 1,
+    "cents": 2000,
+    "specs": [
+      [
+        "BOM reference",
+        "RDK_MOUNT"
+      ]
+    ],
+    "detail": "Internal mechanical part or mounting component. Where custom fabrication is required, the model illustrates the planned design.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "CHEST_MOUNT",
+    "name": "Chest panel bracket",
+    "category": "mechanics",
+    "model": "mount",
+    "qty": 1,
+    "cents": 3600,
+    "specs": [
+      [
+        "BOM reference",
+        "CHEST_MOUNT"
+      ]
+    ],
+    "detail": "Internal mechanical part or mounting component. Where custom fabrication is required, the model illustrates the planned design.",
+    "source": "https://github.com/Roboparty/rpo_hardware/tree/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/02_Manufacturing/3D_Printing/",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "CHARGER",
+    "name": "Battery charger",
+    "category": "power",
+    "model": "charger",
+    "qty": 1,
+    "cents": 11000,
+    "specs": [
+      [
+        "BOM reference",
+        "CHARGER"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "CHARGE_PORT",
+    "name": "Panel charging socket",
+    "category": "power",
+    "model": "socket",
+    "qty": 1,
+    "cents": 1200,
+    "specs": [
+      [
+        "BOM reference",
+        "CHARGE_PORT"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "ESTOP",
+    "name": "Emergency stop with contact block",
+    "category": "power",
+    "model": "estop",
+    "qty": 1,
+    "cents": 2400,
+    "specs": [
+      [
+        "BOM reference",
+        "ESTOP"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "SWITCH",
+    "name": "Illuminated power switch",
+    "category": "power",
+    "model": "switch",
+    "qty": 1,
+    "cents": 1400,
+    "specs": [
+      [
+        "BOM reference",
+        "SWITCH"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "VOLTMETER",
+    "name": "Digital voltmeter",
+    "category": "power",
+    "model": "voltmeter",
+    "qty": 1,
+    "cents": 1400,
+    "specs": [
+      [
+        "BOM reference",
+        "VOLTMETER"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "BAT_LEAD",
+    "name": "XT60 battery power lead",
+    "category": "power",
+    "model": "xt60",
+    "qty": 1,
+    "cents": 2000,
+    "specs": [
+      [
+        "BOM reference",
+        "BAT_LEAD"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "FUSE",
+    "name": "Main fuse and holder",
+    "category": "power",
+    "model": "fuse",
+    "qty": 1,
+    "cents": 2400,
+    "specs": [
+      [
+        "BOM reference",
+        "FUSE"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "SW_WIRES",
+    "name": "Switch and voltmeter leads",
+    "category": "power",
+    "model": "cable",
+    "qty": 1,
+    "cents": 1600,
+    "specs": [
+      [
+        "BOM reference",
+        "SW_WIRES"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "BAT_FIX",
+    "name": "Battery insulation and retention",
+    "category": "power",
+    "model": "pad",
+    "qty": 1,
+    "cents": 2000,
+    "specs": [
+      [
+        "BOM reference",
+        "BAT_FIX"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "SOLE_RUBBER",
+    "name": "Rubber sole pad",
+    "category": "mechanics",
+    "model": "sole",
+    "qty": 2,
+    "cents": 4000,
+    "specs": [
+      [
+        "BOM reference",
+        "SOLE_RUBBER"
+      ]
+    ],
+    "detail": "Internal mechanical part or mounting component. Where custom fabrication is required, the model illustrates the planned design.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "SPH",
+    "name": "8 mm spherical bearing",
+    "category": "mechanics",
+    "model": "spherical",
+    "qty": 8,
+    "cents": 6400,
+    "specs": [
+      [
+        "BOM reference",
+        "SPH"
+      ]
+    ],
+    "detail": "Internal mechanical part or mounting component. Where custom fabrication is required, the model illustrates the planned design.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "AXK",
+    "name": "AXK6085 thrust needle bearing",
+    "category": "mechanics",
+    "model": "needle",
+    "qty": 9,
+    "cents": 9000,
+    "specs": [
+      [
+        "BOM reference",
+        "AXK"
+      ]
+    ],
+    "detail": "Internal mechanical part or mounting component. Where custom fabrication is required, the model illustrates the planned design.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "CROSS",
+    "name": "16 × 40 ankle crosspiece",
+    "category": "mechanics",
+    "model": "cross",
+    "qty": 2,
+    "cents": 6000,
+    "specs": [
+      [
+        "BOM reference",
+        "CROSS"
+      ]
+    ],
+    "detail": "Internal mechanical part or mounting component. Where custom fabrication is required, the model illustrates the planned design.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "HANDLE",
+    "name": "Metal carry handle",
+    "category": "mechanics",
+    "model": "handle",
+    "qty": 1,
+    "cents": 2400,
+    "specs": [
+      [
+        "BOM reference",
+        "HANDLE"
+      ]
+    ],
+    "detail": "Internal mechanical part or mounting component. Where custom fabrication is required, the model illustrates the planned design.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "W52",
+    "name": "Arm01 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 2,
+    "cents": 3200,
+    "specs": [
+      [
+        "Length",
+        "20 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 20,
+      "label": "Arm01 harness"
+    }
+  },
+  {
+    "id": "W53",
+    "name": "Arm02 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 2,
+    "cents": 3200,
+    "specs": [
+      [
+        "Length",
+        "20 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 20,
+      "label": "Arm02 harness"
+    }
+  },
+  {
+    "id": "W54",
+    "name": "Arm03 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 2,
+    "cents": 3200,
+    "specs": [
+      [
+        "Length",
+        "20 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 20,
+      "label": "Arm03 harness"
+    }
+  },
+  {
+    "id": "W55",
+    "name": "Arm04 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 2,
+    "cents": 3200,
+    "specs": [
+      [
+        "Length",
+        "20 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 20,
+      "label": "Arm04 harness"
+    }
+  },
+  {
+    "id": "W56",
+    "name": "Leg01 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 2,
+    "cents": 3200,
+    "specs": [
+      [
+        "Length",
+        "25 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 25,
+      "label": "Leg01 harness"
+    }
+  },
+  {
+    "id": "W57",
+    "name": "Leg02 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 2,
+    "cents": 3200,
+    "specs": [
+      [
+        "Length",
+        "25 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 25,
+      "label": "Leg02 harness"
+    }
+  },
+  {
+    "id": "W58",
+    "name": "Leg03 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 2,
+    "cents": 4000,
+    "specs": [
+      [
+        "Length",
+        "40 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 40,
+      "label": "Leg03 harness"
+    }
+  },
+  {
+    "id": "W59",
+    "name": "Leg04 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 2,
+    "cents": 3200,
+    "specs": [
+      [
+        "Length",
+        "30 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 30,
+      "label": "Leg04 harness"
+    }
+  },
+  {
+    "id": "W60",
+    "name": "Leg05 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 2,
+    "cents": 3200,
+    "specs": [
+      [
+        "Length",
+        "10 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 10,
+      "label": "Leg05 harness"
+    }
+  },
+  {
+    "id": "W61",
+    "name": "Body01 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 1,
+    "cents": 1600,
+    "specs": [
+      [
+        "Length",
+        "20 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 20,
+      "label": "Body01 harness"
+    }
+  },
+  {
+    "id": "W62",
+    "name": "Body02 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 2,
+    "cents": 3200,
+    "specs": [
+      [
+        "Length",
+        "20 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 20,
+      "label": "Body02 harness"
+    }
+  },
+  {
+    "id": "W63",
+    "name": "Body03 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 1,
+    "cents": 2800,
+    "specs": [
+      [
+        "Length",
+        "60 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 60,
+      "label": "Body03 harness"
+    }
+  },
+  {
+    "id": "W64",
+    "name": "Body04 harness",
+    "category": "wiring",
+    "model": "harness",
+    "qty": 1,
+    "cents": 2800,
+    "specs": [
+      [
+        "Length",
+        "50 cm"
+      ],
+      [
+        "Assembly",
+        "Motor power and signal"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "lengthCM": 50,
+      "label": "Body04 harness"
+    }
+  },
+  {
+    "id": "WIRE_FIX",
+    "name": "Harness guides and cable ties",
+    "category": "wiring",
+    "model": "ties",
+    "qty": 1,
+    "cents": 5000,
+    "specs": [
+      [
+        "BOM reference",
+        "WIRE_FIX"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "WIRE_SLEEVE",
+    "name": "Cable sleeve, heatshrink and glands",
+    "category": "wiring",
+    "model": "sleeve",
+    "qty": 1,
+    "cents": 3600,
+    "specs": [
+      [
+        "BOM reference",
+        "WIRE_SLEEVE"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "F68",
+    "name": "Socket-head cap screw · M2.5×8",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 20,
+    "cents": 480,
+    "specs": [
+      [
+        "Size",
+        "M2.5×8 mm"
+      ],
+      [
+        "Batch quantity",
+        "20"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 2.5,
+      "length": 8.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F69",
+    "name": "Socket-head cap screw · M3×6",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 20,
+    "cents": 400,
+    "specs": [
+      [
+        "Size",
+        "M3×6 mm"
+      ],
+      [
+        "Batch quantity",
+        "20"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 3.0,
+      "length": 6.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F70",
+    "name": "Socket-head cap screw · M3×8",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 80,
+    "cents": 1600,
+    "specs": [
+      [
+        "Size",
+        "M3×8 mm"
+      ],
+      [
+        "Batch quantity",
+        "80"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 3.0,
+      "length": 8.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F71",
+    "name": "Socket-head cap screw · M3×10",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 80,
+    "cents": 1600,
+    "specs": [
+      [
+        "Size",
+        "M3×10 mm"
+      ],
+      [
+        "Batch quantity",
+        "80"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 3.0,
+      "length": 10.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F72",
+    "name": "Socket-head cap screw · M3×12",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 50,
+    "cents": 1000,
+    "specs": [
+      [
+        "Size",
+        "M3×12 mm"
+      ],
+      [
+        "Batch quantity",
+        "50"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 3.0,
+      "length": 12.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F73",
+    "name": "Socket-head cap screw · M3×16",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 80,
+    "cents": 1600,
+    "specs": [
+      [
+        "Size",
+        "M3×16 mm"
+      ],
+      [
+        "Batch quantity",
+        "80"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 3.0,
+      "length": 16.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F74",
+    "name": "Socket-head cap screw · M4×8",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 200,
+    "cents": 4000,
+    "specs": [
+      [
+        "Size",
+        "M4×8 mm"
+      ],
+      [
+        "Batch quantity",
+        "200"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 4.0,
+      "length": 8.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F75",
+    "name": "Socket-head cap screw · M4×10",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 100,
+    "cents": 2000,
+    "specs": [
+      [
+        "Size",
+        "M4×10 mm"
+      ],
+      [
+        "Batch quantity",
+        "100"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 4.0,
+      "length": 10.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F76",
+    "name": "Socket-head cap screw · M4×12",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 100,
+    "cents": 2000,
+    "specs": [
+      [
+        "Size",
+        "M4×12 mm"
+      ],
+      [
+        "Batch quantity",
+        "100"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 4.0,
+      "length": 12.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F77",
+    "name": "Socket-head cap screw · M4×14",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 20,
+    "cents": 400,
+    "specs": [
+      [
+        "Size",
+        "M4×14 mm"
+      ],
+      [
+        "Batch quantity",
+        "20"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 4.0,
+      "length": 14.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F78",
+    "name": "Socket-head cap screw · M5×10",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 80,
+    "cents": 1600,
+    "specs": [
+      [
+        "Size",
+        "M5×10 mm"
+      ],
+      [
+        "Batch quantity",
+        "80"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 5.0,
+      "length": 10.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F79",
+    "name": "Socket-head cap screw · M5×12",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 100,
+    "cents": 2000,
+    "specs": [
+      [
+        "Size",
+        "M5×12 mm"
+      ],
+      [
+        "Batch quantity",
+        "100"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 5.0,
+      "length": 12.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F80",
+    "name": "Socket-head cap screw · M5×14",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 100,
+    "cents": 2000,
+    "specs": [
+      [
+        "Size",
+        "M5×14 mm"
+      ],
+      [
+        "Batch quantity",
+        "100"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 5.0,
+      "length": 14.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F81",
+    "name": "Socket-head cap screw · M6×16",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 2,
+    "cents": 40,
+    "specs": [
+      [
+        "Size",
+        "M6×16 mm"
+      ],
+      [
+        "Batch quantity",
+        "2"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 6.0,
+      "length": 16.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F82",
+    "name": "Dowel pin · 4×18",
+    "category": "fasteners",
+    "model": "pin",
+    "qty": 30,
+    "cents": 2100,
+    "specs": [
+      [
+        "Size",
+        "4×18 mm"
+      ],
+      [
+        "Batch quantity",
+        "30"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 4.0,
+      "length": 18.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F83",
+    "name": "Dowel pin · 4×22",
+    "category": "fasteners",
+    "model": "pin",
+    "qty": 30,
+    "cents": 2100,
+    "specs": [
+      [
+        "Size",
+        "4×22 mm"
+      ],
+      [
+        "Batch quantity",
+        "30"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 4.0,
+      "length": 22.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F84",
+    "name": "Socket-head cap screw · M6×12",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 2,
+    "cents": 40,
+    "specs": [
+      [
+        "Size",
+        "M6×12 mm"
+      ],
+      [
+        "Batch quantity",
+        "2"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 6.0,
+      "length": 12.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F85",
+    "name": "Flat-head screw · M4×12",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 20,
+    "cents": 400,
+    "specs": [
+      [
+        "Size",
+        "M4×12 mm"
+      ],
+      [
+        "Batch quantity",
+        "20"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 4.0,
+      "length": 12.0,
+      "flat": true
+    }
+  },
+  {
+    "id": "F86",
+    "name": "Flat-head screw · M5×16",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 20,
+    "cents": 400,
+    "specs": [
+      [
+        "Size",
+        "M5×16 mm"
+      ],
+      [
+        "Batch quantity",
+        "20"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 5.0,
+      "length": 16.0,
+      "flat": true
+    }
+  },
+  {
+    "id": "F87",
+    "name": "Flat-head screw · M4×8",
+    "category": "fasteners",
+    "model": "screw",
+    "qty": 20,
+    "cents": 400,
+    "specs": [
+      [
+        "Size",
+        "M4×8 mm"
+      ],
+      [
+        "Batch quantity",
+        "20"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 4.0,
+      "length": 8.0,
+      "flat": true
+    }
+  },
+  {
+    "id": "F88",
+    "name": "Brass standoff · M3×15+3",
+    "category": "fasteners",
+    "model": "standoff",
+    "qty": 10,
+    "cents": 800,
+    "specs": [
+      [
+        "Size",
+        "M3×15+3 mm"
+      ],
+      [
+        "Batch quantity",
+        "10"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 3.0,
+      "length": 15.0,
+      "flat": false
+    }
+  },
+  {
+    "id": "F89",
+    "name": "Lifting eye bolt · M4",
+    "category": "fasteners",
+    "model": "eyeBolt",
+    "qty": 4,
+    "cents": 1200,
+    "specs": [
+      [
+        "Size",
+        "M4 mm"
+      ],
+      [
+        "Batch quantity",
+        "4"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {
+      "diameter": 4,
+      "length": 12,
+      "flat": false
+    }
+  },
+  {
+    "id": "THREADLOCK",
+    "name": "Threadlocker and assembly lubricant",
+    "category": "fasteners",
+    "model": "bottle",
+    "qty": 1,
+    "cents": 3600,
+    "specs": [
+      [
+        "BOM reference",
+        "THREADLOCK"
+      ]
+    ],
+    "detail": "One representative fastener shown at inspection scale. The price covers the full listed quantity, with the 2× reserve included.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "GAMEPAD",
+    "name": "Teleoperation gamepad",
+    "category": "tools",
+    "model": "gamepad",
+    "qty": 1,
+    "cents": 7000,
+    "specs": [
+      [
+        "BOM reference",
+        "GAMEPAD"
+      ]
+    ],
+    "detail": "A commissioning or calibration tool from the remaining budget.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "ANALYZER",
+    "name": "DM FDCAN analyzer",
+    "category": "tools",
+    "model": "analyzer",
+    "qty": 1,
+    "cents": 5000,
+    "specs": [
+      [
+        "BOM reference",
+        "ANALYZER"
+      ]
+    ],
+    "detail": "A commissioning or calibration tool from the remaining budget.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "CAL_THIGH",
+    "name": "Thigh calibration jig",
+    "category": "tools",
+    "model": "mount",
+    "qty": 1,
+    "cents": 2000,
+    "specs": [
+      [
+        "BOM reference",
+        "CAL_THIGH"
+      ]
+    ],
+    "detail": "A commissioning or calibration tool from the remaining budget.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "CAL_FEET",
+    "name": "Foot calibration jig",
+    "category": "tools",
+    "model": "mount",
+    "qty": 2,
+    "cents": 3200,
+    "specs": [
+      [
+        "BOM reference",
+        "CAL_FEET"
+      ]
+    ],
+    "detail": "A commissioning or calibration tool from the remaining budget.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "SH01",
+    "name": "Head front shell",
+    "category": "head",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3690,
+    "specs": [
+      [
+        "Source STL",
+        "01 / 55"
+      ],
+      [
+        "Source bounds",
+        "53.96 × 161.08 × 97.5 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "100.194 cm³"
+      ]
+    ],
+    "detail": "Planned head component. Its position in the head teardown is an explanatory layout; final mechanical fit is still to be checked.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 1
+    }
+  },
+  {
+    "id": "SH02",
+    "name": "Head rear shell",
+    "category": "head",
+    "model": "shell",
+    "qty": 1,
+    "cents": 4172,
+    "specs": [
+      [
+        "Source STL",
+        "02 / 55"
+      ],
+      [
+        "Source bounds",
+        "85.97 × 161.07 × 97.5 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "120.036 cm³"
+      ]
+    ],
+    "detail": "Planned head component. Its position in the head teardown is an explanatory layout; final mechanical fit is still to be checked.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 2
+    }
+  },
+  {
+    "id": "SH03",
+    "name": "Neck cover",
+    "category": "head",
+    "model": "shell",
+    "qty": 1,
+    "cents": 4212,
+    "specs": [
+      [
+        "Source STL",
+        "03 / 55"
+      ],
+      [
+        "Source bounds",
+        "137.54 × 97.12 × 101.54 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "121.647 cm³"
+      ]
+    ],
+    "detail": "Planned head component. Its position in the head teardown is an explanatory layout; final mechanical fit is still to be checked.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 3
+    }
+  },
+  {
+    "id": "SH04",
+    "name": "Upper chest · front",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 5608,
+    "specs": [
+      [
+        "Source STL",
+        "04 / 55"
+      ],
+      [
+        "Source bounds",
+        "104.49 × 275.26 × 144.68 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "179.003 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 4
+    }
+  },
+  {
+    "id": "SH05",
+    "name": "Upper chest · rear",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 5036,
+    "specs": [
+      [
+        "Source STL",
+        "05 / 55"
+      ],
+      [
+        "Source bounds",
+        "92.64 × 275.72 × 101.8 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "155.48 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 5
+    }
+  },
+  {
+    "id": "SH06",
+    "name": "Lower chest · front",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 6556,
+    "specs": [
+      [
+        "Source STL",
+        "06 / 55"
+      ],
+      [
+        "Source bounds",
+        "260.42 × 109.48 × 187.97 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "217.96 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 6
+    }
+  },
+  {
+    "id": "SH07",
+    "name": "Lower chest · rear",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 6794,
+    "specs": [
+      [
+        "Source STL",
+        "07 / 55"
+      ],
+      [
+        "Source bounds",
+        "260.74 × 93.39 × 187.87 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "227.691 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 7
+    }
+  },
+  {
+    "id": "SH08",
+    "name": "Right shoulder · upper",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1730,
+    "specs": [
+      [
+        "Source STL",
+        "08 / 55"
+      ],
+      [
+        "Source bounds",
+        "80.21 × 81.87 × 40.11 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "19.725 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 8
+    }
+  },
+  {
+    "id": "SH09",
+    "name": "Right shoulder · lower",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1736,
+    "specs": [
+      [
+        "Source STL",
+        "09 / 55"
+      ],
+      [
+        "Source bounds",
+        "80.21 × 81.87 × 40.11 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "19.94 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 9
+    }
+  },
+  {
+    "id": "SH10",
+    "name": "Left shoulder · upper",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1730,
+    "specs": [
+      [
+        "Source STL",
+        "10 / 55"
+      ],
+      [
+        "Source bounds",
+        "80.21 × 81.87 × 40.11 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "19.724 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 10
+    }
+  },
+  {
+    "id": "SH11",
+    "name": "Left shoulder · lower",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1736,
+    "specs": [
+      [
+        "Source STL",
+        "11 / 55"
+      ],
+      [
+        "Source bounds",
+        "80.21 × 81.87 × 40.11 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "19.938 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 11
+    }
+  },
+  {
+    "id": "SH12",
+    "name": "Right upper arm · front",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1616,
+    "specs": [
+      [
+        "Source STL",
+        "12 / 55"
+      ],
+      [
+        "Source bounds",
+        "45.58 × 86.47 × 86.26 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "15.002 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 12
+    }
+  },
+  {
+    "id": "SH13",
+    "name": "Right upper arm · rear",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1620,
+    "specs": [
+      [
+        "Source STL",
+        "13 / 55"
+      ],
+      [
+        "Source bounds",
+        "44.12 × 86.47 × 84.77 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "15.188 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 13
+    }
+  },
+  {
+    "id": "SH14",
+    "name": "Left upper arm · front",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1616,
+    "specs": [
+      [
+        "Source STL",
+        "14 / 55"
+      ],
+      [
+        "Source bounds",
+        "45.58 × 86.47 × 86.26 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "15.001 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 14
+    }
+  },
+  {
+    "id": "SH15",
+    "name": "Left upper arm · rear",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1620,
+    "specs": [
+      [
+        "Source STL",
+        "15 / 55"
+      ],
+      [
+        "Source bounds",
+        "44.12 × 86.47 × 84.77 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "15.188 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 15
+    }
+  },
+  {
+    "id": "SH16",
+    "name": "Right shoulder section · front",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2646,
+    "specs": [
+      [
+        "Source STL",
+        "16 / 55"
+      ],
+      [
+        "Source bounds",
+        "46.17 × 86.47 × 215.07 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "57.313 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 16
+    }
+  },
+  {
+    "id": "SH17",
+    "name": "Right shoulder section · rear",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2916,
+    "specs": [
+      [
+        "Source STL",
+        "17 / 55"
+      ],
+      [
+        "Source bounds",
+        "43.3 × 86.47 × 215.07 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "68.389 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 17
+    }
+  },
+  {
+    "id": "SH18",
+    "name": "Left shoulder section · front",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2646,
+    "specs": [
+      [
+        "Source STL",
+        "18 / 55"
+      ],
+      [
+        "Source bounds",
+        "46.17 × 86.47 × 215.07 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "57.314 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 18
+    }
+  },
+  {
+    "id": "SH19",
+    "name": "Left shoulder section · rear",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2916,
+    "specs": [
+      [
+        "Source STL",
+        "19 / 55"
+      ],
+      [
+        "Source bounds",
+        "43.3 × 86.47 × 215.07 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "68.389 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 19
+    }
+  },
+  {
+    "id": "SH20",
+    "name": "Right forearm upper · inner",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1664,
+    "specs": [
+      [
+        "Source STL",
+        "20 / 55"
+      ],
+      [
+        "Source bounds",
+        "74.6 × 46.26 × 95.2 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "17.009 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 20
+    }
+  },
+  {
+    "id": "SH21",
+    "name": "Right forearm upper · outer",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1624,
+    "specs": [
+      [
+        "Source STL",
+        "21 / 55"
+      ],
+      [
+        "Source bounds",
+        "74.6 × 40.02 × 95.75 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "15.322 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 21
+    }
+  },
+  {
+    "id": "SH22",
+    "name": "Left forearm upper · inner",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1664,
+    "specs": [
+      [
+        "Source STL",
+        "22 / 55"
+      ],
+      [
+        "Source bounds",
+        "74.6 × 46.26 × 95.2 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "17.009 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 22
+    }
+  },
+  {
+    "id": "SH23",
+    "name": "Left forearm upper · outer",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1624,
+    "specs": [
+      [
+        "Source STL",
+        "23 / 55"
+      ],
+      [
+        "Source bounds",
+        "74.6 × 40.02 × 95.75 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "15.322 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 23
+    }
+  },
+  {
+    "id": "SH24",
+    "name": "Right forearm lower · inner",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1944,
+    "specs": [
+      [
+        "Source STL",
+        "24 / 55"
+      ],
+      [
+        "Source bounds",
+        "74.51 × 34.09 × 123.53 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "28.493 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 24
+    }
+  },
+  {
+    "id": "SH25",
+    "name": "Right forearm lower · outer",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1998,
+    "specs": [
+      [
+        "Source STL",
+        "25 / 55"
+      ],
+      [
+        "Source bounds",
+        "74.5 × 37.11 × 123.53 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "30.699 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 25
+    }
+  },
+  {
+    "id": "SH26",
+    "name": "Left forearm lower · inner",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1944,
+    "specs": [
+      [
+        "Source STL",
+        "26 / 55"
+      ],
+      [
+        "Source bounds",
+        "74.51 × 34.09 × 123.53 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "28.495 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 26
+    }
+  },
+  {
+    "id": "SH27",
+    "name": "Left forearm lower · outer",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 1998,
+    "specs": [
+      [
+        "Source STL",
+        "27 / 55"
+      ],
+      [
+        "Source bounds",
+        "74.5 × 37.11 × 123.53 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "30.698 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 27
+    }
+  },
+  {
+    "id": "SH28",
+    "name": "Pelvis upper · right",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3088,
+    "specs": [
+      [
+        "Source STL",
+        "28 / 55"
+      ],
+      [
+        "Source bounds",
+        "182.47 × 143.65 × 109.26 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "75.489 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 28
+    }
+  },
+  {
+    "id": "SH29",
+    "name": "Pelvis upper · left",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3044,
+    "specs": [
+      [
+        "Source STL",
+        "29 / 55"
+      ],
+      [
+        "Source bounds",
+        "182.47 × 140.65 × 109.26 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "73.699 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 29
+    }
+  },
+  {
+    "id": "SH30",
+    "name": "Pelvis lower · front",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2342,
+    "specs": [
+      [
+        "Source STL",
+        "30 / 55"
+      ],
+      [
+        "Source bounds",
+        "81.88 × 281.31 × 64.68 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "44.89 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 30
+    }
+  },
+  {
+    "id": "SH31",
+    "name": "Pelvis lower · rear",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2418,
+    "specs": [
+      [
+        "Source STL",
+        "31 / 55"
+      ],
+      [
+        "Source bounds",
+        "81.77 × 281.31 × 67.71 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "47.97 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 31
+    }
+  },
+  {
+    "id": "SH32",
+    "name": "Right hip · inner",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2606,
+    "specs": [
+      [
+        "Source STL",
+        "32 / 55"
+      ],
+      [
+        "Source bounds",
+        "133.83 × 70.57 × 154.19 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "55.682 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 32
+    }
+  },
+  {
+    "id": "SH33",
+    "name": "Right hip · outer",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2670,
+    "specs": [
+      [
+        "Source STL",
+        "33 / 55"
+      ],
+      [
+        "Source bounds",
+        "134.1 × 76.22 × 154.67 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "58.338 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 33
+    }
+  },
+  {
+    "id": "SH34",
+    "name": "Left hip · inner",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2606,
+    "specs": [
+      [
+        "Source STL",
+        "34 / 55"
+      ],
+      [
+        "Source bounds",
+        "133.83 × 70.57 × 154.19 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "55.681 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 34
+    }
+  },
+  {
+    "id": "SH35",
+    "name": "Left hip · outer",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2670,
+    "specs": [
+      [
+        "Source STL",
+        "35 / 55"
+      ],
+      [
+        "Source bounds",
+        "134.1 × 76.22 × 154.67 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "58.339 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 35
+    }
+  },
+  {
+    "id": "SH36",
+    "name": "Right thigh base",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3460,
+    "specs": [
+      [
+        "Source STL",
+        "36 / 55"
+      ],
+      [
+        "Source bounds",
+        "131.46 × 62.08 × 131.9 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "90.761 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 36
+    }
+  },
+  {
+    "id": "SH37",
+    "name": "Left thigh base",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3460,
+    "specs": [
+      [
+        "Source STL",
+        "37 / 55"
+      ],
+      [
+        "Source bounds",
+        "131.46 × 62.08 × 131.9 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "90.758 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 37
+    }
+  },
+  {
+    "id": "SH38",
+    "name": "Right thigh · front",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3250,
+    "specs": [
+      [
+        "Source STL",
+        "38 / 55"
+      ],
+      [
+        "Source bounds",
+        "72.17 × 66.41 × 289.97 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "82.13 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 38
+    }
+  },
+  {
+    "id": "SH39",
+    "name": "Right thigh · rear",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2536,
+    "specs": [
+      [
+        "Source STL",
+        "39 / 55"
+      ],
+      [
+        "Source bounds",
+        "70.06 × 66.07 × 249.77 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "52.857 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 39
+    }
+  },
+  {
+    "id": "SH40",
+    "name": "Right thigh · inner",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 4640,
+    "specs": [
+      [
+        "Source STL",
+        "40 / 55"
+      ],
+      [
+        "Source bounds",
+        "138.96 × 22.8 × 284.92 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "139.23 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 40
+    }
+  },
+  {
+    "id": "SH41",
+    "name": "Right thigh · outer",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3846,
+    "specs": [
+      [
+        "Source STL",
+        "41 / 55"
+      ],
+      [
+        "Source bounds",
+        "133.06 × 24.54 × 295.45 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "106.666 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 41
+    }
+  },
+  {
+    "id": "SH42",
+    "name": "Left thigh · front",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3250,
+    "specs": [
+      [
+        "Source STL",
+        "42 / 55"
+      ],
+      [
+        "Source bounds",
+        "72.17 × 66.41 × 289.97 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "82.124 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 42
+    }
+  },
+  {
+    "id": "SH43",
+    "name": "Left thigh · rear",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2536,
+    "specs": [
+      [
+        "Source STL",
+        "43 / 55"
+      ],
+      [
+        "Source bounds",
+        "70.06 × 66.07 × 249.77 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "52.857 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 43
+    }
+  },
+  {
+    "id": "SH44",
+    "name": "Left thigh · inner",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 4640,
+    "specs": [
+      [
+        "Source STL",
+        "44 / 55"
+      ],
+      [
+        "Source bounds",
+        "138.96 × 22.8 × 284.92 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "139.229 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 44
+    }
+  },
+  {
+    "id": "SH45",
+    "name": "Left thigh · outer",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3848,
+    "specs": [
+      [
+        "Source STL",
+        "45 / 55"
+      ],
+      [
+        "Source bounds",
+        "133.06 × 24.54 × 295.45 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "106.67 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 45
+    }
+  },
+  {
+    "id": "SH46",
+    "name": "Right knee",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2626,
+    "specs": [
+      [
+        "Source STL",
+        "46 / 55"
+      ],
+      [
+        "Source bounds",
+        "108.72 × 11.01 × 148.12 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "56.556 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 46
+    }
+  },
+  {
+    "id": "SH47",
+    "name": "Left knee",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 2628,
+    "specs": [
+      [
+        "Source STL",
+        "47 / 55"
+      ],
+      [
+        "Source bounds",
+        "108.72 × 11.01 × 148.12 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "56.575 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 47
+    }
+  },
+  {
+    "id": "SH48",
+    "name": "Right shin · front outer",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3560,
+    "specs": [
+      [
+        "Source STL",
+        "48 / 55"
+      ],
+      [
+        "Source bounds",
+        "94.4 × 89.94 × 216.41 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "94.911 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 48
+    }
+  },
+  {
+    "id": "SH49",
+    "name": "Right shin · rear inner",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3804,
+    "specs": [
+      [
+        "Source STL",
+        "49 / 55"
+      ],
+      [
+        "Source bounds",
+        "94.11 × 80.57 × 216.37 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "104.936 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 49
+    }
+  },
+  {
+    "id": "SH50",
+    "name": "Left shin · front outer",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3560,
+    "specs": [
+      [
+        "Source STL",
+        "50 / 55"
+      ],
+      [
+        "Source bounds",
+        "94.4 × 89.94 × 216.41 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "94.912 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 50
+    }
+  },
+  {
+    "id": "SH51",
+    "name": "Left shin · rear inner",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 3804,
+    "specs": [
+      [
+        "Source STL",
+        "51 / 55"
+      ],
+      [
+        "Source bounds",
+        "94.11 × 80.57 × 216.37 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "104.936 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 51
+    }
+  },
+  {
+    "id": "SH52",
+    "name": "Right foot · upper",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 5670,
+    "specs": [
+      [
+        "Source STL",
+        "52 / 55"
+      ],
+      [
+        "Source bounds",
+        "232.61 × 89.56 × 26.68 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "181.558 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 52
+    }
+  },
+  {
+    "id": "SH53",
+    "name": "Right foot · lower",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 6112,
+    "specs": [
+      [
+        "Source STL",
+        "53 / 55"
+      ],
+      [
+        "Source bounds",
+        "232.61 × 89.56 × 15.96 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "199.667 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 53
+    }
+  },
+  {
+    "id": "SH54",
+    "name": "Left foot · upper",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 5670,
+    "specs": [
+      [
+        "Source STL",
+        "54 / 55"
+      ],
+      [
+        "Source bounds",
+        "232.61 × 89.56 × 26.68 mm"
+      ],
+      [
+        "Material",
+        "Light polymer"
+      ],
+      [
+        "Solid volume",
+        "181.559 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 54
+    }
+  },
+  {
+    "id": "SH55",
+    "name": "Left foot · lower",
+    "category": "shell",
+    "model": "shell",
+    "qty": 1,
+    "cents": 6112,
+    "specs": [
+      [
+        "Source STL",
+        "55 / 55"
+      ],
+      [
+        "Source bounds",
+        "232.61 × 89.56 × 15.96 mm"
+      ],
+      [
+        "Material",
+        "Black polymer"
+      ],
+      [
+        "Solid volume",
+        "199.667 cm³"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Source CAD · display mesh",
+    "params": {
+      "shellId": 55
+    }
+  },
+  {
+    "id": "SHELL_FIX",
+    "name": "Shell inserts, clips and seals",
+    "category": "shell",
+    "model": "inserts",
+    "qty": 1,
+    "cents": 10000,
+    "specs": [
+      [
+        "BOM reference",
+        "SHELL_FIX"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Roboparty/rpo_appearance/tree/4bf61434f4925fbd9076a82d3639b0d6e7133f60/V1.0",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "FINISH",
+    "name": "Surface finish and Norevert markings",
+    "category": "shell",
+    "model": "finish",
+    "qty": 1,
+    "cents": 8000,
+    "specs": [
+      [
+        "BOM reference",
+        "FINISH"
+      ]
+    ],
+    "detail": "An individual shell from the original CAD set. The viewer uses a simplified copy of that source mesh; use the source STL for fabrication.",
+    "source": "https://github.com/Archive228/norevert-xyz/blob/main/js/nv01.js",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "HEAD_STRUCT",
+    "name": "Internal head carrier and plates",
+    "category": "head",
+    "model": "headMount",
+    "qty": 1,
+    "cents": 12000,
+    "specs": [
+      [
+        "BOM reference",
+        "HEAD_STRUCT"
+      ]
+    ],
+    "detail": "Passive internal support for the head. No powered neck is included. The carrier, screen supports and cable openings shown here are a proposed layout.",
+    "source": "https://github.com/Roboparty/rpo_hardware/tree/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/02_Manufacturing/3D_Printing/",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "FACE",
+    "name": "Waveshare 5″ HDMI LCD (H)",
+    "category": "head",
+    "model": "display",
+    "qty": 1,
+    "cents": 10598,
+    "specs": [
+      [
+        "Display",
+        "5-inch TFT LCD"
+      ],
+      [
+        "Resolution",
+        "800 × 480"
+      ],
+      [
+        "Video",
+        "HDMI"
+      ],
+      [
+        "Touch",
+        "Capacitive / USB"
+      ]
+    ],
+    "detail": "One display module, not two eye displays. The white eyes are screen graphics. LCD matrix, backlight, touch glass and driver electronics are included in this module; no extra cost is added for the exploded layers.",
+    "source": "https://www.waveshare.com/product/5inch-hdmi-lcd-h.htm",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "FACE_GLASS",
+    "name": "Tinted visor and face seal",
+    "category": "head",
+    "model": "visor",
+    "qty": 1,
+    "cents": 4000,
+    "specs": [
+      [
+        "BOM reference",
+        "FACE_GLASS"
+      ]
+    ],
+    "detail": "Planned head component. Its position in the head teardown is an explanatory layout; final mechanical fit is still to be checked.",
+    "source": "https://github.com/Archive228/norevert-xyz/blob/main/js/nv01.js",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "MIC",
+    "name": "reSpeaker Lite · dual microphone board",
+    "category": "head",
+    "model": "mic",
+    "qty": 1,
+    "cents": 4980,
+    "specs": [
+      [
+        "Processor",
+        "XMOS XU316"
+      ],
+      [
+        "Microphones",
+        "2 × digital MEMS"
+      ],
+      [
+        "Connection",
+        "USB / I²S"
+      ],
+      [
+        "PCB",
+        "86 × 35 mm"
+      ]
+    ],
+    "detail": "Dual MEMS microphones and an XMOS XU316 audio processor. USB firmware connects the audio board to the torso computer; the speaker plugs into the audio board.",
+    "source": "https://wiki.seeedstudio.com/reSpeaker_usb_v3/",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "SPEAKER",
+    "name": "4 Ω / 5 W speaker",
+    "category": "head",
+    "model": "speaker",
+    "qty": 1,
+    "cents": 400,
+    "specs": [
+      [
+        "Impedance",
+        "4 Ω"
+      ],
+      [
+        "Rated power",
+        "5 W"
+      ]
+    ],
+    "detail": "Planned head component. Its position in the head teardown is an explanatory layout; final mechanical fit is still to be checked.",
+    "source": "https://www.seeedstudio.com/ReSpeaker-Lite-Voice-Assistant-Kit-Full-Kit-of-2-Mic-Array-pre-soldered-XIAO-ESP32S3-Mono-Enclosed-Speaker-and-Enclosure.html",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "AUDIO_WIRES",
+    "name": "Audio leads, mounts and acoustic pads",
+    "category": "head",
+    "model": "cable",
+    "qty": 1,
+    "cents": 3000,
+    "specs": [
+      [
+        "BOM reference",
+        "AUDIO_WIRES"
+      ]
+    ],
+    "detail": "Planned head component. Its position in the head teardown is an explanatory layout; final mechanical fit is still to be checked.",
+    "source": "https://github.com/Archive228/norevert-xyz/blob/main/js/nv01.js",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "JETSON",
+    "name": "Jetson Orin Nano Super developer kit",
+    "category": "electronics",
+    "model": "jetson",
+    "qty": 1,
+    "cents": 79800,
+    "specs": [
+      [
+        "Kit",
+        "Orin Nano Super"
+      ],
+      [
+        "Video output",
+        "DisplayPort"
+      ],
+      [
+        "Location",
+        "Torso, not inside the head"
+      ]
+    ],
+    "detail": "Onboard electronics from the build budget. The model shows the module and visible interfaces; component placement is illustrative.",
+    "source": "https://marketplace.nvidia.com/en-us/enterprise/robotics-edge/jetson-orin-nano-super-developer-kit/",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "SSD",
+    "name": "256 GB NVMe SSD",
+    "category": "electronics",
+    "model": "ssd",
+    "qty": 1,
+    "cents": 8000,
+    "specs": [
+      [
+        "BOM reference",
+        "SSD"
+      ]
+    ],
+    "detail": "Onboard electronics from the build budget. The model shows the module and visible interfaces; component placement is illustrative.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "JETSON_MOUNT",
+    "name": "Jetson bracket and standoffs",
+    "category": "mechanics",
+    "model": "mount",
+    "qty": 1,
+    "cents": 4000,
+    "specs": [
+      [
+        "BOM reference",
+        "JETSON_MOUNT"
+      ]
+    ],
+    "detail": "Internal mechanical part or mounting component. Where custom fabrication is required, the model illustrates the planned design.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "VIDEO",
+    "name": "DisplayPort to HDMI adapter",
+    "category": "electronics",
+    "model": "video",
+    "qty": 1,
+    "cents": 3000,
+    "specs": [
+      [
+        "BOM reference",
+        "VIDEO"
+      ]
+    ],
+    "detail": "Onboard electronics from the build budget. The model shows the module and visible interfaces; component placement is illustrative.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "OAK",
+    "name": "OAK-D Lite stereo camera",
+    "category": "electronics",
+    "model": "camera",
+    "qty": 1,
+    "cents": 53800,
+    "specs": [
+      [
+        "Module",
+        "RGB + stereo pair"
+      ],
+      [
+        "Link",
+        "USB 3"
+      ],
+      [
+        "Mount",
+        "Custom mount required"
+      ]
+    ],
+    "detail": "Onboard electronics from the build budget. The model shows the module and visible interfaces; component placement is illustrative.",
+    "source": "https://shop.luxonis.com/products/oak-d-lite-1",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "OAK_USB",
+    "name": "Camera USB 3 cable",
+    "category": "wiring",
+    "model": "cable",
+    "qty": 1,
+    "cents": 2800,
+    "specs": [
+      [
+        "BOM reference",
+        "OAK_USB"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://shop.luxonis.com/products/oak-d-lite-1",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "OAK_MOUNT",
+    "name": "Camera bracket and cable passage",
+    "category": "mechanics",
+    "model": "mount",
+    "qty": 1,
+    "cents": 6000,
+    "specs": [
+      [
+        "BOM reference",
+        "OAK_MOUNT"
+      ]
+    ],
+    "detail": "Internal mechanical part or mounting component. Where custom fabrication is required, the model illustrates the planned design.",
+    "source": "https://github.com/Roboparty/rpo_hardware/tree/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/02_Manufacturing/3D_Printing/",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "DATA_LINK",
+    "name": "RDK to Jetson data connection",
+    "category": "wiring",
+    "model": "cable",
+    "qty": 1,
+    "cents": 3000,
+    "specs": [
+      [
+        "BOM reference",
+        "DATA_LINK"
+      ]
+    ],
+    "detail": "A separate cable or harness line from the build specification. Routing and termination depend on the final assembly.",
+    "source": "https://github.com/Roboparty/rpo_hardware/blob/4272767a0ab06e238f61f4c50d5ab1d25825d585/V2.0/roboto_origin_mechanic/00_Docs/%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C_0428.pdf",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "HAND_MOUNT",
+    "name": "NV-01 wrist adapter",
+    "category": "hands",
+    "model": "wrist",
+    "qty": 2,
+    "cents": 14000,
+    "specs": [
+      [
+        "BOM reference",
+        "HAND_MOUNT"
+      ]
+    ],
+    "detail": "An interface for the two delivered AmazingHand hands. The hands themselves are already in the owned inventory.",
+    "source": "https://wiki.seeedstudio.com/hand_amazinghand/",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "HAND_BUS",
+    "name": "Bus Servo Adapter (A)",
+    "category": "hands",
+    "model": "bus",
+    "qty": 2,
+    "cents": 1996,
+    "specs": [
+      [
+        "BOM reference",
+        "HAND_BUS"
+      ]
+    ],
+    "detail": "An interface for the two delivered AmazingHand hands. The hands themselves are already in the owned inventory.",
+    "source": "https://www.waveshare.com/product/robotics/drivers-sensors/drivers.htm",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "HAND_WIRES",
+    "name": "Hand power and signal lead",
+    "category": "hands",
+    "model": "cable",
+    "qty": 2,
+    "cents": 4000,
+    "specs": [
+      [
+        "BOM reference",
+        "HAND_WIRES"
+      ]
+    ],
+    "detail": "An interface for the two delivered AmazingHand hands. The hands themselves are already in the owned inventory.",
+    "source": "https://wiki.seeedstudio.com/hand_amazinghand/",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "HAND_FIX",
+    "name": "Wrist screws, bushings and seals",
+    "category": "hands",
+    "model": "standoff",
+    "qty": 1,
+    "cents": 2400,
+    "specs": [
+      [
+        "BOM reference",
+        "HAND_FIX"
+      ]
+    ],
+    "detail": "An interface for the two delivered AmazingHand hands. The hands themselves are already in the owned inventory.",
+    "source": "https://wiki.seeedstudio.com/hand_amazinghand/",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "DC5",
+    "name": "RSD-60L-5 · 48 V to 5 V",
+    "category": "power",
+    "model": "dc",
+    "qty": 1,
+    "cents": 8740,
+    "specs": [
+      [
+        "Input",
+        "18–72 V DC"
+      ],
+      [
+        "Output",
+        "5 V"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://www.digikey.com/en/products/detail/mean-well-usa-inc/RSD-60L-5/7706269",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "DC12",
+    "name": "RSD-60L-12 · 48 V to 12 V",
+    "category": "power",
+    "model": "dc",
+    "qty": 1,
+    "cents": 8740,
+    "specs": [
+      [
+        "Input",
+        "18–72 V DC"
+      ],
+      [
+        "Output",
+        "12 V"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://www.digikey.com/en/products/detail/mean-well-usa-inc/RSD-60L-12/7706266",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  },
+  {
+    "id": "AUX_FUSE",
+    "name": "Auxiliary branch fuses and switches",
+    "category": "power",
+    "model": "fuse",
+    "qty": 1,
+    "cents": 4400,
+    "specs": [
+      [
+        "BOM reference",
+        "AUX_FUSE"
+      ]
+    ],
+    "detail": "Power-system component from the build specification. Connector and protection selection must match the final electrical assembly.",
+    "source": "https://www.digikey.com/en/products/detail/mean-well-usa-inc/RSD-60L-5/7706269",
+    "geometry": "Detailed schematic model",
+    "params": {}
+  }
+]
