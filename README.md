@@ -15,7 +15,7 @@ Deploy: `git push origin main` → GitHub Pages (branch `main`, root `/`, `CNAME
 
 | Path | What |
 | --- | --- |
-| `index.html` | page: copy, CSS, markup, Lenis smooth scroll, anchor nav |
+| `index.html` | page: copy, CSS, markup, native scrolling and anchor navigation |
 | `js/scene.js` | stage: renderer, studio lights, mirror floor, GTAO post (MSAA composer, desktop), contact shadow, atmosphere (light beam, dust, foggy cage), orbit, two-stage scroll strip, callouts, console HUD, URL params |
 | `js/nv01.js` | NV-01 model: kinematic tree from `js/kin.js`, real link meshes, 55 shell panels, head, electronics, looms, poses |
 | `js/kin.js` | joint table (offsets + axes) from `description/nv01.urdf`, in Three.js coordinates |
@@ -44,20 +44,19 @@ Source: the public `rpo_description` meshes (CERN-OHL-W-2.0). Converter (not in 
 
 No ROBOPARTY / ROBO PARTY marks on the site. Chest reads NOREVERT / NV-01. Numbers only from the manual, the URDF, the BOM. No 20 DOF, no 3 m/s, no league slot, no T800, no G1 brain.
 
-## Remaining parts explorer
+## Scroll anatomy and parts index
 
-The `#parts` section follows the main scroll animation. It provides 145 individually selectable budget lines with category/search controls, one large model at a time, orbit, zoom, front/back views, and the owned inventory. Rendering pauses offscreen.
+The `#parts` section continues the main robot animation as a full-screen monochrome scene. Native scrolling drives six chapters: head, display, compute, auxiliary power, chest panels and hand integration. Each starts assembled and separates progressively; scrolling upward assembles it again. Numbered chapter links provide direct navigation.
 
-- `description/parts/catalog.json`: the full 145-line remaining BOM. Prices are integer USD cents with the 2× reserve already included; quantities are the complete priced batch.
-- `description/parts/shell-*.mesh.gz`: 55 individual viewing meshes derived from the original appearance STLs. Source commit, bounds, simplification details and CERN-OHL-W-2.0 licence are alongside the files.
-- `js/parts.js`: individual inspector, catalog controls, layer isolation, markers and renderer.
-- `js/parts-detailed-models.js`: detailed schematic modules, fasteners, cables, internal layers and the source mesh loader.
-- `js/parts-data.js`: the original 13 category allowances and budget totals.
-- `css/parts.css`: responsive inspector layout.
-- `index.html`: section markup, head connection diagram and owned inventory.
+- `js/parts.js`: scroll progress, chapter content, component assembly animation, neutral lighting, shadows, fog and restrained light/dust effects. The scene initializes on approach, preloads the next chapter and pauses offscreen. Reduced motion uses discrete assembled/separated states.
+- `js/parts-index.js`: the full previous component inspector, loaded only when the catalog disclosure is first opened.
+- `js/parts-detailed-models.js`: detailed schematic modules, internal layers, fasteners and source CAD loader.
+- `description/parts/catalog.json`: all 145 remaining budget lines, with integer USD cents, quantities and sources. The 2× reserve is already included.
+- `description/parts/shell-*.mesh.gz`: all 55 individual CAD viewing meshes, with source, transformation notice and CERN-OHL-W-2.0 licence alongside. The scroll scene uses the four chest panels as a source CAD study; all 55 remain individually accessible in the index.
+- `css/parts.css`: full-screen anatomy, responsive monochrome overlays, secondary index and ledger.
 
-The head opens as a 12-layer concept assembly. Display glass, LCD, backlight and control PCB are included in one Waveshare 5-inch HDMI LCD (H) module. The audio board uses reSpeaker Lite with two MEMS microphones and XMOS XU316. Subcomponent layers are not extra purchases. The head subset ($470.52) is already included in the remaining total.
+The main robot's animation is retained, with its canvas and the new scene presented in grayscale. Native anchor navigation avoids conflicts between a scroll smoothing library, sticky scenes and viewport changes.
 
-The head assembly, internal PCB component positions and signal diagram are explanatory concepts, not fit-validated CAD or pin-level manufacturing schematics. Each source shell is separately available in the menu. One representative object may represent a priced batch of fasteners or a kit.
+The head is a 12-layer proposed assembly. The display has four included layers: touch glass, LCD, backlight and control PCB. Internal assembly layouts and board component positions are explanatory, not manufacturing schematics or fit-validated CAD. Chapter prices can be subsets of other allowances; they are not added together. The ledger is the total.
 
 Budget: $7,340 on hand + $6,771.90 remaining = $14,111.90. These are specification and planning values, not a P&L statement. Both hands are delivered but not installed.

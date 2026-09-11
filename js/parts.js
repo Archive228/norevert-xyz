@@ -1,187 +1,153 @@
 import { OWNED_CENTS, REMAINING_CENTS, usd } from './parts-data.js';
 
-const section = document.querySelector('#parts');
+const section = document.querySelector('#parts'), rig = section.querySelector('.parts-cinema');
+const stage = section.querySelector('.cinema-stage'), canvas = section.querySelector('#parts-film');
 const $ = selector => section.querySelector(selector);
-const category = $('#parts-category'), component = $('#parts-component'), search = $('#parts-search');
-const detail = $('#parts-detail'), loading = $('.parts-loading');
-const zoom = $('#parts-zoom'), explode = $('#parts-explode');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-let catalog = [], choices = [], current = null, selectedLayer = null, fullModel = null;
-let visible = false, rotating = false, initialization, renderModel = () => {}, disposeModel = () => {};
-let factory, loadShell, selectionVersion = 0, frameView = () => {}, rotateView = () => {};
-
+const clamp = x => Math.max(0, Math.min(1,x));
+const ease = x => { x=clamp(x); return x*x*(3-2*x); };
+const beats = [...section.querySelectorAll('.cinema-track > div')];
+const navigation = [...section.querySelectorAll('.cinema-bottom nav a')];
 $('[data-remaining-total]').textContent = usd(REMAINING_CENTS);
-$('[data-build-total]').textContent = usd(OWNED_CENTS + REMAINING_CENTS);
-
-function renderDetail() {
-  if (!current) return;
-  const layers = fullModel?.userData.layers || [];
-  const layer = layers.find(row => row.id === selectedLayer);
-  const included = layer ? catalog.find(row => row.id === layer.included) || current : current;
-  const headline = layer ? layer.title.replace(/^\d+ · /, '') : current.name;
-  $('[data-part-caption]').textContent = headline;
-  $('[data-part-price]').textContent = layer ? 'Included in module' : usd(current.cents);
-  $('[data-part-id]').textContent = layer ? `${current.id} / ${layer.id}` : current.id === 'HEAD_ASSEMBLY' ? 'HEAD / CONCEPT ASSEMBLY' : current.id;
-  $('[data-part-number]').textContent = selectedLayer ? `LAYER ${String(layer.index + 1).padStart(2, '0')}` : layers.length ? `${layers.length} LAYERS` : `${current.qty} ${current.qty === 1 ? 'UNIT' : 'UNITS'}`;
-  $('#parts-explode-control').hidden = !layers.length || !!selectedLayer;
-  $('#head-connections').hidden = current.category !== 'head';
-  detail.innerHTML = `<span class="part-evidence">${escape(current.geometry)}</span>
-    <h3>${escape(headline)}</h3>
-    <p>${escape(layer?.description || current.detail)}</p>
-    <div class="part-budget"><strong>${layer ? 'Included' : usd(current.cents)}</strong>
-      <span>${layer ? `Part of ${escape(included.name)} · ${usd(included.cents)}` : current.id === 'HEAD_ASSEMBLY' ? 'Head subset · already in the remaining budget' : `${current.qty} ${current.qty === 1 ? 'unit' : 'units'} · price for the complete quantity`}</span>
-      <small>${layer ? 'No additional charge for this internal layer.' : 'Planning allowance in USD · 2× reserve already applied'}</small>
-    </div>
-    <dl class="part-specs">${(layer ? included.specs : current.specs).map(([label, value]) => `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl>
-    <a class="part-source" href="${escape(included.source)}" target="_blank" rel="noopener noreferrer">${current.geometry.startsWith('Source') ? 'View source CAD ↗' : 'View component / specification ↗'}</a>
-    ${layers.length ? `<h4 class="part-layers-title">${layers.length} layers · inspect each separately</h4><button class="part-whole" type="button" data-layer="" aria-pressed="${!selectedLayer}">Show the whole ${current.id === 'HEAD_ASSEMBLY' ? 'head' : 'module'}</button><ol class="part-layers">${layers.map(row => `<li class="part-layer"><button type="button" data-layer="${row.id}" aria-pressed="${selectedLayer === row.id}">${escape(row.title)}</button></li>`).join('')}</ol><p class="part-inside-note">${current.id === 'HEAD_ASSEMBLY' ? 'Proposed internal layout. Shell fit, clearances and final wiring still need validation. Source CAD panels can be inspected separately in the component menu.' : 'Layers illustrate how the module is constructed. PCB traces and small component positions are schematic.'}</p>` : ''}
-    ${current.qty > 1 ? '<p class="part-inside-note">The model shows one representative part or set. The price covers the full quantity above.</p>' : ''}`;
-  detail.querySelectorAll('[data-layer]').forEach(button => button.addEventListener('click', () => inspectLayer(button.dataset.layer || null)));
+$('[data-build-total]').textContent = usd(OWNED_CENTS+REMAINING_CENTS);
+let catalog, visible=false, initialization, active=-1, phase=-1, requested=-1;
+let updateScene = () => {}, timeline = [], currentProgress=0;
+const cache = new Map();
+const chapters = [
+  {key:'head', eyebrow:'THE HEAD', title:'A face.<br>A world inside.', description:'The shell opens to reveal the display, audio and the structures behind the face.', label:'Head allowance · 2× reserve included',
+    phases:[['One complete head','Proposed internal layout'],['The face opens','Shell, visor and touch glass'],['Light becomes a face','One LCD matrix · 800 × 480'],['Everything behind it','Controller, microphones, speaker and mounts']], duration:4.2},
+  {key:'display', eyebrow:'THE DISPLAY', title:'One screen.<br>Four layers.', description:'Two eyes on one matrix. Glass, pixels, backlight and a controller separate in space.',label:'Display module · all four layers included',
+    phases:[['A single display module','Waveshare 5″ HDMI LCD (H)'],['The touch surface lifts','Capacitive glass · USB touch'],['Pixels and light','LCD matrix and backlight'],['The control board','HDMI video · USB touch · one module']],duration:3.2},
+  {key:'compute',eyebrow:'THE COMPUTE',title:'Under<br>the surface.',description:'The cooling assembly lifts away from the carrier board and its connections.',label:'Jetson developer kit · 2× reserve included',
+    phases:[['A computer in the torso','Jetson Orin Nano Super developer kit'],['Cooling separates','Fan above the finned heatsink'],['The carrier is revealed','Compute, ports and board-level components'],['Ready to be integrated','Mounts, data and power have their own budget lines']],duration:3.4},
+  {key:'power',eyebrow:'THE POWER',title:'Current.<br>Connection.<br>Control.',description:'Voltage converters, protection and power leads form the next electrical layer.',label:'Additional module power · 2× reserve included',
+    phases:[['Power for the next modules','Proposed component arrangement'],['Two voltage branches','48 V input → 5 V and 12 V outputs'],['Protection comes with it','Auxiliary fuses and switches'],['Every branch has a destination','Final routing and protection to validate']],duration:3.2},
+  {key:'shell',eyebrow:'THE OUTER SKIN',title:'A body,<br>one panel<br>at a time.',description:'The chest separates into four source CAD panels. Fifty-five panels make up the complete outer shell.',label:'All 55 panels · 4 chest panels shown',
+    phases:[['The chest, assembled','Four source CAD panels · arrangement study'],['Front and rear separate','Upper and lower chest shells'],['The inner surfaces emerge','Ribs, openings and mounting features'],['One part of a larger body','55 panels in the complete catalog']],duration:3.4},
+  {key:'hands',eyebrow:'THE NEXT CONNECTION',title:'Two hands.<br>The missing<br>connection.',description:'The hands have arrived. Wrist adapters, servo interfaces and wiring are the next step.',label:'Integration for both hands · 2× reserve included',
+    phases:[['The interface to the hands','Both hands delivered, awaiting installation'],['The wrist adapters separate','Mechanical connection to the forearms'],['Signal and power follow','Servo bus boards and leads'],['A part becomes an ability','Install → connect → test']],duration:3.2},
+];
+function priceFor(chapter) {
+  const sums = ids => catalog.filter(row=>ids.includes(row.id)).reduce((sum,row)=>sum+row.cents,0);
+  return chapter.key==='head' ? catalog.filter(row=>row.category==='head').reduce((s,r)=>s+r.cents,0)
+    : chapter.key==='display' ? sums(['FACE']) : chapter.key==='compute' ? sums(['JETSON'])
+    : chapter.key==='power' ? sums(['DC5','DC12','AUX_FUSE']) : chapter.key==='shell' ? catalog.filter(row=>row.model==='shell').reduce((s,r)=>s+r.cents,0)
+    : catalog.filter(row=>row.category==='hands').reduce((s,r)=>s+r.cents,0);
 }
-function inspectLayer(id) {
-  selectedLayer = id; zoom.value = 100; $('#parts-zoom-value').value = '100%';
-  renderModel(); renderDetail();
-  if (matchMedia('(max-width: 800px)').matches) $('.parts-stage').scrollIntoView({behavior: reduced.matches ? 'instant' : 'smooth', block:'center'});
-}
-function filterChoices(preferred) {
-  const query = search.value.trim().toLowerCase();
-  choices = catalog.filter(item => (category.value === 'all' || category.value === item.category) && `${item.id} ${item.name} ${item.specs.flat().join(' ')}`.toLowerCase().includes(query));
-  if (category.value === 'head' && (!query || 'head assembly teardown'.includes(query))) choices.unshift(headItem());
-  component.replaceChildren(...choices.map(item => new Option(`${item.id === 'HEAD_ASSEMBLY' ? '' : item.id + ' · '}${item.name}`, item.id)));
-  const next = choices.find(item => item.id === preferred) || choices[0];
-  component.disabled = !next;
-  for (const button of [$('[data-part-prev]'), $('[data-part-next]')]) button.disabled = choices.length < 2;
-  if (next) { component.value = next.id; selectPart(next); }
-  else {
-    ++selectionVersion; current = null; selectedLayer = null; disposeModel(fullModel); fullModel = null; renderModel();
-    detail.innerHTML = '<h3>No matching parts</h3><p>Try a part number, component name or another system.</p>';
-    $('[data-part-caption]').textContent = 'No matching parts'; $('[data-part-price]').textContent = ''; $('[data-part-id]').textContent = 'CATALOG'; $('[data-part-number]').textContent = '0 MATCHES';
-    $('[data-parts-match]').textContent = '0 matching parts'; loading.hidden = true; $('#parts-explode-control').hidden = true; $('#head-connections').hidden = true;
+function caption(index,progress) {
+  const chapter=chapters[index], nextPhase=Math.min(3,Math.floor(progress*4));
+  if (active!==index) {
+    active=index;phase=-1;
+    $('.cinema-number').textContent=String(index+1).padStart(2,'0');
+    $('.cinema-eyebrow').textContent=`${String(index+1).padStart(2,'0')} / 06 · ${chapter.eyebrow}`;
+    $('#parts-title').innerHTML=chapter.title;
+    $('[data-cinema-description]').textContent=chapter.description;
+    $('[data-cinema-price]').textContent=usd(priceFor(chapter));
+    $('[data-cinema-allowance]').textContent=chapter.label;
+    navigation.forEach((link,i)=>{if(i===index)link.setAttribute('aria-current','step');else link.removeAttribute('aria-current');});
+    rig.dataset.chapter=chapter.key;
   }
+  if(phase!==nextPhase){phase=nextPhase; $('[data-cinema-phase]').textContent=`0${phase+1} — ${['ASSEMBLED','OPENING','INSIDE','SEPARATED'][phase]}`; $('[data-cinema-focus]').textContent=chapter.phases[phase][0]; $('[data-cinema-note]').textContent=chapter.phases[phase][1];}
 }
-function headItem() {
-  return {id:'HEAD_ASSEMBLY', name:'Inside the head', category:'head', model:'headAssembly', qty:1,
-    cents:catalog.filter(item => item.category === 'head').reduce((sum, item) => sum + item.cents, 0),
-    geometry:'Proposed assembly · 12 layers', source:'https://www.waveshare.com/5inch-hdmi-lcd-h.htm',
-    specs:[['Screen','5″ TFT LCD · 800 × 480'],['Audio','reSpeaker Lite · 2 MEMS mics'],['Processor','XMOS XU316 · audio'],['Speaker','4 Ω / 5 W'],['Main computer','In the torso'],['Neck','Passive · no actuator']],
-    detail:'A proposed layout of the complete head: shell, visor, one LCD display, audio and internal supports. Select a numbered layer to inspect it on its own. Each cost belongs to an existing budget line.'};
-}
-async function selectPart(item) {
-  const version = ++selectionVersion; current = item; selectedLayer = null;
-  disposeModel(fullModel); fullModel = null; renderModel();
-  zoom.value = 100; $('#parts-zoom-value').value = '100%';
-  explode.value = item.model === 'headAssembly' ? 75 : 45; $('#parts-explode-value').value = `${explode.value}%`;
-  $('[data-parts-match]').textContent = `${choices.indexOf(item)+1} / ${choices.length} in this view`;
-  loading.hidden = false; loading.textContent = item.model === 'shell' ? 'Loading the source CAD mesh…' : 'Loading the detailed model…';
-  section.dataset.partsReady = 'loading'; renderDetail();
-  try {
-    await start();
-    const model = item.model === 'shell' ? await loadShell(item) : factory(item);
-    if (version !== selectionVersion) { disposeModel(model); return; }
-    fullModel = model; rotateView('three'); renderModel(); renderDetail();
-    loading.hidden = true; section.dataset.partsReady = 'true'; section.dataset.selectedPart = item.id;
-  } catch (error) {
-    if (version !== selectionVersion) return;
-    loading.textContent = 'The 3D model could not load. Choose another part or reload to retry.';
-    section.dataset.partsReady = 'error'; console.error('Parts inspector:', error);
-  }
-}
-category.addEventListener('change', () => filterChoices());
-search.addEventListener('input', () => filterChoices(current?.id));
-component.addEventListener('change', () => selectPart(choices.find(item => item.id === component.value)));
-function step(direction) { const index = choices.findIndex(item => item.id === current?.id); if (choices.length) { const next = choices[(index + direction + choices.length) % choices.length]; component.value = next.id; selectPart(next); } }
-$('[data-part-prev]').addEventListener('click', () => step(-1));
-$('[data-part-next]').addEventListener('click', () => step(1));
-zoom.addEventListener('input', () => { $('#parts-zoom-value').value = `${zoom.value}%`; frameView(); });
-explode.addEventListener('input', () => { $('#parts-explode-value').value = `${explode.value}%`; renderModel(); });
-section.querySelectorAll('[data-view-angle]').forEach(button => button.addEventListener('click', () => { rotateView(button.dataset.viewAngle); frameView(); }));
-function updateRotation() { $('[data-inspector-rotate]').setAttribute('aria-pressed', String(rotating)); $('[data-inspector-rotate]').textContent = rotating ? 'Pause rotation' : 'Rotate'; }
-$('[data-inspector-rotate]').addEventListener('click', () => { rotating = !rotating; updateRotation(); });
-reduced.addEventListener('change', () => { if (reduced.matches) { rotating = false; updateRotation(); } });
+function measure(){ timeline=beats.map(beat=>({top:beat.offsetTop,height:beat.offsetHeight})); }
+measure(); new ResizeObserver(measure).observe(rig);
+new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)start();},{rootMargin:'500px'}).observe(rig);
+// The complete existing inspector stays available without loading a third renderer upfront.
+$('#parts-index').addEventListener('toggle',async event=>{if(event.target.open&&!event.target.dataset.initialized){event.target.dataset.initialized='true';try{await import('./parts-index.js')}catch(error){event.target.dataset.initialized='';console.error('Parts index:',error)}}});
+async function start(){if(initialization)return initialization;initialization=initialize().catch(error=>{rig.dataset.cinemaReady='error';$('.cinema-loading').textContent='3D could not load. The full parts index is available below.';console.error('Anatomy:',error)});return initialization;}
+async function initialize(){
+  const [T,{RoomEnvironment},models,rows]=await Promise.all([import('three'),import('three/addons/environments/RoomEnvironment.js'),import('./parts-detailed-models.js'),fetch('./description/parts/catalog.json').then(r=>{if(!r.ok)throw Error('Catalog '+r.status);return r.json()})]);
+  catalog=rows;
+  if(catalog.reduce((sum,row)=>sum+row.cents,0)!==REMAINING_CENTS)throw Error('Catalog total mismatch');
+  const item=id=>catalog.find(row=>row.id===id);
+  const renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,matchMedia('(max-width:700px)').matches?1.4:1.6));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.04;
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
+  const scene=new T.Scene(), root=new T.Group();scene.add(root);scene.fog=new T.Fog(0x090909,10,22);
+  const camera=new T.OrthographicCamera(-3,3,2,-2,.01,40);camera.position.set(6,3,8);camera.lookAt(0,0,0);
+  const pmrem=new T.PMREMGenerator(renderer),room=new RoomEnvironment(),environment=pmrem.fromScene(room,.05);scene.environment=environment.texture;scene.environmentIntensity=.36;room.dispose();pmrem.dispose();
+  const key=new T.DirectionalLight(0xffffff,3.7);key.position.set(-3,6,5);key.castShadow=true;key.shadow.mapSize.set(1024,1024);Object.assign(key.shadow.camera,{left:-5,right:5,top:5,bottom:-5,near:.5,far:18});key.shadow.bias=-.0003;key.shadow.normalBias=.008;scene.add(key);
+  const rim=new T.DirectionalLight(0xffffff,3.1);rim.position.set(3,2,-4);scene.add(rim);
+  const fill=new T.DirectionalLight(0xffffff,.65);fill.position.set(2,0,5);scene.add(fill);scene.add(new T.HemisphereLight(0xaaaaaa,0x070707,.5));
+  const floor=new T.Group();scene.add(floor);
+  const plane=new T.Mesh(new T.PlaneGeometry(35,35),new T.ShadowMaterial({opacity:.28,color:0x000000}));plane.rotation.x=-Math.PI/2;plane.receiveShadow=true;floor.add(plane);
 
-function start() { return initialization ||= initialize().catch(error => { initialization = null; throw error; }); }
-async function initialize() {
-  const [T, {OrbitControls}, {RoomEnvironment}, models] = await Promise.all([
-    import('three'), import('three/addons/controls/OrbitControls.js'), import('three/addons/environments/RoomEnvironment.js'), import('./parts-detailed-models.js'),
-  ]);
-  factory = models.buildDetailedModel; loadShell = models.loadShell;
-  const canvas = $('.parts-canvas'), renderer = new T.WebGLRenderer({canvas, alpha:true, antialias:true});
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75)); renderer.outputColorSpace = T.SRGBColorSpace;
-  renderer.toneMapping = T.ACESFilmicToneMapping; renderer.toneMappingExposure = .95;
-  const scene = new T.Scene(), root = new T.Group(); scene.add(root);
-  const pmrem = new T.PMREMGenerator(renderer), room = new RoomEnvironment();
-  const environment = pmrem.fromScene(room, .04); scene.environment = environment.texture; scene.environmentIntensity = .7; room.dispose(); pmrem.dispose();
-  scene.add(new T.HemisphereLight(0xe5edff,0x414b5c,1.25));
-  for (const [color, intensity, position] of [[0xffffff,2.8,[-3,4,5]],[0xb6d4ff,1.5,[4,0,-2]],[0xf7d884,.8,[-3,-1,-3]]]) { const light = new T.DirectionalLight(color,intensity); light.position.set(...position); scene.add(light); }
-  const camera = new T.OrthographicCamera(-2,2,2,-2,.01,100);
-  const controls = new OrbitControls(camera,canvas); controls.enableDamping = true; controls.dampingFactor = .10;
-  controls.enableZoom = false; controls.enablePan = false; controls.autoRotateSpeed = .55;
-  const labels = document.createElement('div'); labels.className = 'part-markers'; $('.parts-stage').append(labels);
-  let shown = null, markerButtons = [];
-  disposeModel = object => {
-    if (!object) return;
-    const geometries = new Set(), textures = new Set(), materials = new Set();
-    object.traverse(node => { if (node.geometry) geometries.add(node.geometry); for (const material of [].concat(node.material || [])) { if (material.map) { textures.add(material.map); materials.add(material); } } });
-    geometries.forEach(geometry => geometry.dispose()); textures.forEach(texture => texture.dispose()); materials.forEach(material => material.dispose());
-  };
-  rotateView = mode => {
-    camera.position.set(...(mode === 'front' ? [0,0,8] : mode === 'back' ? [0,0,-8] : [5,2.4,6]));
-    controls.target.set(0,0,0); camera.lookAt(controls.target); controls.update();
-    section.querySelectorAll('[data-view-angle]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.viewAngle === mode)));
-  };
-  frameView = () => {
-    if (!shown) return;
-    root.updateMatrixWorld(true); camera.updateMatrixWorld(true);
-    const points = [];
-    root.traverse(node => {
-      if (!node.geometry) return;
-      node.geometry.computeBoundingBox(); const bounds = node.geometry.boundingBox;
-      for (const x of [bounds.min.x,bounds.max.x]) for (const y of [bounds.min.y,bounds.max.y]) for (const z of [bounds.min.z,bounds.max.z]) points.push(new T.Vector3(x,y,z).applyMatrix4(node.matrixWorld).applyMatrix4(camera.matrixWorldInverse));
+  // A subtle shaft of neutral light, with soft edges rather than a visible cone.
+  const beamMaterial=new T.ShaderMaterial({vertexShader:'varying vec2 vUv; varying vec3 vN; varying vec3 vV; void main(){vUv=uv;vec4 p=modelViewMatrix*vec4(position,1.);vN=normalize(normalMatrix*normal);vV=normalize(-p.xyz);gl_Position=projectionMatrix*p;}',fragmentShader:'varying vec2 vUv; varying vec3 vN; varying vec3 vV; void main(){float a=pow(abs(dot(normalize(vN),normalize(vV))),2.)*smoothstep(0.,.22,vUv.y)*(1.-smoothstep(.72,1.,vUv.y));gl_FragColor=vec4(vec3(1.),a*.023);}',transparent:true,depthWrite:false,side:T.BackSide,blending:T.AdditiveBlending});
+  const beam=new T.Mesh(new T.CylinderGeometry(.07,3,10,48,1,true),beamMaterial);beam.position.set(0,2,-3);beam.rotation.z=-.32;scene.add(beam);
+  const dustPositions=new Float32Array(180*3);for(let i=0;i<180;i++){dustPositions[i*3]=Math.sin(i*18.83)*5;dustPositions[i*3+1]=(i%31)/31*6-2;dustPositions[i*3+2]=Math.cos(i*12.91)*4-2;}
+  const dustGeometry=new T.BufferGeometry();dustGeometry.setAttribute('position',new T.BufferAttribute(dustPositions,3));const dust=new T.Points(dustGeometry,new T.PointsMaterial({color:0xcccccc,size:.009,transparent:true,opacity:.28,depthWrite:false}));scene.add(dust);
+  const materialCache=new Map();
+  function monochrome(object){object.traverse(node=>{if(!node.material)return;node.castShadow=true;node.receiveShadow=true;const convert=source=>{if(!materialCache.has(source)){const material=source.clone();if(material.color){const hsl={};material.color.getHSL(hsl);material.color.setHSL(0,0,hsl.l);}if(material.emissive){const hsl={};material.emissive.getHSL(hsl);material.emissive.setHSL(0,0,hsl.l);}materialCache.set(source,material);}return materialCache.get(source)};node.material=Array.isArray(node.material)?node.material.map(convert):convert(node.material);});}
+  function centered(object,size){object.updateMatrixWorld(true);const box=new T.Box3().setFromObject(object),center=box.getCenter(new T.Vector3()),dimensions=box.getSize(new T.Vector3());object.position.sub(center);const wrapper=new T.Group();wrapper.add(object);wrapper.scale.setScalar(size/Math.max(dimensions.x,dimensions.y,dimensions.z));return wrapper;}
+  function bundle(entries){const group=new T.Group();for(const [object,size,base,move,rotation]of entries){const wrapper=centered(object,size);wrapper.position.set(...base);if(rotation)wrapper.rotation.set(...rotation);wrapper.userData.base=base;wrapper.userData.move=move;group.add(wrapper);}return group;}
+  async function build(index){
+    let object;const key=chapters[index].key;
+    if(key==='head'){object=models.buildDetailedModel({model:'headAssembly'});const rear=object.children.find(part=>part.name==='rear');rear.children[1].scale.z=3.1;rear.children[1].position.z+=30;}
+    else if(key==='display')object=models.buildDetailedModel(item('FACE'));
+    else if(key==='compute')object=models.buildDetailedModel(item('JETSON'));
+    else if(key==='power')object=bundle([
+      [models.buildDetailedModel(item('DC5')),95,[-51,0,0],[-72,24,35]],
+      [models.buildDetailedModel(item('DC12')),95,[51,0,0],[72,24,-22]],
+      [models.buildDetailedModel(item('AUX_FUSE')),43,[0,-46,12],[0,-65,28]],
+    ]);
+    else if(key==='shell'){
+      const shellRows=['SH04','SH05','SH06','SH07'];const shells=await Promise.all(shellRows.map(id=>models.loadShell(item(id))));
+      object=bundle(shells.map((shell,i)=>[shell, i<2?170:135,[0,i<2?60:-66,i%2?-36:36],[i%2?90:-90,i<2?44:-44,i%2?-80:80],[0,i%2?Math.PI:0,0]]));
+    } else object=bundle([
+      [models.buildDetailedModel(item('HAND_MOUNT')),74,[-43,0,0],[-64,22,12]],
+      [models.buildDetailedModel(item('HAND_MOUNT')),74,[43,0,0],[64,22,-12]],
+      [models.buildDetailedModel(item('HAND_BUS')),43,[-38,-28,-12],[-38,-64,32]],
+      [models.buildDetailedModel(item('HAND_BUS')),43,[38,-28,-12],[38,-64,-32]],
+      [models.buildDetailedModel(item('HAND_WIRES')),86,[0,-65,12],[0,-60,38]],
+    ]);
+    monochrome(object);
+    const pieces=object.children.map((part,i)=>{
+      const base=new T.Vector3(...(part.userData.base||part.position.toArray()));
+      const move=new T.Vector3(...(part.userData.move||[0,0,0]));
+      part.position.copy(base);object.updateMatrixWorld(true);const bounds=new T.Box3().setFromObject(part);
+      return {part,base,move,bounds,delay:key==='head'?Math.min(i*.034,.24):i*.055};
     });
-    const projected = new T.Box3().setFromPoints(points).getSize(new T.Vector3());
-    const aspect = canvas.clientWidth / canvas.clientHeight;
-    const halfHeight = Math.max(projected.y / 1.42, projected.x / (aspect * 1.62), .2);
-    camera.left = -halfHeight * aspect; camera.right = halfHeight * aspect; camera.top = halfHeight; camera.bottom = -halfHeight;
-    camera.zoom = Number(zoom.value) / 100; camera.updateProjectionMatrix();
+    const bounds=new T.Box3();for(const piece of pieces)bounds.union(piece.bounds.clone().translate(piece.move));
+    const scale=3.8/Math.max(...bounds.getSize(new T.Vector3()).toArray());
+    const pivot=new T.Group();pivot.add(object);pivot.scale.setScalar(scale);
+    return{object,pivot,pieces,scale};
+  }
+  function load(index){if(!cache.has(index))cache.set(index,build(index));return cache.get(index);}
+  let model=null, modelIndex=-1, token=0;
+  async function choose(index){if(index===requested)return;requested=index;const version=++token;$('.cinema-loading').hidden=false;
+    try {const result=await load(index);if(version!==token)return;root.clear();model=result;modelIndex=index;root.add(model.pivot);if(!reduced.matches)canvas.animate([{opacity:0},{opacity:1}],{duration:420,easing:'ease-out'});$('.cinema-loading').hidden=true;rig.dataset.cinemaReady='true';if(index+1<chapters.length)load(index+1).catch(()=>{});}catch(error){if(version!==token)return;$('.cinema-loading').textContent='This model could not load. Its components are available in the index below.';console.error('Anatomy chapter:',error);}
+  }
+  const box=new T.Box3(),partBox=new T.Box3(),center=new T.Vector3(),size=new T.Vector3(),projected=new T.Box3(),point=new T.Vector3();
+  updateScene=(index,progress,dt)=>{
+    choose(index);if(!model||modelIndex!==index)return;
+    const q=reduced.matches ? (progress>.45?1:0) : ease((progress-.13)/.70);
+    box.makeEmpty();
+    for(const piece of model.pieces){const separation=ease((q-piece.delay)/(1-piece.delay));piece.part.position.copy(piece.base).addScaledVector(piece.move,separation);partBox.copy(piece.bounds).translate(piece.move.clone().multiplyScalar(separation));box.union(partBox);}
+    box.getCenter(center);model.object.position.copy(center).negate();model.pivot.rotation.y=reduced.matches?0:(-.13+q*.23);
+    model.pivot.updateMatrixWorld(true);
+    const turn=reduced.matches?0:Math.sin(progress*Math.PI)*.16;
+    camera.position.set(6+turn,2.5+turn,8);camera.lookAt(0,0,0);camera.updateMatrixWorld(true);
+    projected.makeEmpty();box.getSize(size);const sx=size.x*model.scale/2,sy=size.y*model.scale/2,sz=size.z*model.scale/2;
+    for(const x of [-sx,sx])for(const y of [-sy,sy])for(const z of [-sz,sz]){point.set(x,y,z).applyMatrix4(camera.matrixWorldInverse);projected.expandByPoint(point);}
+    projected.getSize(size);const mobile=canvas.clientWidth<=700,aspect=canvas.clientWidth/canvas.clientHeight;
+    const half=Math.max(size.y/(mobile?1.08:1.45),size.x/(aspect*(mobile?1.74:1.29)),.45),horizontal=half*aspect,offset=mobile?0:horizontal*.35;
+    camera.left=-horizontal-offset;camera.right=horizontal-offset;camera.top=half+(mobile?half*.12:0);camera.bottom=-half+(mobile?half*.12:0);camera.updateProjectionMatrix();
+    floor.position.y=-sy-.16;
+    canvas.style.opacity='1';
+    if(!reduced.matches)dust.rotation.y+=dt*.008;
+    rig.dataset.explode=q.toFixed(3);rig.dataset.model=chapters[index].key;
+    renderer.render(scene,camera);
   };
-  renderModel = () => {
-    root.clear(); shown = null; labels.replaceChildren(); markerButtons = [];
-    if (!fullModel) return;
-    const source = selectedLayer ? fullModel.children.find(child => child.name === selectedLayer).clone(true) : fullModel;
-    if (selectedLayer) { source.position.set(0,0,0); }
-    else for (const child of source.children) if (child.userData.base) { child.position.fromArray(child.userData.base).addScaledVector(new T.Vector3(...child.userData.move), Number(explode.value)/100); }
-    source.removeFromParent(); source.updateMatrixWorld(true);
-    const bounds = new T.Box3().setFromObject(source), size = bounds.getSize(new T.Vector3()), center = bounds.getCenter(new T.Vector3());
-    const offset = new T.Group(); offset.add(source); offset.position.copy(center).negate();
-    shown = new T.Group(); shown.add(offset); shown.scale.setScalar(2.8/Math.max(size.x,size.y,size.z)); root.add(shown);
-    if (!selectedLayer) for (const layer of fullModel.userData.layers || []) {
-      const button = document.createElement('button'); button.type = 'button'; button.textContent = String(layer.index+1).padStart(2,'0'); button.title = layer.title; button.setAttribute('aria-label', `Inspect ${layer.title}`); button.addEventListener('click', () => inspectLayer(layer.id)); labels.append(button);
-      markerButtons.push({button, object:fullModel.children.find(child => child.name === layer.id)});
-    }
-    section.dataset.selectedLayer = selectedLayer || 'all'; frameView();
-  };
-  function resize() { const w=canvas.clientWidth, h=canvas.clientHeight; if (!w || !h) return; renderer.setSize(w,h,false); frameView(); }
-  new ResizeObserver(resize).observe(canvas); rotateView('three'); resize();
-  const markerPosition = new T.Vector3(), markerBounds = new T.Box3(), clock = new T.Clock();
-  function render() {
-    requestAnimationFrame(render); const dt = Math.min(clock.getDelta(), .05);
-    if (!visible || document.hidden) return;
-    controls.autoRotate = rotating; controls.update(dt); renderer.render(scene,camera);
-    const placed = [];
-    for (const {button, object} of markerButtons) {
-      markerBounds.setFromObject(object); markerBounds.getCenter(markerPosition).project(camera);
-      const px = (markerPosition.x*.5+.5)*canvas.clientWidth; let py = (-markerPosition.y*.5+.5)*canvas.clientHeight;
-      while (placed.some(([x,y]) => Math.hypot(px-x,py-y) < 34)) py -= 34;
-      placed.push([px,py]); button.style.left = `${px}px`; button.style.top = `${py}px`;
-      button.hidden = Math.abs(markerPosition.x)>.96 || Math.abs(markerPosition.y)>.82;
-    }
+  function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;if(w&&h)renderer.setSize(w,h,false);measure();}
+  new ResizeObserver(resize).observe(stage);resize();
+  const clock=new T.Clock();let lastIndex=-1;
+  function render(){requestAnimationFrame(render);const dt=Math.min(clock.getDelta(),.05);if(!visible||document.hidden)return;
+    const distance=Math.max(0,-rig.getBoundingClientRect().top);let index=0;for(let i=0;i<timeline.length;i++)if(distance>=timeline[i].top)index=i;
+    const raw=clamp((distance-timeline[index].top)/timeline[index].height);
+    if(lastIndex!==index){currentProgress=raw;lastIndex=index;}else currentProgress+= (raw-currentProgress)*(reduced.matches?1:1-Math.exp(-dt*14));
+    const progress=clamp(currentProgress);caption(index,progress);updateScene(index,progress,dt);
+    $('[data-cinema-progress]').textContent=`${String(Math.round(progress*100)).padStart(2,'0')}%`;$('.cinema-progress i').style.transform=`scaleX(${progress})`;
   }
   render();
 }
-new IntersectionObserver(entries => { visible = entries[0].isIntersecting; }, {rootMargin:'180px'}).observe($('.parts-stage'));
-fetch('./description/parts/catalog.json').then(response => { if (!response.ok) throw Error(`Catalog ${response.status}`); return response.json(); }).then(rows => {
-  catalog = rows;
-  if (catalog.length !== 145 || catalog.reduce((sum,item) => sum+item.cents,0) !== REMAINING_CENTS) throw Error('Catalog budget mismatch');
-  filterChoices();
-}).catch(error => { loading.textContent = 'The component catalog could not load. Please reload to retry.'; section.dataset.partsReady='error'; console.error(error); });
