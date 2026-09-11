@@ -37,7 +37,7 @@ const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true,
 renderer.setPixelRatio(Math.min(devicePixelRatio || 1, lite ? 1.5 : params.get("post") === "0" ? 2 : 1.5)); // GTAO runs at ≤1.5× to stay smooth
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = ortho ? 1.15 : 1.12;
+renderer.toneMappingExposure = ortho ? 1.15 : 1.05;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setClearColor(0x000000, 0);
@@ -47,27 +47,30 @@ const scene = new THREE.Scene();
 const camera = ortho ? new THREE.OrthographicCamera(-0.6, 0.6, 0.8, -0.8, 0.05, 40) : new THREE.PerspectiveCamera(26, 1, 0.05, 40);
 const pmrem = new THREE.PMREMGenerator(renderer);
 scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-scene.environmentIntensity = 0.55;
+scene.environmentIntensity = 0.38;
 
 // ---------- lights ----------
-const key = new THREE.DirectionalLight(0xfff3e4, 2.4);
-key.position.set(2.4, 3.6, 2.6);
+const key = new THREE.DirectionalLight(0xffe8ce, 3.2);
+key.position.set(2.6, 3.6, 1.4);
 key.castShadow = true;
 key.shadow.mapSize.set(lite ? 1024 : 2048, lite ? 1024 : 2048);
 key.shadow.camera.left = -1.6; key.shadow.camera.right = 1.6;
-key.shadow.camera.top = 2.2; key.shadow.camera.bottom = -0.3;
+key.shadow.camera.top = 2.2; key.shadow.camera.bottom = -1.8;
 key.shadow.camera.near = 1; key.shadow.camera.far = 12;
-key.shadow.bias = -0.00025; key.shadow.normalBias = 0.012;
+key.shadow.bias = -0.0001; key.shadow.normalBias = 0.002;
 scene.add(key);
-const rim = new THREE.DirectionalLight(0x9db4ff, 1.4); rim.position.set(-3, 2.4, -2.6); scene.add(rim);
-const fill = new THREE.DirectionalLight(0xdfe6f2, 0.55); fill.position.set(-2.2, 1.2, 3); scene.add(fill);
-scene.add(new THREE.HemisphereLight(0x33373f, 0x07080b, 0.7));
+const rim = new THREE.DirectionalLight(0x9dbbff, 2.6); rim.position.set(-2.4, 2.2, -1.6); scene.add(rim);
+const fill = new THREE.DirectionalLight(0xcdd8ec, 0.28); fill.position.set(-2.2, 1.2, 3); scene.add(fill);
+scene.add(new THREE.HemisphereLight(0x333e55, 0x07080b, 0.45));
+const overhead = new THREE.SpotLight(0xc6d8ff, 16, 7, 0.5, 0.8, 2);
+overhead.position.set(-0.9, 3.6, -0.5); overhead.target.position.set(0.1, 0.2, 0);
+scene.add(overhead, overhead.target);
 
 // ---------- floor ----------
 const floor = new THREE.Group();
 scene.add(floor);
 if (!lite) {
-  const mirror = new Reflector(new THREE.CircleGeometry(3.6, 64), { clipBias: 0.002, textureWidth: 1024, textureHeight: 1024, color: 0x0f1013 });
+  const mirror = new Reflector(new THREE.CircleGeometry(3.6, 64), { clipBias: 0.002, textureWidth: 1024, textureHeight: 1024, color: 0x080b12 });
   mirror.rotation.x = -Math.PI / 2; mirror.position.y = -0.002; floor.add(mirror);
 } else {
   const f = new THREE.Mesh(new THREE.CircleGeometry(3.6, 48), new THREE.MeshStandardMaterial({ color: 0x0c0d10, roughness: 0.9, metalness: 0 }));
@@ -76,13 +79,13 @@ if (!lite) {
 const fadeTex = (() => {
   const c = document.createElement("canvas"); c.width = c.height = 512; const g = c.getContext("2d");
   const r = g.createRadialGradient(256, 256, 40, 256, 256, 256);
-  r.addColorStop(0, "rgba(7,8,11,0.35)"); r.addColorStop(0.45, "rgba(7,8,11,0.75)"); r.addColorStop(1, "rgba(7,8,11,1)");
+  r.addColorStop(0, "rgba(7,8,11,0.64)"); r.addColorStop(0.45, "rgba(7,8,11,0.86)"); r.addColorStop(1, "rgba(7,8,11,1)");
   g.fillStyle = r; g.fillRect(0, 0, 512, 512); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
 })();
 const fade = new THREE.Mesh(new THREE.CircleGeometry(3.65, 64), new THREE.MeshBasicMaterial({ map: fadeTex, transparent: true, depthWrite: false }));
 fade.rotation.x = -Math.PI / 2; floor.add(fade);
 const catcher = new THREE.Mesh(new THREE.CircleGeometry(3.6, 48), new THREE.ShadowMaterial({ opacity: 0.55, color: 0x000000 }));
-catcher.rotation.x = -Math.PI / 2; catcher.position.y = 0.001; catcher.receiveShadow = true; floor.add(catcher);
+catcher.rotation.x = -Math.PI / 2; catcher.position.y = 0.003; catcher.receiveShadow = true; floor.add(catcher);
 {
   const lm = new THREE.LineBasicMaterial({ color: 0x2a2e36, transparent: true, opacity: 0.55 });
   for (const rr of [0.55, 1.1]) {
@@ -100,28 +103,34 @@ if (usePost) {
   composer.addPass(new RenderPass(scene, camera));
   gtao = new GTAOPass(scene, camera, 1, 1);
   gtao.output = GTAOPass.OUTPUT.Default;
-  gtao.blendIntensity = 0.85;
+  gtao.blendIntensity = 0.95;
   gtao.updateGtaoMaterial({ radius: 0.09, distanceExponent: 1.5, thickness: 0.6, scale: 1.0, samples: 10, distanceFallOff: 1.0, screenSpaceRadius: false });
   gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 4, radiusExponent: 1, rings: 2, samples: 12 });
   composer.addPass(gtao);
   composer.addPass(new OutputPass());
 }
 // ---------- atmosphere: light cone, dust, a dark cage far behind, fog ----------
-scene.fog = new THREE.Fog(0x0a0b0e, 4.5, 10);
+scene.fog = new THREE.Fog(0x080b12, 3.8, 10);
 const atmo = new THREE.Group(); scene.add(atmo);
 {
-  // soft light beam behind the robot: a billboard glow, no hard edges
-  const beamTex = (() => {
-    const c = document.createElement("canvas"); c.width = 256; c.height = 512; const g = c.getContext("2d");
-    // ellipse that reaches zero well inside the canvas, so the sprite has no visible edge
-    g.translate(128, 256); g.scale(1, 2);
-    const r = g.createRadialGradient(0, -10, 4, 0, 0, 120);
-    r.addColorStop(0, "rgba(255,244,228,0.30)"); r.addColorStop(0.4, "rgba(255,244,228,0.09)"); r.addColorStop(0.8, "rgba(255,244,228,0.015)"); r.addColorStop(1, "rgba(255,244,228,0)");
-    g.fillStyle = r; g.fillRect(-128, -128, 256, 256);
-    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
-  })();
-  const beam = new THREE.Sprite(new THREE.SpriteMaterial({ map: beamTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.55, fog: false }));
-  beam.scale.set(3.2, 4.6, 1); beam.position.set(0.1, 1.05, -0.9); beam.renderOrder = -1; atmo.add(beam);
+  // A tapered shaft in world space stays behind the robot when the camera turns.
+  // Soft end caps and a grazing-angle fade keep its cone surface out of view.
+  const shaftMaterial = new THREE.ShaderMaterial({
+    uniforms: { tint: { value: new THREE.Color(0xaac5ff) }, strength: { value: 0.012 } },
+    vertexShader: `varying vec3 vNormal; varying vec3 vView; varying vec2 vUv;
+      void main() { vUv=uv; vec4 p=modelViewMatrix*vec4(position,1.0);
+        vNormal=normalize(normalMatrix*normal); vView=normalize(-p.xyz);
+        gl_Position=projectionMatrix*p; }`,
+    fragmentShader: `uniform vec3 tint; uniform float strength;
+      varying vec3 vNormal; varying vec3 vView; varying vec2 vUv;
+      void main() { float edge=pow(abs(dot(normalize(vNormal),normalize(vView))),1.8);
+        float ends=smoothstep(0.0,0.2,vUv.y)*(1.0-smoothstep(0.75,1.0,vUv.y));
+        gl_FragColor=vec4(tint,strength*edge*ends); }`,
+    transparent: true, depthWrite: false, side: THREE.BackSide,
+    blending: THREE.AdditiveBlending, toneMapped: false,
+  });
+  const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 1.0, 3.5, 40, 1, true), shaftMaterial);
+  beam.position.set(-0.6, 1.65, -0.95); beam.rotation.z = -0.19; atmo.add(beam);
   // dust motes drifting in the light
   const N = lite ? 120 : 260;
   const pos = new Float32Array(N * 3); const vel = new Float32Array(N);
@@ -131,7 +140,7 @@ const atmo = new THREE.Group(); scene.add(atmo);
   const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ size: 0.011, map: dustTex, transparent: true, opacity: 0.38, depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true }));
   atmo.add(dust); atmo.userData.dust = dust; atmo.userData.vel = vel;
   // the cage: eight dark posts with a diamond mesh, far behind, mostly swallowed by the fog
-  const lm = new THREE.LineBasicMaterial({ color: 0x4a505c, transparent: true, opacity: 0.38 });
+  const lm = new THREE.LineBasicMaterial({ color: 0x536783, transparent: true, opacity: 0.22 });
   const pts = [];
   const R = 3.9, H = 2.4, sides = 8;
   for (let k = 0; k < sides; k++) {
@@ -148,6 +157,23 @@ const atmo = new THREE.Group(); scene.add(atmo);
   }
   const cage = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), lm);
   atmo.add(cage);
+  // Solid posts and rails give the original cage a readable silhouette and parallax.
+  const cageMaterial = new THREE.MeshStandardMaterial({ color: 0x151b27, roughness: 0.62, metalness: 0.72 });
+  for (let k = 0; k < sides; k++) {
+    const a0 = k / sides * Math.PI * 2 + Math.PI / 8;
+    const a1 = (k + 1) / sides * Math.PI * 2 + Math.PI / 8;
+    const p0 = new THREE.Vector3(Math.cos(a0) * R, 0, Math.sin(a0) * R);
+    const p1 = new THREE.Vector3(Math.cos(a1) * R, 0, Math.sin(a1) * R);
+    // Keep the near half open so it cannot cross the hero or the robot.
+    if (p0.z > 0.5 || p1.z > 0.5) continue;
+    const post = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, H, 10), cageMaterial);
+    post.position.copy(p0).setY(H / 2); atmo.add(post);
+    for (const y of [0.12, H]) {
+      const rail = new THREE.Mesh(new THREE.CylinderGeometry(0.026, 0.026, p0.distanceTo(p1), 8), cageMaterial);
+      rail.position.copy(p0).lerp(p1, 0.5).setY(y);
+      rail.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p1.clone().sub(p0).normalize()); atmo.add(rail);
+    }
+  }
 }
 // contact shadow: soft dark blob under the feet
 {
@@ -157,19 +183,24 @@ const atmo = new THREE.Group(); scene.add(atmo);
   g.fillStyle = r; g.fillRect(0, 0, 256, 256);
   const t = new THREE.CanvasTexture(c);
   const blob = new THREE.Mesh(new THREE.PlaneGeometry(1.1, 0.7), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false }));
-  blob.rotation.x = -Math.PI / 2; blob.position.y = 0.0015; blob.renderOrder = 1; floor.add(blob);
+  blob.rotation.x = -Math.PI / 2; blob.position.y = 0.004; blob.renderOrder = 1; floor.add(blob);
   window.__contact = blob;
 }
 
 // ---------- model ----------
 let nv = null;
 async function buildModel() {
-  let frame = null;
   const loadEl = document.querySelector(".loading b");
-  try { frame = (await loadFrame("description/meshes/nv01.frame", (f) => { if (loadEl) loadEl.style.transform = `scaleX(${f.toFixed(3)})`; })).geometries; }
-  catch (e) { console.warn("frame meshes unavailable", e); }
+  const [frameResult, handResult] = await Promise.allSettled([
+    loadFrame("description/meshes/nv01.frame", (f) => { if (loadEl) loadEl.style.transform = `scaleX(${f.toFixed(3)})`; }),
+    loadFrame("description/hands/amazinghand"),
+  ]);
+  const frame = frameResult.status === "fulfilled" ? frameResult.value.geometries : null;
+  const hands = handResult.status === "fulfilled" ? handResult.value.geometries : null;
+  if (!frame) console.warn("frame meshes unavailable", frameResult.reason);
+  if (!hands) console.warn("hand meshes unavailable", handResult.reason);
   if (document.fonts && document.fonts.ready) await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1200))]);
-  nv = createNV01({ frame });
+  nv = createNV01({ frame, hands });
   scene.add(nv.root);
   window.NV = nv;
   if (counterTotal) counterTotal.textContent = String(nv.shellCount);
@@ -187,7 +218,7 @@ let baseDist = 3.4;
 let viewShift = 0, viewShiftGoal = 0, viewShiftY = 0, viewShiftYGoal = 0;
 function fit() {
   const w = stage.clientWidth, h = stage.clientHeight;
-  if (ortho) { const hh = 1.6, ww = hh * (w / h); camera.left = -ww / 2; camera.right = ww / 2; camera.top = hh / 2; camera.bottom = -hh / 2; camera.updateProjectionMatrix(); renderer.setSize(w, h, false); if (composer) { const pr = renderer.getPixelRatio(); composer.setSize(w * pr, h * pr); if (gtao) gtao.setSize(w * pr, h * pr); } return; }
+  if (ortho) { const hh = 1.6, ww = hh * (w / h); camera.left = -ww / 2; camera.right = ww / 2; camera.top = hh / 2; camera.bottom = -hh / 2; camera.updateProjectionMatrix(); renderer.setSize(w, h, false); if (composer) composer.setSize(w, h); return; }
   camera.aspect = w / h;
   const margin = clean ? parseFloat(params.get("margin") || "1.5") : isMobile ? 3.4 : 1.62;
   baseDist = (margin / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
@@ -195,7 +226,7 @@ function fit() {
   baseDist = Math.max(baseDist, minForWidth);
   camera.updateProjectionMatrix();
   renderer.setSize(w, h, false);
-  if (composer) { const pr = renderer.getPixelRatio(); composer.setSize(w * pr, h * pr); if (gtao) gtao.setSize(w * pr, h * pr); }
+  if (composer) composer.setSize(w, h);
   viewShiftGoal = clean ? w * parseFloat(params.get("shift") || "0") : isMobile ? 0 : w * 0.21;
   viewShiftYGoal = clean ? 0 : isMobile ? h * 0.3 : 0;
 }
@@ -248,15 +279,6 @@ window.addEventListener("scroll", () => { lastScrollAt = performance.now(); }, {
 // ---------- callouts ----------
 const CALLOUTS = [
   // stage 1 — the shell
-  { stage: 1, key: "chest", obj: "torso", from: 0.03, until: 0.4, side: "left", t: "55 shell panels", b: "Static display. Thin gaps, wiring pain. Not signed off for a run or a hit." },
-  { stage: 1, key: "head", obj: "torso", from: 0.12, until: 0.5, side: "right", t: "Head, 0 DOF", b: "A display box on the torso. Two LED pills. No neck in the URDF." },
-  { stage: 1, key: "handR", objKey: "handRObj", from: 0.3, until: 0.66, side: "left", t: "No hands", b: "Sphere in the shell. Blunt flange in the lab. Foam cup in a fight." },
-  { stage: 1, key: "handle", obj: "torso", from: 0.42, until: 0.8, side: "right", t: "Carry bar", b: "Between the shoulder blades. The hand in every honest walk is here." },
-  { stage: 1, key: "battery", obj: "torso", from: 0.52, until: 0.9, side: "right", t: "48 V · 15 Ah", b: "Pack in the lower back. That hump is the profile." },
-  { stage: 1, key: "rbe", obj: "torso", from: 0.58, until: 0.95, side: "left", t: "RBE 3-in-1 V2", b: "Power + USB2CAN + hub. ~100 × 75 mm. Four CAN ports." },
-  { stage: 1, key: "waist", obj: "base", from: 0.66, side: "left", t: "Waist, 1 DOF", b: "Yaw only, about ±180°. The only joint in the torso." },
-  { stage: 1, key: "hipL", objKey: "hipLObj", from: 0.74, side: "right", t: "DM 10010L", b: "~120 N·m class. Nine of them: hips, knees, waist." },
-  { stage: 1, key: "ankleL", objKey: "ankleLObj", from: 0.84, side: "right", t: "DM 4340P", b: "~27 N·m class. Fourteen: arms and ankles. Two per shin drive the foot through the rods." },
   // stage 2 — the frame, priced from the ATOM 01 v1.0.1 BOM (2026-01-05, CNY)
   { stage: 2, link: "torso_link", from: 0.02, until: 0.34, side: "auto", t: "Torso frame", b: "Chest front splint ATOM-01-020 ¥330 · rear splint -019 ¥350 · 2× side cross plates -006 ¥85 · waist support -023 ¥150. 120-grit sandblast, black anodise." },
   { stage: 2, part: "handle", from: 0.05, until: 0.3, side: "auto", t: "Carry bar", b: "Between the shoulder blades. Four M3 lifting eye bolts (GB/T 825) take the hoist ropes." },
@@ -294,7 +316,7 @@ function layoutCallouts(p1, p2) {
   for (const c of calloutEls) {
     const cfg = c.cfg;
     const p = cfg.stage === 2 ? p2 : p1;
-    const on = p >= cfg.from && (cfg.until == null || p < cfg.until) && (cfg.stage === 2 ? p2 > 0 : nv.mode === "shell" && p2 <= 0 && nv.fade < 0.6);
+    const on = p >= cfg.from && (cfg.until == null || p < cfg.until) && (cfg.stage === 2 ? p2 > 0 : nv.mode === "target" && p2 <= 0 && nv.fade < 0.6);
     c.shown += ((on ? 1 : 0) - c.shown) * 0.12;
     if (c.shown < 0.02) { c.el.style.opacity = "0"; c.line.style.opacity = "0"; c.el.style.pointerEvents = "none"; continue; }
     let obj;
@@ -330,37 +352,52 @@ function layoutCallouts(p1, p2) {
 }
 
 // ---------- UI ----------
-const state = { mode: params.get("mode") === "lab" ? "lab" : "shell", pose: params.get("pose") === "guard" ? "guard" : "stand", view: params.get("view") || "front" };
+const buildLegend = document.querySelector("[data-build-legend]");
+const buildCaption = document.querySelector("[data-build-caption]");
+const buildMode = (mode) => mode === "target" || mode === "shell" ? "target" : "current";
+const state = { mode: buildMode(params.get("mode") ?? "target"), pose: params.get("pose") === "guard" ? "guard" : "stand", view: params.get("view") || "front" };
 function applyStateFromUI() {
   if (!nv) return;
+  state.mode = buildMode(state.mode);
   nv.setMode(state.mode);
   nv.setPose(state.pose);
   orbitGoal.theta = VIEWS[state.view] ?? VIEWS.front;
-  document.querySelectorAll("[data-mode]").forEach((b) => b.classList.toggle("on", b.dataset.mode === state.mode));
+  document.querySelectorAll("button[data-mode]").forEach((b) => {
+    const selected = b.dataset.mode === state.mode;
+    b.classList.toggle("on", selected);
+    b.setAttribute("aria-pressed", String(selected));
+  });
   document.querySelectorAll("[data-pose]").forEach((b) => b.classList.toggle("on", b.dataset.pose === state.pose));
   document.querySelectorAll("[data-view]").forEach((b) => b.classList.toggle("on", b.dataset.view === state.view));
   stage.dataset.mode = state.mode;
+  if (buildCaption) buildCaption.textContent = state.mode === "target" ? "Planned build" : "Current build";
+  if (buildLegend) buildLegend.textContent = state.mode === "target"
+    ? Object.keys(nv.handModules).length === 2
+      ? "Target · planned parts · hands awaiting installation"
+      : "Target · hand models could not load — reload"
+    : "Current · body reference";
 }
-document.querySelectorAll("[data-mode]").forEach((b) => b.addEventListener("click", () => { state.mode = b.dataset.mode; lastInteract = performance.now(); applyStateFromUI(); }));
+document.querySelectorAll("button[data-mode]").forEach((b) => b.addEventListener("click", () => { state.mode = b.dataset.mode; lastInteract = performance.now(); applyStateFromUI(); }));
 document.querySelectorAll("[data-pose]").forEach((b) => b.addEventListener("click", () => { state.pose = b.dataset.pose; lastInteract = performance.now(); applyStateFromUI(); }));
 document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => { state.view = b.dataset.view; lastInteract = performance.now(); applyStateFromUI(); }));
-window.addEventListener("nv:mode", (e) => { state.mode = e.detail === "lab" ? "lab" : "shell"; applyStateFromUI(); });
+window.addEventListener("nv:mode", (e) => { state.mode = buildMode(e.detail); applyStateFromUI(); });
 window.addEventListener("keydown", (e) => {
   if (e.target.closest("input, textarea")) return;
-  if (e.key === "1") { state.mode = "shell"; applyStateFromUI(); }
-  if (e.key === "2") { state.mode = "lab"; applyStateFromUI(); }
+  if (e.key === "1") { state.mode = "current"; applyStateFromUI(); }
+  if (e.key === "2") { state.mode = "target"; applyStateFromUI(); }
   if (e.key === "g") { state.pose = state.pose === "guard" ? "stand" : "guard"; applyStateFromUI(); }
 });
 
 // ---------- loop ----------
+let stageVisible = true;
+new IntersectionObserver(([entry]) => { stageVisible = entry.isIntersecting; }).observe(stage);
 const clock = new THREE.Clock();
-let blinkAt = 3 + Math.random() * 4, blinkT = 0;
 const extra = {};
 function frame() {
   const dt = Math.min(clock.getDelta(), 0.05);
   const t = clock.elapsedTime;
   requestAnimationFrame(frame);
-  if (!nv || window.__pause) return;
+  if (!nv || window.__pause || !stageVisible || document.hidden) return;
 
   const g = scrollProgress();
   const k = reduce || params.has("p") || params.has("pb") || params.has("p2") ? 1 : 0.1;
@@ -401,14 +438,6 @@ function frame() {
   extra.elPitchR = idle * 0.02 * Math.sin(t * 1.1 + 1.3);
   nv.update(dt, extra);
 
-  // eyes: LED pills shift on the glass and blink (display animation, not a neck)
-  const [eL, eR] = nv.joints.eyes;
-  const ex = (coarse ? 0 : mouse.x) * 0.006, ey = (coarse ? 0 : -mouse.y) * 0.004;
-  eL.position.x = 0.03 + ex; eR.position.x = -0.03 + ex; eL.position.y = eR.position.y = ey;
-  blinkT += dt;
-  let sy = 1;
-  if (blinkT > blinkAt) { const kk = (blinkT - blinkAt) / 0.16; sy = kk < 1 ? 1 - Math.sin(kk * Math.PI) * 0.85 : 1; if (kk >= 1) { blinkT = 0; blinkAt = 2.5 + Math.random() * 5; } }
-  eL.scale.y = eR.scale.y = sy;
   for (const l of nv.leds) l.material.emissiveIntensity = 1.2 + 0.8 * Math.max(0, Math.sin(t * 3));
   {
     const d = atmo.userData.dust, v = atmo.userData.vel, a = d.geometry.attributes.position;

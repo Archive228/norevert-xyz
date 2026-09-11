@@ -7,6 +7,7 @@ import { LINKS, BASE_Y } from "./kin.js";
 
 export { BASE_Y };
 const D2R = Math.PI / 180;
+const HAND_PREVIEW_SCALE = 2 / 3;
 
 // Stage-2 explode: world-space direction + distance + delay for every frame link.
 const FRAME_EXPLODE = {
@@ -25,7 +26,7 @@ const FRAME_EXPLODE = {
   left_ankle_roll_link: [[0.7, -0.25, 1], 0.74, 0.46], right_ankle_roll_link: [[-0.7, -0.25, 1], 0.74, 0.46],
 };
 
-export function createNV01({ frame = null } = {}) {
+export function createNV01({ frame = null, hands = null } = {}) {
   // ---------- materials ----------
   // roughness noise so the polymer shell and the sandblasted frame do not read as CG-flat
   const noiseTex = (() => {
@@ -36,11 +37,11 @@ export function createNV01({ frame = null } = {}) {
     const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(6, 6); return t;
   })();
   const M = {
-    shell: new THREE.MeshPhysicalMaterial({ color: 0xe9eae7, roughness: 0.62, metalness: 0.0, clearcoat: 0.2, clearcoatRoughness: 0.6, roughnessMap: noiseTex, envMapIntensity: 1.0 }),
-    shellDark: new THREE.MeshPhysicalMaterial({ color: 0x1b1c1f, roughness: 0.55, metalness: 0.05, clearcoat: 0.2, clearcoatRoughness: 0.6, roughnessMap: noiseTex }),
-    frame: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: 0.56, metalness: 0.9, roughnessMap: noiseTex, envMapIntensity: 0.9 }),
-    alu: new THREE.MeshStandardMaterial({ color: 0xc6cacf, roughness: 0.62, metalness: 0.55 }),
-    aluLight: new THREE.MeshStandardMaterial({ color: 0xdadde1, roughness: 0.68, metalness: 0.4 }),
+    shell: new THREE.MeshPhysicalMaterial({ color: 0xe9eae7, roughness: 0.43, metalness: 0.0, clearcoat: 0.28, clearcoatRoughness: 0.3, roughnessMap: noiseTex, envMapIntensity: 0.9 }),
+    shellDark: new THREE.MeshPhysicalMaterial({ color: 0x1b1c1f, roughness: 0.48, metalness: 0.05, clearcoat: 0.22, clearcoatRoughness: 0.38, roughnessMap: noiseTex }),
+    frame: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: 0.39, metalness: 0.9, envMapIntensity: 0.95 }),
+    alu: new THREE.MeshStandardMaterial({ color: 0xc6cacf, roughness: 0.42, metalness: 0.75 }),
+    aluLight: new THREE.MeshStandardMaterial({ color: 0xdadde1, roughness: 0.48, metalness: 0.65 }),
     steel: new THREE.MeshStandardMaterial({ color: 0xc9ccd0, roughness: 0.22, metalness: 0.95 }),
     dark: new THREE.MeshStandardMaterial({ color: 0x111214, roughness: 0.7, metalness: 0.2 }),
     glass: new THREE.MeshPhysicalMaterial({ color: 0x08090b, roughness: 0.1, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.08 }),
@@ -55,17 +56,19 @@ export function createNV01({ frame = null } = {}) {
     red: new THREE.MeshStandardMaterial({ color: 0xd8302c, roughness: 0.45, metalness: 0 }),
     led: new THREE.MeshStandardMaterial({ color: 0x35ff7a, emissive: 0x35ff7a, emissiveIntensity: 1.6 }),
     rope: new THREE.MeshStandardMaterial({ color: 0xe6e3da, roughness: 0.9, metalness: 0 }),
+    hand: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: 0.55, metalness: 0.08 }),
   };
+  M.hand.userData.targetOpacity = 0.48;
 
   const shells = [];    // stage-1 exploding shell panels
   const parts = [];     // stage-2 exploding frame links + electronics
-  const labOnly = [];   // visible only in lab mode
-  const shellMode = []; // visible only with the shell (hand spheres)
+  const labOnly = [];   // visible only in the current build
+  const shellMode = []; // target-only upgrade modules
+  const handModules = {};
   const leds = [];
   const joints = {};
   const groups = {};
   const anchors = {};
-  const fadeMats = [M.shell, M.shellDark, M.glass, M.eye];
 
   // ---------- geometry helpers ----------
   const geoCache = new Map();
@@ -161,7 +164,7 @@ export function createNV01({ frame = null } = {}) {
   const torso = groups.torso_link;
   joints.torsoYaw = torso;
   anchors.waist = new THREE.Vector3(0, 0.03, -0.028);
-  let api_loom = null, api_sprites = [];
+  let api_loom = null;
 
   // ---------- PELVIS shells #28–31 ----------
   {
@@ -277,11 +280,10 @@ export function createNV01({ frame = null } = {}) {
     cx.fillRect(440, 78, 8, 28); cx.fillRect(458, 78, 8, 28);
     const lt = new THREE.CanvasTexture(logo); lt.colorSpace = THREE.SRGBColorSpace; lt.anisotropy = 8;
     const lm = new THREE.MeshBasicMaterial({ map: lt, transparent: true, opacity: 0.9, depthWrite: false });
-    fadeMats.push(lm);
     const plaque = mesh(new THREE.PlaneGeometry(0.1, 0.05), lm, -0.062, 0.095, 0.1098, chestFU);
     plaque.rotation.x = -0.06; plaque.castShadow = false;
 
-    // neck #3 + head #1–2
+    // Planned neck + head. They share the translucent target treatment below.
     const neck = mesh(cyl(0.03, 0.033, 0.052, 32), M.shellDark, 0, 0.29, 0.0, T);
     mesh(new THREE.TorusGeometry(0.031, 0.002, 8, 32), M.dark, 0, 0.012, 0, neck).rotation.x = Math.PI / 2;
     shell(neck, [0, 1, 0], 0.22, { spin: 0.1 });
@@ -293,7 +295,6 @@ export function createNV01({ frame = null } = {}) {
     mesh(rbox(0.174, 0.098, 0.005, 0.013, 3), M.glass, 0, 0, 0.0285, headF);
     const eyeL = mesh(new THREE.CapsuleGeometry(0.0092, 0.028, 4, 16), M.eye, 0.03, 0.0, 0.0255, headF);
     const eyeR = mesh(new THREE.CapsuleGeometry(0.0092, 0.028, 4, 16), M.eye, -0.03, 0.0, 0.0255, headF);
-    eyeL.castShadow = eyeR.castShadow = false;
     mesh(rbox(0.03, 0.0025, 0.007, 0.001, 1), M.dark, 0, 0.0585, -0.005, headF);
     mesh(rbox(0.012, 0.002, 0.002, 0.0005, 1), M.dark, 0, 0.038, 0.0315, headF);
     shell(headF, [0, 0.45, 1], 0.36, { spin: 0.25 });
@@ -301,18 +302,7 @@ export function createNV01({ frame = null } = {}) {
     shell(headB, [0, 0.5, -1], 0.36, { spin: 0.25 });
     joints.eyes = [eyeL, eyeR];
     anchors.head = new THREE.Vector3(0.1, 0.4, 0.03);
-    const glowTex = (() => {
-      const c = document.createElement("canvas"); c.width = c.height = 128; const g = c.getContext("2d");
-      const r = g.createRadialGradient(64, 64, 4, 64, 64, 64);
-      r.addColorStop(0, "rgba(255,255,255,0.75)"); r.addColorStop(0.35, "rgba(255,255,255,0.18)"); r.addColorStop(1, "rgba(255,255,255,0)");
-      g.fillStyle = r; g.fillRect(0, 0, 128, 128); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
-    })();
-    const sprites = [];
-    for (const e of [eyeL, eyeR]) {
-      const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.55 }));
-      sp.scale.set(0.09, 0.11, 1); sp.position.set(0, 0, 0.012); e.add(sp); sprites.push(sp);
-    }
-    api_sprites = sprites;
+
   }
 
   // ---------- ARMS: shells only (frame is the real mesh) ----------
@@ -351,9 +341,18 @@ export function createNV01({ frame = null } = {}) {
     shell(fUO, [s, 0.1, 0.2], 0.26); shell(fUI, [0, -0.2, 1], 0.28);
     shell(fLO, [s, -0.2, 0.2], 0.26); shell(fLI, [0, -0.5, 1], 0.28);
     screwDimples(fLO, [[s * 0.012, 0.012, 0.031, s * 0.35, 0, 1], [s * 0.027, 0.012, 0.022, s * 0.7, 0, 0.7], [s * 0.012, -0.004, 0.031, s * 0.35, 0, 1], [s * 0.027, -0.004, 0.022, s * 0.7, 0, 0.7]], 0.003);
-    const ball = mesh(new THREE.SphereGeometry(0.035, 36, 24), M.shellDark, 0, -0.166, 0, fore);
-    shellMode.push(ball);
-    anchors[`hand${s > 0 ? "L" : "R"}`] = new THREE.Vector3(0, -0.166, 0);
+    // AmazingHand authors' assembled CAD, wrist origin at the forearm end.
+    // This is a visual placement; the physical RPO adapter still needs design.
+    const handGeometry = hands?.get(side);
+    if (handGeometry) {
+      const hand = mesh(handGeometry, M.hand, 0, -0.145, 0, fore);
+      hand.scale.setScalar(HAND_PREVIEW_SCALE);
+      hand.name = `amazinghand_${side}`;
+      hand.userData.upgrade = side === "right" ? "next" : "later";
+      shellMode.push(hand);
+      handModules[side] = hand;
+    }
+    anchors[`hand${s > 0 ? "L" : "R"}`] = new THREE.Vector3(0, -0.145 - 0.085 * HAND_PREVIEW_SCALE, 0);
     anchors[`hand${s > 0 ? "L" : "R"}Obj`] = fore;
   }
   arm(1); arm(-1);
@@ -411,6 +410,29 @@ export function createNV01({ frame = null } = {}) {
   leg(1); leg(-1);
 
   // ---------- bookkeeping ----------
+  // Clone materials on future geometry only: dark/metal materials are also used
+  // by the existing frame, which must remain opaque in both views.
+  const futureMaterials = new Map();
+  const ghostTint = new THREE.Color(0xb5c9e1);
+  function futureMaterial(source) {
+    if (!futureMaterials.has(source)) {
+      const material = source.clone();
+      material.transparent = true;
+      material.depthWrite = false;
+      material.userData.targetOpacity = source.opacity * (source.userData.targetOpacity ?? 0.32);
+      material.opacity = material.userData.targetOpacity;
+      if (material.color && source !== M.eye) material.color.lerp(ghostTint, 0.28);
+      futureMaterials.set(source, material);
+    }
+    return futureMaterials.get(source);
+  }
+  for (const o of [...shells, ...shellMode]) o.traverse((c) => {
+    if (!c.isMesh) return;
+    c.userData.sourceMaterial = c.material;
+    c.material = Array.isArray(c.material) ? c.material.map(futureMaterial) : futureMaterial(c.material);
+    c.castShadow = false;
+  });
+
   // authors' STL numbering, in the order the panels were registered above
   const SHELL_IDS = [29, 28, 30, 31, 4, 6, 5, 7, 3, 1, 2,
     11, 10, 14, 15, 18, 19, 23, 22, 27, 26,
@@ -460,7 +482,7 @@ export function createNV01({ frame = null } = {}) {
   const _q = new THREE.Quaternion(), _d = new THREE.Vector3(), _q2 = new THREE.Quaternion();
   const ease = (t) => t * t * (3 - 2 * t);
   const api = {
-    root, base, torso, joints, groups, shells, parts, anchors, leds, materials: M, linkMeshes,
+    root, base, torso, joints, groups, shells, parts, anchors, leds, materials: M, linkMeshes, handModules,
     poses: Object.keys(POSES),
     setPose(name) { const p = POSES[name] || POSES.stand; for (const k of Object.keys(target)) target[k] = p[k] || 0; },
     update(dt, extra = {}) {
@@ -484,10 +506,9 @@ export function createNV01({ frame = null } = {}) {
     },
     // between stages: shells fade out (call before setExplode)
     setShellFade(f) {
-      api.fade = f;
-      const on = f < 0.97 && api.mode !== "lab";
-      for (const m of fadeMats) { const logo = m === fadeMats[4]; m.transparent = f > 0.001 || logo; m.opacity = (logo ? 0.9 : 1) * (1 - f); m.depthWrite = f < 0.5; }
-      for (const s of api_sprites) s.material.opacity = 0.55 * (1 - f);
+      api.fade = THREE.MathUtils.clamp(f, 0, 1);
+      const on = api.fade < 0.97 && api.mode === "target";
+      for (const material of futureMaterials.values()) material.opacity = material.userData.targetOpacity * (1 - api.fade);
       for (const o of shells) o.visible = on;
       for (const o of shellMode) o.visible = on;
     },
@@ -511,13 +532,11 @@ export function createNV01({ frame = null } = {}) {
     },
     detached: 0, detached2: 0, fade: 0, knolling: 0,
     setMode(mode) {
-      const lab = mode === "lab";
-      api.mode = mode;
-      for (const o of shells) o.visible = !lab;
-      for (const o of shellMode) o.visible = !lab;
-      for (const o of labOnly) o.visible = lab;
+      api.mode = mode === "target" || mode === "shell" ? "target" : "current";
+      for (const o of labOnly) o.visible = api.mode === "current";
+      api.setShellFade(api.fade);
     },
-    mode: "shell",
+    mode: "current",
     shellCount: shells.length,
     partCount: parts.length,
     partByKey: Object.fromEntries(parts.map((o) => [o.userData.part.key, o])),
@@ -531,7 +550,7 @@ export function createNV01({ frame = null } = {}) {
         inv.copy(groups[link].matrixWorld).invert();
         const verts = [];
         o.traverse((c) => {
-          if (!c.isMesh || c.material === M.dark || c.isSprite || c.geometry.type === "PlaneGeometry") return;
+          if (!c.isMesh || c.userData.sourceMaterial === M.dark || c.isSprite || c.geometry.type === "PlaneGeometry") return;
           m.multiplyMatrices(inv, c.matrixWorld);
           const p = c.geometry.attributes.position;
           const step = Math.max(1, Math.floor(p.count / 1500));
@@ -541,7 +560,7 @@ export function createNV01({ frame = null } = {}) {
       });
     },
   };
-  api.setMode("shell");
+  api.setMode("current");
   api.setExplode(0);
   return api;
 }

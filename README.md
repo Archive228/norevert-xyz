@@ -43,3 +43,15 @@ Source: the public `rpo_description` meshes (CERN-OHL-W-2.0). Converter (not in 
 ## Rules
 
 No ROBOPARTY / ROBO PARTY marks on the site. Chest reads NOREVERT / NV-01. Numbers only from the manual, the URDF, the BOM. No 20 DOF, no 3 m/s, no league slot, no T800, no G1 brain.
+
+## Remaining parts explorer
+
+The `#parts` section follows the main scroll animation. It contains three 3D galleries, click-to-inspect component groups, drag and automatic rotation, and the owned inventory. It loads on approach and pauses rendering offscreen.
+
+- `js/parts-data.js`: all 13 remaining USD allowances, in integer cents; the 2× reserve is already included.
+- `js/parts.js`: category controls, single-part inspection and the lazy 3D renderer.
+- `js/parts-models.js`: shell/head geometry reused from NV-01 and schematic component previews.
+- `css/parts.css`: desktop and mobile layout.
+- `index.html`: the section markup and owned inventory.
+
+Budget: $7,340 on hand + $6,771.90 remaining = $14,111.90. These are specification and planning values, not a P&L statement. Both hands are delivered but not installed.

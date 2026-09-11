@@ -1,0 +1,47 @@
+{
+  "commit": "3e8241074df3436a3044ced4881e3bb2133aa725",
+  "source": "https://github.com/pollen-robotics/AmazingHand/tree/3e8241074df3436a3044ced4881e3bb2133aa725",
+  "assembly": "Demo/AHSimulation/AHSimulation/AH_{Right,Left}/mjcf/robot.xml",
+  "pose": "Static MJCF body/geom reference transforms; joint offsets are zero.",
+  "modifications": "Assembled STLs, rotated to forearm coordinates, clustered at 1 mm and quantized. Display placement on NV-01 is conceptual; no mount design or fit validation.",
+  "sha256": "f527530ea4c1c30a6dac3a2b7a258ec5080a08e38fe86947f280dd27a2c17e4c",
+  "bytes": 1642972,
+  "hands": [
+    {
+      "side": "right",
+      "sourceVisualParts": 162,
+      "sourceTriangles": 605186,
+      "displayTriangles": 88344,
+      "boundsMeters": [
+        [
+          -0.032799999941885476,
+          -0.16978420296033941,
+          -0.06515846786709233
+        ],
+        [
+          0.09211811144972033,
+          1.4781951912512525e-09,
+          0.05541305314099657
+        ]
+      ]
+    },
+    {
+      "side": "left",
+      "sourceVisualParts": 162,
+      "sourceTriangles": 605054,
+      "displayTriangles": 88166,
+      "boundsMeters": [
+        [
+          -0.09244371034837069,
+          -0.16978420296033925,
+          -0.06423043812799074
+        ],
+        [
+          0.032799999941885476,
+          1.4781951912512525e-09,
+          0.05452329544464089
+        ]
+      ]
+    }
+  ]
+}
