@@ -226,6 +226,67 @@
     html.og .hero { transform: translateY(-50%); }
     html.og h1 { font-size: 104px; }
     @media (max-width: 820px) { .grp.view, .hide-m, .btn.mail, .facts li:nth-child(4) { display: none; } .hero { bottom: 96px; } .hero-shade { height: 66%; } }
+
+    /* Portrait: the robot owns the centre; copy and controls sit outside it. */
+    @media (max-width: 820px) {
+      .hero-shade { display:none; }
+      .hero { top:0;bottom:0;transform:none;pointer-events:none!important; }
+      .hero .kicker { position:absolute;top:78px;left:0;font-size:10px;letter-spacing:.17em;margin:0; }
+      .hero h1 { position:absolute;top:105px;left:0;right:0;font-size:clamp(27px,8vw,46px);line-height:1.03; }
+      .hero .lede,.hero .facts { display:none; }
+      .hero .btns { position:absolute;bottom:108px;left:0;right:0;display:flex;flex-wrap:nowrap;gap:8px;pointer-events:auto; }
+      .hero .btn { font-size:10px;letter-spacing:.035em;padding:10px 9px;min-height:40px;justify-content:center;white-space:nowrap; }
+      .hero .btn[href="#parts"] { flex:1; }
+      .hud .console { gap:8px;padding:9px 10px; }
+      .hud .grp + .grp { padding-left:8px; }
+      .hud .seg button { min-width:46px;padding:0 8px; }
+      .hud .seg button[data-mode] { min-width:50px;padding:0 9px; }
+      .stage { overflow:clip; }
+      .steps { bottom:112px; }
+      .steps.top .step p { display:none; }
+      .steps.top .step b { margin:0; }
+      .callout .dot { display:none; }
+      .callout .card { left:0!important;right:auto!important;width:calc(100vw - 2 * var(--pad));padding:12px 14px;text-align:left; }
+      .callout .card span { font-size:12px;line-height:1.45; }
+      .callout .card b { font-size:11px; }
+    }
+    @media (max-width:820px) and (max-height:700px) {
+      .hero .kicker { top:69px; }
+      .hero h1 { top:91px;font-size:27px; }
+      .hero .btns { bottom:99px; }
+    }
+
+    @media (max-width:400px) {
+      .brand { gap:8px; }
+      .brand b { font-size:10px;letter-spacing:.12em;white-space:nowrap; }
+      .brand small { display:none; }
+    }
+    @media (max-width:1000px) and (max-height:500px) {
+      nav.top .links a:not(.cta):not(.keep) { display:none; }
+      .brand b { white-space:nowrap; }
+      .hero-shade { display:none; }
+      .hero { inset:0 var(--pad);max-width:none;transform:none;pointer-events:none!important; }
+      .hero .kicker { position:absolute;top:72px;left:0;font-size:9px;margin:0; }
+      .hero h1 { position:absolute;top:99px;left:0;width:43%;font-size:clamp(24px,3.8vw,34px);line-height:1.03; }
+      .hero .lede,.hero .facts { display:none; }
+      .hero .btns { position:absolute;bottom:118px;left:0;width:43%;display:flex;flex-wrap:nowrap;gap:6px;pointer-events:auto; }
+      .hero .btn { font-size:9px;letter-spacing:0;padding:10px 8px;white-space:nowrap; }
+      .hero .btn.mail { display:none; }
+      .hud { left:var(--pad);right:auto;width:40%;bottom:20px; }
+      .hud .console { width:100%;gap:8px;padding:8px;justify-content:space-between; }
+      .hud .grp + .grp { padding-left:8px; }
+      .hud .seg button { padding:0 8px;min-width:44px;height:30px;font-size:10px; }
+      .hud .seg button[data-mode] { padding:0 8px;min-width:48px;height:30px;font-size:10px; }
+      .hud .grp.view,.hud .meta,.cap kbd { display:none; }
+      .steps { left:var(--pad);right:auto;width:40%;bottom:118px; }
+      .steps.top { top:80px; }
+      .steps.top .step p { display:none; }
+      .steps.top .step b { margin:0; }
+      .callout .dot { display:none; }
+      .callout .card { left:0!important;right:auto!important;width:40vw;padding:10px 12px;text-align:left; }
+      .callout .card span { font-size:12px;line-height:1.4; }
+      .stage { overflow:clip; }
+    }
     html.clean nav.top, html.clean .hero, html.clean .hud, html.clean .steps, html.clean .callouts, html.clean .leaders, html.clean .grid, html.clean .hero-shade, html.clean .sheet, html.clean footer { display: none !important; }
     html.clean .rig { height: 100vh; }
 
@@ -603,7 +664,7 @@
       } else items.forEach(function (el) { el.classList.add("in"); });
     })();
   </script>
-  <script type="module" src="js/scene.js"></script>
+  <script type="module" src="js/scene.js?v=mobile-framing-2"></script>
   <script type="module" src="js/parts.js"></script>
 </body>
 </html>

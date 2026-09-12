@@ -248,6 +248,7 @@ export function createNV01({ frame = null, hands = null } = {}) {
     labOnly.push(stub);
     for (const s of [-1, 1]) {
       const rope = tube([[s * 0.11, 0.245, -0.03], [s * 0.1, 0.5, -0.03], [s * 0.06, 1.2, -0.02], [s * 0.03, 2.2, 0.0]], 0.005, M.rope, 16);
+      rope.userData.stageProp = true;
       T.add(rope); labOnly.push(rope);
       mesh(new THREE.TorusGeometry(0.009, 0.0025, 8, 16), M.steel, s * 0.11, 0.245, -0.03, T).rotation.y = Math.PI / 2;
     }

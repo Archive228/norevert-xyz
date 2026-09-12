@@ -6,7 +6,7 @@ import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { GTAOPass } from "three/addons/postprocessing/GTAOPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
-import { createNV01 } from "./nv01.js";
+import { createNV01 } from "./nv01.js?v=mobile-framing-2";
 import { loadFrame } from "./frame.js";
 
 const canvas = document.getElementById("stage");
@@ -23,7 +23,8 @@ const counterLabel = document.querySelector("[data-counter-label]");
 if (!canvas || !stage || !rig) throw new Error("stage markup missing");
 
 const params = new URLSearchParams(location.search);
-const isMobile = matchMedia("(max-width: 820px)").matches;
+let isMobile = matchMedia("(max-width: 820px), (max-width: 1000px) and (max-height: 500px)").matches;
+let isLandscapePhone = false;
 const coarse = matchMedia("(pointer: coarse)").matches;
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const lite = isMobile || params.get("lite") === "1";
@@ -61,7 +62,7 @@ key.shadow.bias = -0.0001; key.shadow.normalBias = 0.002;
 scene.add(key);
 const rim = new THREE.DirectionalLight(0x9dbbff, 2.6); rim.position.set(-2.4, 2.2, -1.6); scene.add(rim);
 const fill = new THREE.DirectionalLight(0xcdd8ec, 0.28); fill.position.set(-2.2, 1.2, 3); scene.add(fill);
-scene.add(new THREE.HemisphereLight(0x333e55, 0x07080b, 0.45));
+const ambient = new THREE.HemisphereLight(0x333e55, 0x07080b, 0.45); scene.add(ambient);
 const overhead = new THREE.SpotLight(0xc6d8ff, 16, 7, 0.5, 0.8, 2);
 overhead.position.set(-0.9, 3.6, -0.5); overhead.target.position.set(0.1, 0.2, 0);
 scene.add(overhead, overhead.target);
@@ -218,9 +219,19 @@ let baseDist = 3.4;
 let viewShift = 0, viewShiftGoal = 0, viewShiftY = 0, viewShiftYGoal = 0;
 function fit() {
   const w = stage.clientWidth, h = stage.clientHeight;
+  isLandscapePhone = w > h && h <= 500 && w <= 1000;
+  isMobile = w <= 820 || isLandscapePhone;
+  stage.dataset.layout = isMobile ? "mobile" : "desktop";
+  scene.environmentIntensity = isMobile ? 0.68 : 0.38;
+  fill.intensity = isMobile ? 1.2 : 0.28;
+  ambient.intensity = isMobile ? 0.8 : 0.45;
+  key.color.set(isMobile ? 0xffffff : 0xffe8ce);
+  rim.color.set(isMobile ? 0xffffff : 0x9dbbff);
+  fill.color.set(isMobile ? 0xffffff : 0xcdd8ec);
+  renderer.toneMappingExposure = ortho ? 1.15 : isMobile ? 1.12 : 1.05;
   if (ortho) { const hh = 1.6, ww = hh * (w / h); camera.left = -ww / 2; camera.right = ww / 2; camera.top = hh / 2; camera.bottom = -hh / 2; camera.updateProjectionMatrix(); renderer.setSize(w, h, false); if (composer) composer.setSize(w, h); return; }
   camera.aspect = w / h;
-  const margin = clean ? parseFloat(params.get("margin") || "1.5") : isMobile ? 3.4 : 1.62;
+  const margin = clean ? parseFloat(params.get("margin") || "1.5") : isMobile ? 2.22 : 1.62;
   baseDist = (margin / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
   const minForWidth = (0.9 / 2) / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / camera.aspect;
   baseDist = Math.max(baseDist, minForWidth);
@@ -228,10 +239,41 @@ function fit() {
   renderer.setSize(w, h, false);
   if (composer) composer.setSize(w, h);
   viewShiftGoal = clean ? w * parseFloat(params.get("shift") || "0") : isMobile ? 0 : w * 0.21;
-  viewShiftYGoal = clean ? 0 : isMobile ? h * 0.3 : 0;
+  viewShiftYGoal = 0;
 }
 fit();
 new ResizeObserver(fit).observe(stage);
+
+// Fit the visible robot, including separated parts, inside the portrait viewport.
+// Hidden target shells must not make the current body appear farther away.
+const robotBounds = new THREE.Box3(), meshBounds = new THREE.Box3();
+const viewCorner = new THREE.Vector3(), inverseView = new THREE.Quaternion();
+function mobileDistance(p1, p2) {
+  nv.root.updateMatrixWorld(true);
+  robotBounds.makeEmpty();
+  nv.root.traverseVisible(object => {
+    if (!object.isMesh || !object.geometry || object.userData.stageProp) return;
+    if (!object.geometry.boundingBox) object.geometry.computeBoundingBox();
+    meshBounds.copy(object.geometry.boundingBox).applyMatrix4(object.matrixWorld);
+    robotBounds.union(meshBounds);
+  });
+  if (robotBounds.isEmpty()) return baseDist;
+  inverseView.copy(camera.quaternion).invert();
+  const tanY = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const heightFraction = isLandscapePhone ? 0.76 : THREE.MathUtils.lerp(0.57, 0.63, Math.min(1, p1 * 6 + p2));
+  const widthFraction = isLandscapePhone ? 0.43 : 0.88;
+  let distance = 0;
+  for (const x of [robotBounds.min.x, robotBounds.max.x])
+    for (const y of [robotBounds.min.y, robotBounds.max.y])
+      for (const z of [robotBounds.min.z, robotBounds.max.z]) {
+        viewCorner.set(x,y,z).sub(orbit.target).applyQuaternion(inverseView);
+        distance = Math.max(distance, viewCorner.z + Math.max(
+          Math.abs(viewCorner.x) / (tanY * camera.aspect * widthFraction),
+          Math.abs(viewCorner.y) / (tanY * heightFraction)
+        ));
+      }
+  return Math.max(1, distance);
+}
 
 let dragging = false, lastX = 0, lastY = 0, lastInteract = performance.now(), velTheta = 0;
 stage.addEventListener("pointerdown", (e) => {
@@ -311,12 +353,17 @@ function layoutCallouts(p1, p2) {
   const w = stage.clientWidth, h = stage.clientHeight;
   leaders.setAttribute("viewBox", `0 0 ${w} ${h}`);
   const placed = { left: [], right: [] };
+  const mobileFocus = isMobile ? [...calloutEls].reverse().find(({cfg}) => {
+    const p = cfg.stage === 2 ? p2 : p1;
+    return p >= cfg.from && (cfg.until == null || p < cfg.until) &&
+      (cfg.stage === 2 ? p2 > 0 : nv.mode === "target" && p2 <= 0 && nv.fade < 0.6);
+  }) : null;
   nv.base.getWorldPosition(_cp).project(camera);
   const centerX = (_cp.x * 0.5 + 0.5) * w;
   for (const c of calloutEls) {
     const cfg = c.cfg;
     const p = cfg.stage === 2 ? p2 : p1;
-    const on = p >= cfg.from && (cfg.until == null || p < cfg.until) && (cfg.stage === 2 ? p2 > 0 : nv.mode === "target" && p2 <= 0 && nv.fade < 0.6);
+    const on = (!isMobile || c === mobileFocus) && p >= cfg.from && (cfg.until == null || p < cfg.until) && (cfg.stage === 2 ? p2 > 0 : nv.mode === "target" && p2 <= 0 && nv.fade < 0.6);
     c.shown += ((on ? 1 : 0) - c.shown) * 0.12;
     if (c.shown < 0.02) { c.el.style.opacity = "0"; c.line.style.opacity = "0"; c.el.style.pointerEvents = "none"; continue; }
     let obj;
@@ -329,6 +376,14 @@ function layoutCallouts(p1, p2) {
     let side = cfg.side;
     if (side === "auto") { side = sx < centerX - 8 ? "left" : "right"; c.el.classList.toggle("left", side === "left"); c.el.classList.toggle("right", side === "right"); }
     const card = c.el.firstElementChild.nextElementSibling;
+    if (isMobile) {
+      c.el.classList.remove("left"); c.el.classList.add("right");
+      c.el.style.opacity = String(c.shown);
+      c.el.style.pointerEvents = "auto";
+      c.el.style.transform = `translate(${hud.offsetLeft}px, ${h - 112 - card.offsetHeight + 14}px)`;
+      c.line.style.opacity = "0";
+      continue;
+    }
     const cw = (card ? card.offsetWidth : 236) + 14;
     let lx = side === "left" ? Math.min(sx - 90, w * 0.34) : Math.max(sx + 90, w * 0.66);
     if (cfg.stage === 2 && !isMobile) lx = side === "left" ? Math.min(sx - 70, w * 0.22) : Math.max(sx + 70, w * 0.62);
@@ -393,6 +448,7 @@ let stageVisible = true;
 new IntersectionObserver(([entry]) => { stageVisible = entry.isIntersecting; }).observe(stage);
 const clock = new THREE.Clock();
 const extra = {};
+let firstFrame = true;
 function frame() {
   const dt = Math.min(clock.getDelta(), 0.05);
   const t = clock.elapsedTime;
@@ -451,12 +507,13 @@ function frame() {
 
   // orbit: auto-rotate when idle; the strip turns the model a little, the knolling turns it back to a 3/4 front
   const idleFor = (performance.now() - Math.max(lastInteract, lastScrollAt)) / 1000;
-  if (!dragging && !reduce && idleFor > 3.5 && p1 < 0.02) orbitGoal.theta += dt * 0.12;
+  if (!isMobile && !dragging && !reduce && idleFor > 3.5 && p1 < 0.02) orbitGoal.theta += dt * 0.12;
   if (!dragging) { orbitGoal.theta += velTheta; velTheta *= 0.92; }
   orbit.theta += (orbitGoal.theta + p1 * 0.85 - pB * 0.6 - orbit.theta) * 0.08;
   orbit.phi += (orbitGoal.phi - orbit.phi) * 0.08;
-  const distGoal = baseDist * (1 + p1 * 0.42 + p2 * 0.5) * (state.pose === "guard" ? 1.02 : 1);
-  orbit.dist += (distGoal - orbit.dist) * 0.06;
+  const distGoal = isMobile && !clean && !ortho ? mobileDistance(p1, p2) : baseDist * (1 + p1 * 0.42 + p2 * 0.5) * (state.pose === "guard" ? 1.02 : 1);
+  if (firstFrame) { orbit.dist = distGoal; firstFrame = false; }
+  else orbit.dist += (distGoal - orbit.dist) * 0.06;
   orbit.target.y += ((0.64 + p1 * 0.03 + p2 * 0.16) - orbit.target.y) * 0.06;
   if (ortho) {
     const th = { front: 0, side: Math.PI / 2, back: Math.PI, left: -Math.PI / 2 }[state.view] ?? 0;
@@ -472,12 +529,15 @@ function frame() {
   }
   const w = stage.clientWidth, h = stage.clientHeight;
   const leftShift = isMobile || clean ? 0 : -w * 0.2;
-  const shiftGoal = viewShiftGoal * (1 - Math.min(1, p1 * 2.2)) + leftShift * pB;
+  const shiftGoal = isLandscapePhone && !clean ? w * 0.23 : viewShiftGoal * (1 - Math.min(1, p1 * 2.2)) + leftShift * pB;
   viewShift += (shiftGoal - viewShift) * 0.08;
-  const shiftYGoal = viewShiftYGoal * (1 - Math.min(1, p1 * 2.2));
+  const shiftYGoal = isLandscapePhone && !clean ? -h * 0.06 : isMobile && !clean ? h * 0.04 * Math.min(1, p1 * 6 + p2) : viewShiftYGoal * (1 - Math.min(1, p1 * 2.2));
   viewShiftY += (shiftYGoal - viewShiftY) * 0.08;
   if (Math.abs(viewShift) > 0.5 || Math.abs(viewShiftY) > 0.5) camera.setViewOffset(w, h, -viewShift, viewShiftY, w, h); else camera.clearViewOffset();
 
+  // Fog stays behind the robot even when portrait framing moves the camera back.
+  scene.fog.near = isMobile && !ortho ? Math.max(0.1, orbit.dist - 0.35) : 3.8;
+  scene.fog.far = isMobile && !ortho ? orbit.dist + 6.2 : 10;
   if (composer) composer.render(); else renderer.render(scene, camera);
   layoutCallouts(p1, p2);
 }
